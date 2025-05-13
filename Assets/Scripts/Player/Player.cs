@@ -8,30 +8,21 @@ public abstract class Player : MonoBehaviour
 {
     private int lookDir = 1; // 1: right, -1: left Move함수에서의 float연산 방지를 위한 변수
 
-    protected float moveSpeed = 5f;
-    protected float attackRange;
-    protected float attackDamage;
-    readonly float baseAttackSpeed = 40f;
-    private float attackSpeed;
-    public float AttackSpeed
-    {
-        get => attackSpeed;
-        protected set
-        {
-            attackSpeed = Mathf.Max(0.1f, value);
-
-            attackCooldown = CalculateAttackCooldown();
-            float prevAttackSpeedPercent = currentAttackCooldown / attackCooldown;
-            currentAttackCooldown = attackCooldown * prevAttackSpeedPercent;
-        }
-    }
+    protected Stat moveSpeed = new Stat(5f);
+    protected Stat attackRange;
+    protected Stat attackDamage;
+    readonly float baseAttackSpeed = 10f;
+    protected Stat attackSpeed;
     private float attackCooldown;
     private float currentAttackCooldown = 0;
 
     private int exLifeSkill = 2;
+    public int ExLifeSkill
+    {
+        get { return exLifeSkill; }
+    }
     private float exLifeSkillCooldown = 5f;
     private float currentExLifeSkillCooldown = 0f;
-
 
     private PlayerInputHandler inputHandler;
     private Rigidbody2D playerRigid;
@@ -45,6 +36,9 @@ public abstract class Player : MonoBehaviour
         inputHandler = GetComponent<PlayerInputHandler>();
         playerRigid = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
+
+        attackSpeed.OnStatChanged += CalculateAttackCooldown;
+        CalculateAttackCooldown();
     }
 
     protected virtual void OnEnable()
@@ -78,7 +72,7 @@ public abstract class Player : MonoBehaviour
         if (inputValue.x > 0) dir = 1;
         else dir = -1;
 
-        playerRigid.linearVelocityX = dir * moveSpeed;
+        playerRigid.linearVelocityX = dir * moveSpeed.GetFinalValue();
 
         ChangeAnim();
     }
@@ -117,9 +111,19 @@ public abstract class Player : MonoBehaviour
         }
     }
 
-    protected float CalculateAttackCooldown()
+    protected void CalculateAttackCooldown()
     {
-        return baseAttackSpeed / AttackSpeed;
+        attackCooldown = baseAttackSpeed / attackSpeed.GetFinalValue();
+        if(currentAttackCooldown > 0)
+        {
+            AdjustCurrentAttackCooldown();
+        }
+    }
+
+    protected void AdjustCurrentAttackCooldown()
+    {
+        float remainRatio = currentAttackCooldown / attackCooldown;
+        currentAttackCooldown = attackCooldown * remainRatio;
     }
 
     protected IEnumerator AttackCoroutine()
@@ -159,6 +163,11 @@ public abstract class Player : MonoBehaviour
             yield return null;
         }
         currentExLifeSkillCooldown = 0f;
+    }
+
+    public void AddExLifeSkill()
+    {
+        exLifeSkill++;
     }
 
     //단순 일시정지 함수. Player말고 UI로 옮겨야함
