@@ -13,6 +13,8 @@ public abstract class Player : MonoBehaviour
     protected Stat attackDamage;
     readonly float baseAttackSpeed = 10f;
     protected Stat attackSpeed;
+    protected Stat critChance;
+    protected Stat critDamage;
     private float attackCooldown;
     private float currentAttackCooldown = 0;
 

@@ -1,6 +1,29 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class ReinforcePlate : MonoBehaviour
+interface IStatReinforce
 {
-    
+    void ReinforceStat(Stat stat, StatModifier mod);
+}
+
+interface ISkillReinfoce
+{
+    void ReinforceSkill(object skill);
+}
+
+public class ReinforcePlate
+{
+    List<ReinforcePlate> neighbors = new List<ReinforcePlate>();
+
+    IStatReinforce statReinforce;
+    ISkillReinfoce skillReinforce;
+
+
+
+    ReinforcePlate(IStatReinforce stat)
+    {
+        statReinforce = stat;
+    }
+
 }
