@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EnemyStat
@@ -6,6 +7,8 @@ public class EnemyStat
     private float baseMaxHealth;
     private float baseMoveSpeed;
     public bool isSuperArmor = false;
+
+    public event Action onDeathEvent;
 
     public EnemyStat(float health, float speed)
     {
@@ -20,7 +23,7 @@ public class EnemyStat
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            //¹º°¡ Á×À¸¸é ÀÏ¾î³¯ ÀÏ
+            onDeathEvent?.Invoke();
         }
     }
 
