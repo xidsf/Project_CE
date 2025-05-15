@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SkillHandler : MonoBehaviour
 {
-    Dictionary<Type, List<Skill>> skillDic = new(); 
+    Dictionary<Type, List<ISkillEffect>> skillDic = new(); 
 
-    public void RegisterSkill(ISkillTriggerType skillTriggerType, Skill skill)
+    public void RegisterSkill(ISkillTriggerCondition skillTriggerType, ISkillEffect skill)
     {
         var triggerType = skillTriggerType.GetTriggerType();
         if (skillDic.ContainsKey(triggerType))
@@ -15,7 +15,7 @@ public class SkillHandler : MonoBehaviour
         }
         else
         {
-            skillDic.Add(triggerType, new List<Skill> { skill });
+            skillDic.Add(triggerType, new List<ISkillEffect> { skill });
         }
     }
 
