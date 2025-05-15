@@ -8,13 +8,14 @@ public abstract class Player : MonoBehaviour
 {
     private int lookDir = 1; // 1: right, -1: left Move함수에서의 float연산 방지를 위한 변수
 
-    protected Stat moveSpeed = new Stat(5f);
-    protected Stat attackRange;
-    protected Stat attackDamage;
+    public Stat MoveSpeed { get; protected set; }
+    public Stat AttackRange { get; protected set; }
+    public Stat AttackDamage { get; protected set; }
+    public Stat AttackSpeed { get; protected set; }
+    public Stat CritChance { get; protected set; }
+    public Stat CritDamage { get; protected set; }
+
     readonly float baseAttackSpeed = 10f;
-    protected Stat attackSpeed;
-    protected Stat critChance;
-    protected Stat critDamage;
     private float attackCooldown;
     private float currentAttackCooldown = 0;
 
@@ -39,7 +40,7 @@ public abstract class Player : MonoBehaviour
         playerRigid = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
 
-        attackSpeed.OnStatChanged += CalculateAttackCooldown;
+        AttackSpeed.OnStatChanged += CalculateAttackCooldown;
         CalculateAttackCooldown();
     }
 
@@ -74,7 +75,7 @@ public abstract class Player : MonoBehaviour
         if (inputValue.x > 0) dir = 1;
         else dir = -1;
 
-        playerRigid.linearVelocityX = dir * moveSpeed.GetFinalValue();
+        playerRigid.linearVelocityX = dir * MoveSpeed.GetFinalValue();
 
         ChangeAnim();
     }
@@ -115,7 +116,7 @@ public abstract class Player : MonoBehaviour
 
     protected void CalculateAttackCooldown()
     {
-        attackCooldown = baseAttackSpeed / attackSpeed.GetFinalValue();
+        attackCooldown = baseAttackSpeed / AttackSpeed.GetFinalValue();
         if(currentAttackCooldown > 0)
         {
             AdjustCurrentAttackCooldown();

@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     Rigidbody2D rigid;
     Animator anim;
 
+    bool isAttack = false;
     string attackString = "Attack";
 
     private void Awake()
@@ -19,7 +20,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        ApplyVelocity(-enemyStat.GetCurrentMoveSpeed());
+        StartCoroutine(WalkCoroutine());
     }
 
     public void GiveExpGold()
@@ -37,16 +38,27 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(TestCoroutine());
+            isAttack = true;
             anim.SetTrigger(attackString);
         }
     }
 
 
-    IEnumerator TestCoroutine()
+    IEnumerator WalkCoroutine()
     {
-        ApplyVelocity(0);
-        yield return new WaitForSeconds(2f);
-        ApplyVelocity(-enemyStat.GetCurrentMoveSpeed());
+        while(true)
+        {
+            if (isAttack)
+            {
+                ApplyVelocity(0);
+                yield return new WaitForSeconds(1.5f);
+                isAttack = false;
+            }
+            else
+            {
+                ApplyVelocity(-enemyStat.GetCurrentMoveSpeed());
+                yield return null;
+            }
+        }
     }
 }

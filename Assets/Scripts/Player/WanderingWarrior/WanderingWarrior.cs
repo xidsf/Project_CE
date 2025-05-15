@@ -9,11 +9,12 @@ public class WanderingWarrior : Player
 
     protected override void Awake()
     {
-        attackRange = new Stat(1f);
-        attackDamage = new Stat(5f);
-        attackSpeed = new Stat(5f);
-        critChance = new Stat(0.1f);
-        critDamage = new Stat(1.5f);
+        MoveSpeed = new Stat(3f);
+        AttackRange = new Stat(1f);
+        AttackDamage = new Stat(5f);
+        AttackSpeed = new Stat(5f);
+        CritChance = new Stat(0.1f);
+        CritDamage = new Stat(1.5f);
         base.Awake();
     }
 
@@ -22,25 +23,25 @@ public class WanderingWarrior : Player
         float calcCrit = Random.Range(0, 1000) / 10;
         float damage;
 
-        if (calcCrit < critChance.GetFinalValue())
+        if (calcCrit < CritChance.GetFinalValue())
         {
-            damage = attackDamage.GetFinalValue() * critDamage.GetFinalValue();
+            damage = AttackDamage.GetFinalValue() * CritDamage.GetFinalValue();
         }
         else
         {
-            damage = attackDamage.GetFinalValue();
+            damage = AttackDamage.GetFinalValue();
         }
 
-        Debug.Log("Attack: Damage: " + damage + " AttSpeed: " + attackSpeed.GetRoundedFloat());
+        Debug.Log("Attack: Damage: " + damage + " AttSpeed: " + AttackSpeed.GetRoundedFloat());
         
         if (cnt > 0 && !isContinuousAttack)
         {
-            attackSpeed.AddModifier(new StatModifier(10, ModifierType.Percent, continuousAttackSource));
+            AttackSpeed.AddModifier(new StatModifier(10, ModifierType.Percent, continuousAttackSource));
             isContinuousAttack = true;
         }
         if(isContinuousAttack && cnt <= 0)
         {
-            attackSpeed.RemoveModifier(continuousAttackSource);
+            AttackSpeed.RemoveModifier(continuousAttackSource);
             isContinuousAttack = false;
         }
         else if (isContinuousAttack)
