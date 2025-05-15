@@ -4,5 +4,5 @@ public interface ISkillEffect
 {
     public GameObject TargetObject { get; }
 
-    public abstract void Effect();
+    public abstract void Activate(StatusContext context);
 }

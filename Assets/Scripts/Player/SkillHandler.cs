@@ -6,9 +6,9 @@ public class SkillHandler : MonoBehaviour
 {
     Dictionary<Type, List<ISkillEffect>> skillDic = new(); 
 
-    public void RegisterSkill(ISkillTriggerCondition skillTriggerType, ISkillEffect skill)
+    public void RegisterSkill(ISkillCondition skillTriggerType, ISkillEffect skill)
     {
-        var triggerType = skillTriggerType.GetTriggerType();
+        var triggerType = skillTriggerType.GetConditionType();
         if (skillDic.ContainsKey(triggerType))
         {
             skillDic[triggerType].Add(skill);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -33,6 +34,9 @@ public abstract class Player : MonoBehaviour
 
     private string moveFrontString = "isMoveFront";
     private string moveBackString = "isMoveBack";
+
+    public event Action<StatusContext> OnAttack;
+    public event Action<StatusContext> OnAttackHit;
 
     protected virtual void Awake()
     {
@@ -144,6 +148,17 @@ public abstract class Player : MonoBehaviour
     }
 
     protected abstract void Attack();
+
+    protected void RaiseAttack(bool crit, float damage, GameObject player)
+    {
+        OnAttack?.Invoke(new StatusContext(crit, damage, player));
+    }
+
+    protected void RaiseAttackHit(bool crit, float damage, GameObject player, GameObject enemy)
+    {
+        OnAttack?.Invoke(new StatusContext(crit, damage, player, enemy));
+    }
+
 
     protected void TryUseExLifeSkill(InputAction.CallbackContext ctx)
     {
