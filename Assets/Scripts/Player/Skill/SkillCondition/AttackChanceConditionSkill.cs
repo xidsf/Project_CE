@@ -27,11 +27,11 @@ public class AttackChanceConditionSkill : BaseSkillCondition
     public override void OnRegister(Action<StatusContext> onConditionMet)
     {
         onMet = onConditionMet;
-        EventConditionManager.Instance.Player.OnAttack += Trigger;
+        //SkillConditionManager.Instance.Player.OnAttack += Trigger;
     }
 
     public override void OnUnregister()
     {
-        EventConditionManager.Instance.Player.OnAttack -= Trigger;
+        //SkillConditionManager.Instance.Player.OnAttack -= Trigger;
     }
 }

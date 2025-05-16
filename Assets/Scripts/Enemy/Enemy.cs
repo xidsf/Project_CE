@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamageable
 {
     EnemyStat enemyStat;
     Rigidbody2D rigid;
@@ -15,18 +15,22 @@ public class Enemy : MonoBehaviour
         enemyStat = new EnemyStat(20f, 1f);
         anim = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
-        enemyStat.onDeathEvent += GiveExpGold;
-    }
 
-    private void Update()
-    {
         StartCoroutine(WalkCoroutine());
     }
 
-    public void GiveExpGold()
+    private void OnEnable()
     {
-        // 경험치와 골드 지급
-        //
+        enemyStat.onDeathEvent += GiveExpGold;
+        enemyStat.onDeathEvent += OnDeath;
+        DamagableCollisionCache.Register(this);
+    }
+
+    private void OnDisable()
+    {
+        enemyStat.onDeathEvent -= GiveExpGold;
+        enemyStat.onDeathEvent -= OnDeath;
+        DamagableCollisionCache.UnRegister(this);
     }
 
     private void ApplyVelocity(float speed)
@@ -42,7 +46,6 @@ public class Enemy : MonoBehaviour
             anim.SetTrigger(attackString);
         }
     }
-
 
     IEnumerator WalkCoroutine()
     {
@@ -60,5 +63,26 @@ public class Enemy : MonoBehaviour
                 yield return null;
             }
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        enemyStat.DamageHP(damage);
+        Debug.Log("damaged: " + damage);
+    }
+
+    public void GiveExpGold()
+    {
+        // 경험치와 골드 지급
+        //
+    }
+
+    private void OnDeath()
+    {
+        gameObject.GetComponent<Collider2D>().enabled = false;
+        StopAllCoroutines();
+        rigid.linearVelocityX = 0;
+        anim.SetTrigger("Death");
+        Destroy(gameObject, 1f);
     }
 }

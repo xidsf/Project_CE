@@ -23,7 +23,7 @@ public class ElapsedTimeConditionSkill : BaseSkillCondition, IResetable
 
     public override void Trigger(StatusContext onConditionMet)
     {
-        currentTime += EventConditionManager.TickRate;
+        currentTime += SkillConditionManager.TickRate;
         if(currentTime >= TimeCondition)
         {
             currentTime = 0;

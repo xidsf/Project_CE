@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 public class EnemyStat
 {
@@ -17,7 +16,7 @@ public class EnemyStat
         baseMoveSpeed = speed;
     }
 
-    public void GetDamage(float damage)
+    public void DamageHP(float damage)
     {
         currentHealth -= damage;
         if (currentHealth <= 0)
@@ -26,7 +25,6 @@ public class EnemyStat
             onDeathEvent?.Invoke();
         }
     }
-
 
     public float GetCurrentHealth()
     {

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventConditionManager : Singleton<EventConditionManager>
+public class SkillConditionManager : Singleton<SkillConditionManager>
 {
     public static readonly float TickRate = 0.1f;
 
@@ -18,7 +18,7 @@ public class EventConditionManager : Singleton<EventConditionManager>
         Player = FindAnyObjectByType<Player>();
     }
 
-    public void RegisterSkill(Skill skill)
+    public void RegisterSkill(ConditionSkill skill)
     {
         Type conditionType = skill.SkillCondition.GetConditionType();
         if (conditionDict.ContainsKey(conditionType))
@@ -57,14 +57,6 @@ public class EventConditionManager : Singleton<EventConditionManager>
             {
                 resetActionDict[resetableSkill] -= ((IResetable)resetableSkill).Reset;
             }
-        }
-    }
-
-    public void ResetSkillCondition<T>() where T : IResetable
-    {
-        if(resetActionDict.ContainsKey(typeof(T)))
-        {
-            resetActionDict[typeof(T)]?.Invoke();
         }
     }
 

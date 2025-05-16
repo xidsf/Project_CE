@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerInput))]
-public class PlayerInputHandler : MonoBehaviour
+public class PlayerInputHandler : MonoBehaviour, IInitializable, IEventSubscriber
 {
     private PlayerInput playerInput;
 
@@ -31,9 +31,9 @@ public class PlayerInputHandler : MonoBehaviour
     private Action<InputAction.CallbackContext> pauseActionHandler;
     private Action<InputAction.CallbackContext> exLifeActionHandler;
 
-    private void Awake()
+    public void Initialize(Player player)
     {
-        playerInput = GetComponent<PlayerInput>();
+        playerInput = player.PlayerInput;
 
         moveAction = playerInput.actions["Move"];
         lookAction = playerInput.actions["Look"];
@@ -51,7 +51,8 @@ public class PlayerInputHandler : MonoBehaviour
         exLifeActionHandler = ctx => OnExLifeUsed?.Invoke(ctx);
     }
 
-    private void OnEnable()
+
+    public void SubscribeEvent()
     {
         moveAction.performed += moveActionHandler;
         moveAction.canceled += moveCanceledActionHandler;
@@ -62,7 +63,7 @@ public class PlayerInputHandler : MonoBehaviour
         exLifeAction.performed += exLifeActionHandler;
     }
 
-    private void OnDisable()
+    public void UnsubscribeEvent()
     {
         moveAction.performed -= moveActionHandler;
         moveAction.canceled -= moveCanceledActionHandler;

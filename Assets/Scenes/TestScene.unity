@@ -5291,6 +5291,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightBandit
       objectReference: {fileID: 0}
+    - target: {fileID: 1689866831511430, guid: 2e2183501755a214591e802f3aff33d2, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4805181885227780, guid: 2e2183501755a214591e802f3aff33d2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12
@@ -5333,7 +5337,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1943394156383696, guid: 2e2183501755a214591e802f3aff33d2, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e2183501755a214591e802f3aff33d2, type: 3}
@@ -5646,8 +5651,11 @@ GameObject:
   - component: {fileID: 1702632644}
   - component: {fileID: 1702632647}
   - component: {fileID: 1702632646}
+  - component: {fileID: 1702632651}
   - component: {fileID: 1702632648}
+  - component: {fileID: 1702632650}
   - component: {fileID: 1702632649}
+  - component: {fileID: 1702632652}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5851,6 +5859,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cnt: 0
   isContinuousAttack: 0
+--- !u!114 &1702632650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702632643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61dc9e4c09797bb48944b9cc97366e24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1702632651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702632643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc453f30760fcf5479699587c1336a58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1702632652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702632643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eedd3cf3fb3d28244965b1ac77ff8f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillEffect: {fileID: 11400000, guid: 70c9c6cacc1c6e74082561ced0260b35, type: 2}
 --- !u!1001 &1702741520
 PrefabInstance:
   m_ObjectHideFlags: 0

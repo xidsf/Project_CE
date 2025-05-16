@@ -28,7 +28,7 @@ public class Stat
     public Stat(float baseValue)
     {
         this.baseValue = baseValue;
-        this.modifiers = new List<StatModifier>();
+        modifiers = new List<StatModifier>();
     }
 
     public void AddModifier(StatModifier mod)
@@ -42,19 +42,26 @@ public class Stat
         OnStatChanged?.Invoke();
     }
 
-    public void GetModifiersSum(out float flat, out float percent)
+    public float GetAllFlatModifierSum()
     {
         float _flat = 0;
-        float _percent = 0;
         foreach (StatModifier mod in modifiers)
         {
             if (mod.isPercentage == ModifierType.Flat)
                 _flat += mod.value;
-            else
+        }
+        return _flat;
+    }
+
+    public float GetAllPercentModifierSum()
+    {
+        float _percent = 0;
+        foreach (StatModifier mod in modifiers)
+        {
+            if (mod.isPercentage == ModifierType.Flat)
                 _percent += mod.value;
         }
-        flat = _flat;
-        percent = _percent;
+        return _percent;
     }
 
     public float GetFinalValue()
