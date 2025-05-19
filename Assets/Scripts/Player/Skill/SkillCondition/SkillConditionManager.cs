@@ -10,12 +10,10 @@ public class SkillConditionManager : Singleton<SkillConditionManager>
     private readonly Dictionary<Type, List<ISkillCondition>> conditionDict = new();
     private readonly Dictionary<Type, Action> resetActionDict;
 
-    public Player Player { get; private set; }
 
     private void Start()
     {
         StartCoroutine(ElapsedTimeCheck());
-        Player = FindAnyObjectByType<Player>();
     }
 
     public void RegisterSkill(ConditionSkill skill)

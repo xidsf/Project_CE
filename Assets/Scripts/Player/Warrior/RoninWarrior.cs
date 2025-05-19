@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WanderingWarrior : Player
+public class RoninWarrior : Player
 {
     [SerializeField] int cnt = 0;
     [SerializeField] bool isContinuousAttack = false;

@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public class ConditionSkill : MonoBehaviour
+public class ConditionSkill
 {
     public ISkillCondition SkillCondition { get; }
     public ISkillEffect SkillEffect { get; }
