@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef7a52dd363a51742b812f5a27eb323e, type: 3}
   m_Name: WanderingWarriorNormalAttack
   m_EditorClassIdentifier: 
+  attackParticle: {fileID: 2993831266282668713, guid: 4858059387926584193a8a3cf31326dd, type: 3}

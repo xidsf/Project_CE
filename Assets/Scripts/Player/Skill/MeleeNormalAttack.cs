@@ -8,7 +8,12 @@ public class MeleeNormalAttack : SkillEffectSO
         Transform playerTransform = context.Attacker.transform;
         Vector2 attackDirection = context.Attacker.PlayerMovement.GetLookDirection();
         float attackDistance = context.Attacker.PlayerStat.AttackRange.GetFinalValue();
-
+        if(ParticleDuration > 0)
+        {
+            Vector3 spawnParticlePosition = playerTransform.position + new Vector3(attackDistance * 0.5f * attackDirection.x, 0, 0);
+            GameObject instantiatedParticle = Instantiate(attackParticle, spawnParticlePosition, Quaternion.identity);
+            Destroy(instantiatedParticle, ParticleDuration);
+        }
         RaycastHit2D[] hit = Physics2D.RaycastAll(playerTransform.position, attackDirection, attackDistance, LayerMask.GetMask(damageableString));
         
         foreach (RaycastHit2D hitInfo in hit)
