@@ -18,7 +18,7 @@ public class MeleeNormalAttack : SkillEffectSO
         {
             if (hitInfo.collider != null)
             {
-                if (DamagableCollisionCache.TryGet(hitInfo.collider, out IDamageable damagable))
+                if (DamagableCollisionCache.TryGetDamageable(hitInfo.collider, out IDamageable damagable))
                 {
                     damagable.TakeDamage(context.Attacker.PlayerStat.AttackDamage.GetFinalValue());
                 }

@@ -19,7 +19,7 @@ public class ExplosiveProjectile : MonoBehaviour
             Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position, attackAreaRadius);
             foreach(var enemys in collisions)
             {
-                if(DamagableCollisionCache.TryGet(enemys, out IDamageable damagable))
+                if(DamagableCollisionCache.TryGetDamageable(enemys, out IDamageable damagable))
                 {
                     damagable.TakeDamage(attackDamage);
                 }

@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
     public PlayerMovement PlayerMovement { get; protected set; }
     public PlayerAnimationHandler PlayerAnimationHandler { get; protected set; }
 
+    bool isEventsSubscribed = false;
+
     protected virtual void Awake()
     {
         PlayerInput = GetComponent<PlayerInput>();
@@ -36,7 +38,6 @@ public class Player : MonoBehaviour
         PlayerMovement = GetComponent<PlayerMovement>();
         PlayerAnimationHandler = GetComponent<PlayerAnimationHandler>();
         NormalAttack = GetComponent<NormalAttack>();
-        NormalAttack.Initialize(this);
 
         AssembleComponent();
     }
@@ -67,10 +68,16 @@ public class Player : MonoBehaviour
     {
         foreach (var EventSubscriberComponent in GetComponents<IEventSubscriber>())
         {
-            if(link)
+            if(link && !isEventsSubscribed)
+            {
                 EventSubscriberComponent.SubscribeEvent();
-            else
+                isEventsSubscribed = true;
+            }
+            else if(!link && isEventsSubscribed)
+            {
                 EventSubscriberComponent.UnsubscribeEvent();
+                isEventsSubscribed = false;
+            }
         }
     }
 

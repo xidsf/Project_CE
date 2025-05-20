@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Default Local Group
+  m_Name: Packed Assets
   m_EditorClassIdentifier: 
-  m_GroupName: Default Local Group
-  m_GUID: f65f08ef564d9e747ad9312119d25cd7
+  m_GroupName: Packed Assets
+  m_GUID: b3f65d2493d3e05488dfdd3b85a63249
   m_SerializeEntries:
-  - m_GUID: e1ea297045f810943ba183e97a540153
-    m_Address: Assets/ScriptableObjects
+  - m_GUID: c0d323f5c04ed1a429c37ec577366503
+    m_Address: Assets/AddressableAssets/Player/Warrior
     m_ReadOnly: 0
     m_SerializedLabels:
     - Warrior
@@ -25,5 +25,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: bbdf477812623f04cb2b19850d21f540, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 66cfd0d357ef23440818a2fc3a93a1a0, type: 2}
-    - {fileID: 11400000, guid: 52d3e7b81d623ef45a63080febdddd14, type: 2}
+    - {fileID: 11400000, guid: d4dc4d69a6fad484e9a6c71d4180979c, type: 2}
+    - {fileID: 11400000, guid: 4aa542435c1a1c447abcf793df936d1b, type: 2}
