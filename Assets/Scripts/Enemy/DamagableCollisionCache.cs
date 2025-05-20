@@ -15,7 +15,7 @@ public static class DamagableCollisionCache
         }
     }
 
-    public static bool TryGetDamageable(Collider2D col, out IDamageable d)
+    public static bool TryGet(Collider2D col, out IDamageable d)
         => damagableCache.TryGetValue(col, out d);
 
     public static void UnRegister(IDamageable damagable)

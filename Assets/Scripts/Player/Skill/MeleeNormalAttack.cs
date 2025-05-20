@@ -18,7 +18,7 @@ public class MeleeNormalAttack : SkillEffectSO
         {
             if (hitInfo.collider != null)
             {
-                if (DamagableCollisionCache.TryGetDamageable(hitInfo.collider, out IDamageable damagable))
+                if (DamagableCollisionCache.TryGet(hitInfo.collider, out IDamageable damagable))
                 {
                     damagable.TakeDamage(context.Attacker.PlayerStat.AttackDamage.GetFinalValue());
                 }
@@ -30,8 +30,7 @@ public class MeleeNormalAttack : SkillEffectSO
     {
         GameObject instantiatedParticle = Instantiate(attackParticle, spawnPosition, Quaternion.identity);
         instantiatedParticle.transform.localScale = new Vector3(attackDistance, 3, 1);
-        particleSys.Play();
-        Destroy(instantiatedParticle, particleSys.main.duration);
+        Destroy(instantiatedParticle, 0.1f);
     }
 
 }
