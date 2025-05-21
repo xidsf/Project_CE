@@ -713,7 +713,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 12.5, y: 12.5}
+  m_Size: {x: 12.5, y: 4.3125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -5682,8 +5682,8 @@ GameObject:
   - component: {fileID: 1702632644}
   - component: {fileID: 1702632647}
   - component: {fileID: 1702632646}
-  - component: {fileID: 1702632651}
   - component: {fileID: 1702632648}
+  - component: {fileID: 1702632651}
   - component: {fileID: 1702632650}
   - component: {fileID: 1702632649}
   - component: {fileID: 1702632652}

@@ -6,6 +6,7 @@ public class PlayerAnimationHandler : MonoBehaviour, IInitializable
 
     private const string moveFrontAnimString = "isMoveFront";
     private const string moveBackAnimString = "isMoveBack";
+    private const string exLifeSkillAnimString = "isExLifeSkill";
 
     public void Initialize(Player player)
     {
@@ -28,6 +29,11 @@ public class PlayerAnimationHandler : MonoBehaviour, IInitializable
         {
             MoveBackwardAnim();
         }
+    }
+
+    public void TriggerExLifeSkill()
+    {
+        anim.SetTrigger(exLifeSkillAnimString);
     }
 
     private void MoveForwardAnim()
