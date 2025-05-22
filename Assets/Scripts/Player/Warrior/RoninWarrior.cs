@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class RoninWarrior : Player
 {
-    [SerializeField] int cnt = 0;
-    [SerializeField] bool isContinuousAttack = false;
+    //[SerializeField] int cnt = 0;
+    //[SerializeField] bool isContinuousAttack = false;
 
     protected override void Awake()
     {

@@ -34,6 +34,7 @@ public class PlayerInputHandler : MonoBehaviour, IInitializable, IEventSubscribe
     public void Initialize(Player player)
     {
         playerInput = player.PlayerInput;
+        player.onExLifeSkillUsed += DisablePlayerInputInTime;
 
         moveAction = playerInput.actions["Move"];
         lookAction = playerInput.actions["Look"];
@@ -72,5 +73,15 @@ public class PlayerInputHandler : MonoBehaviour, IInitializable, IEventSubscribe
         ItemBSkillAction.performed -= itemBSkillActionHandler;
         pauseAction.performed -= pauseActionHandler;
         exLifeAction.performed -= exLifeActionHandler;
+    }
+
+    private void DisablePlayerInputInTime(float time)
+    {
+        playerInput.enabled = false;
+        Invoke(nameof(EnablePlayerInput), time);
+    }
+    private void EnablePlayerInput()
+    {
+        playerInput.enabled = true;
     }
 }

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ExLifeSkill
+  m_Name: Warrior_ExLifeSkill
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -40,7 +40,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.6666667
+        time: 1.1
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -76,6 +76,10 @@ AnimationClip:
     - time: 0.56666666
       value: {fileID: 452926297546027425, guid: c50b517797d93614aac4ca58aaf97355, type: 3}
     - time: 0.6666667
+      value: {fileID: 452926297546027425, guid: c50b517797d93614aac4ca58aaf97355, type: 3}
+    - time: 0.76666665
+      value: {fileID: 4976274401295337057, guid: c50b517797d93614aac4ca58aaf97355, type: 3}
+    - time: 0.93333334
       value: {fileID: 6934013284892070054, guid: c50b517797d93614aac4ca58aaf97355, type: 3}
     attribute: m_Sprite
     path: 
@@ -116,13 +120,15 @@ AnimationClip:
     - {fileID: -1191510351576865934, guid: aec5070f5cb24b24e9fbdf06b0d1faf8, type: 3}
     - {fileID: -5639509438907974925, guid: c50b517797d93614aac4ca58aaf97355, type: 3}
     - {fileID: 452926297546027425, guid: c50b517797d93614aac4ca58aaf97355, type: 3}
+    - {fileID: 452926297546027425, guid: c50b517797d93614aac4ca58aaf97355, type: 3}
+    - {fileID: 4976274401295337057, guid: c50b517797d93614aac4ca58aaf97355, type: 3}
     - {fileID: 6934013284892070054, guid: c50b517797d93614aac4ca58aaf97355, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.68333334
+    m_StopTime: 1.1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -161,7 +167,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.6666667
+        time: 1.1
         value: 0
         inSlope: Infinity
         outSlope: Infinity

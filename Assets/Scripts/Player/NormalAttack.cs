@@ -13,24 +13,15 @@ public class NormalAttack : MonoBehaviour, IInitializable, IEventSubscriber
     private float currentAttackCooldown = 0;
 
     public event Action<StatusContext> OnAttack;
-    public event Action<StatusContext> OnAttackHit;
+    //public event Action<StatusContext> OnAttackHit;
 
     public void Initialize(Player player)
     {
         this.player = player;
+        player.onExLifeSkillUsed += StopAttackOnTime;
         stat = player.PlayerStat;
         CalculateAttackCooldown();
         EnableAttack();
-    }
-
-    public void EnableAttack()
-    {
-        StartCoroutine(AttackCoroutine());
-    }
-
-    public void DisableAttack()
-    {
-        StopAllCoroutines();
     }
 
     protected void CalculateAttackCooldown()
@@ -81,6 +72,22 @@ public class NormalAttack : MonoBehaviour, IInitializable, IEventSubscriber
         skillEffect.Activate(context);
         OnAttack?.Invoke(context);
         Debug.Log("Attack: Damage: " + damage + " AttSpeed: " + stat.AttackSpeed.GetRoundedFloat());
+    }
+
+    private void StopAttackOnTime(float time)
+    {
+        DisableAttack();
+        Invoke(nameof(EnableAttack), time);
+    }
+
+    private void EnableAttack()
+    {
+        StartCoroutine(AttackCoroutine());
+    }
+
+    private void DisableAttack()
+    {
+        StopAllCoroutines();
     }
 
     public void SubscribeEvent()

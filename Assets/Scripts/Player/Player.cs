@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,9 +12,11 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerMovement))]
 public class Player : MonoBehaviour
 {
-    public int ExLifeSkill { get; protected set; }
-    private readonly float exLifeSkillCooldown = 5f;
-    private float currentExLifeSkillCooldown = 0f;
+    [SerializeField] private ExLifeSkillSO exLifeSkill;
+    public ExLifeSkillSO ExLifeSkillSO
+    {
+        get => exLifeSkill;
+    }
 
     public PlayerStat PlayerStat { get; protected set; }
     public NormalAttack NormalAttack { get; protected set; }
@@ -25,6 +28,9 @@ public class Player : MonoBehaviour
     public PlayerInputHandler PlayerInputHandler { get; protected set; }
     public PlayerMovement PlayerMovement { get; protected set; }
     public PlayerAnimationHandler PlayerAnimationHandler { get; protected set; }
+    public ExLifeSkillHandler ExLifeSkillHandler { get; protected set; }
+
+    public event Action<float> onExLifeSkillUsed;
 
     protected virtual void Awake()
     {
@@ -35,8 +41,8 @@ public class Player : MonoBehaviour
         PlayerInputHandler = GetComponent<PlayerInputHandler>();
         PlayerMovement = GetComponent<PlayerMovement>();
         PlayerAnimationHandler = GetComponent<PlayerAnimationHandler>();
+        ExLifeSkillHandler = GetComponent<ExLifeSkillHandler>();
         NormalAttack = GetComponent<NormalAttack>();
-        NormalAttack.Initialize(this);
 
         AssembleComponent();
     }
@@ -74,32 +80,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    protected void TryUseExLifeSkill(InputAction.CallbackContext ctx)
+    private void TryUseExLifeSkill(InputAction.CallbackContext ctx)
     {
-        if(ExLifeSkill > 0 && currentExLifeSkillCooldown <= 0)
+        if(ExLifeSkillHandler.TryUseExLiseSkill())
         {
-            ExLifeSkill -= 1;
-            //UseExLifeSkill();
-            StartCoroutine(ExLifeSkillCooldownCoroutine());
+            float exLifeSkillTime = exLifeSkill.sumOfCastingTime;
+            exLifeSkillTime += PlayerAnimationHandler.ExLifeSkillLength + PlayerAnimationHandler.ParryingAnimLength;
+            onExLifeSkillUsed?.Invoke(exLifeSkillTime);
         }
-    }
-
-    //protected abstract void UseExLifeSkill();
-
-    IEnumerator ExLifeSkillCooldownCoroutine()
-    {
-        currentExLifeSkillCooldown = exLifeSkillCooldown;
-        while (currentExLifeSkillCooldown > 0)
-        {
-            currentExLifeSkillCooldown -= Time.deltaTime;
-            yield return null;
-        }
-        currentExLifeSkillCooldown = 0f;
-    }
-
-    public void AddExLifeSkill()
-    {
-        ExLifeSkill++;
     }
 
     //단순 일시정지 함수. Player말고 UI로 옮겨야함

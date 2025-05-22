@@ -20,9 +20,11 @@ public class PlayerMovement : MonoBehaviour, IInitializable, IEventSubscriber
 
         playerRigid = player.PlayerRigid;
         controlPlayer = player.gameObject;
+
+        player.onExLifeSkillUsed += SetVelocityZero;
     }
 
-    protected void Move(InputAction.CallbackContext ctx)
+    private void Move(InputAction.CallbackContext ctx)
     {
         Vector2 inputValue = ctx.ReadValue<Vector2>();
         int dir;
@@ -33,13 +35,13 @@ public class PlayerMovement : MonoBehaviour, IInitializable, IEventSubscriber
         playerAnimationHandler.SetMoveStateAnim(lookDir == dir ? true : false);
     }
 
-    protected void CancelMove(InputAction.CallbackContext ctx)
+    private void CancelMove(InputAction.CallbackContext ctx)
     {
         playerRigid.linearVelocityX = 0;
         playerAnimationHandler.SetIdleStateAnim();
     }
 
-    protected void Look(InputAction.CallbackContext ctx)
+    private void Look(InputAction.CallbackContext ctx)
     {
         Vector2 inputValue = ctx.ReadValue<Vector2>();
         lookDir = inputValue.x > 0 ? 1 : -1;
@@ -56,6 +58,7 @@ public class PlayerMovement : MonoBehaviour, IInitializable, IEventSubscriber
         inputHandler.OnMove += Move;
         inputHandler.OnMoveCanceled += CancelMove;
         inputHandler.OnLook += Look;
+        inputHandler.OnExLifeUsed += CancelMove;
     }
 
     public void UnsubscribeEvent()
@@ -63,5 +66,11 @@ public class PlayerMovement : MonoBehaviour, IInitializable, IEventSubscriber
         inputHandler.OnMove -= Move;
         inputHandler.OnMoveCanceled -= CancelMove;
         inputHandler.OnLook -= Look;
+        inputHandler.OnExLifeUsed -= CancelMove;
+    }
+
+    private void SetVelocityZero(float time)
+    {
+        playerRigid.linearVelocityX = 0;
     }
 }
