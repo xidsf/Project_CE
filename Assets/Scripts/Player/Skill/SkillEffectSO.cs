@@ -3,6 +3,10 @@ using UnityEngine;
 public abstract class SkillEffectSO : ScriptableObject, ISkillEffect
 {
     protected static readonly string damageableString = "Damageable";
-    public abstract void Activate(StatusContext context);
+
     [SerializeField] protected GameObject attackParticle;
+    public GameObject AttackParticle { get => attackParticle; }
+    protected ParticleSystem.MainModule mainParticle;
+
+    public abstract void Activate(StatusContext context);
 }

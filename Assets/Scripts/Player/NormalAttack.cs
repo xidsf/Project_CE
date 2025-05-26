@@ -5,6 +5,7 @@ using System;
 public class NormalAttack : MonoBehaviour, IInitializable, IEventSubscriber
 {
     [SerializeField] private SkillEffectSO skillEffect;
+    private ParticleSystem.MainModule skillEffectMainParticle;
     private PlayerStat stat;
     private Player player;
 
@@ -20,8 +21,18 @@ public class NormalAttack : MonoBehaviour, IInitializable, IEventSubscriber
         this.player = player;
         player.onExLifeSkillUsed += StopAttackOnTime;
         stat = player.PlayerStat;
+
+        InitParticle();
         CalculateAttackCooldown();
         EnableAttack();
+    }
+
+    protected void InitParticle()
+    {
+        if(skillEffect.AttackParticle != null)
+        {
+            skillEffectMainParticle = skillEffect.AttackParticle.GetComponent<ParticleSystem>().main;
+        }
     }
 
     protected void CalculateAttackCooldown()
@@ -58,6 +69,7 @@ public class NormalAttack : MonoBehaviour, IInitializable, IEventSubscriber
         float calcCrit = UnityEngine.Random.Range(0f, 1f);
         float damage;
         bool isCrit;
+
         if (calcCrit < stat.CritChance.GetFinalValue())
         {
             damage = stat.AttackDamage.GetFinalValue() * stat.CritDamage.GetFinalValue();
@@ -69,9 +81,16 @@ public class NormalAttack : MonoBehaviour, IInitializable, IEventSubscriber
             isCrit = false;
         }
         StatusContext context = new StatusContext(isCrit, damage, player);
+        
+        ChangeParticleSize();
         skillEffect.Activate(context);
         OnAttack?.Invoke(context);
         Debug.Log("Attack: Damage: " + damage + " AttSpeed: " + stat.AttackSpeed.GetRoundedFloat());
+    }
+
+    private void ChangeParticleSize()
+    {
+        skillEffectMainParticle.startSize = stat.AttackRange.GetFinalValue() * 0.5f;
     }
 
     private void StopAttackOnTime(float time)
