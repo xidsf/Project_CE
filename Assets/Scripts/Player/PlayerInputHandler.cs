@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerInputHandler : MonoBehaviour, IInitializable, IEventSubscriber
 {
     private PlayerInput playerInput;
+    private ExLifeSkillHandler exLifeSkillHandler;
 
     private InputAction moveAction;
     private InputAction lookAction;
@@ -34,7 +35,7 @@ public class PlayerInputHandler : MonoBehaviour, IInitializable, IEventSubscribe
     public void Initialize(Player player)
     {
         playerInput = player.PlayerInput;
-        player.onExLifeSkillUsed += DisablePlayerInputInTime;
+        exLifeSkillHandler = player.ExLifeSkillHandler;
 
         moveAction = playerInput.actions["Move"];
         lookAction = playerInput.actions["Look"];
@@ -62,6 +63,8 @@ public class PlayerInputHandler : MonoBehaviour, IInitializable, IEventSubscribe
         ItemBSkillAction.performed += itemBSkillActionHandler;
         pauseAction.performed += pauseActionHandler;
         exLifeAction.performed += exLifeActionHandler;
+
+        exLifeSkillHandler.OnExLifeSkillUsedSuccess += DisablePlayerInputInTime;
     }
 
     public void UnsubscribeEvent()
@@ -73,6 +76,8 @@ public class PlayerInputHandler : MonoBehaviour, IInitializable, IEventSubscribe
         ItemBSkillAction.performed -= itemBSkillActionHandler;
         pauseAction.performed -= pauseActionHandler;
         exLifeAction.performed -= exLifeActionHandler;
+
+        exLifeSkillHandler.OnExLifeSkillUsedSuccess -= DisablePlayerInputInTime;
     }
 
     private void DisablePlayerInputInTime(float time)
@@ -80,7 +85,7 @@ public class PlayerInputHandler : MonoBehaviour, IInitializable, IEventSubscribe
         playerInput.enabled = false;
         Invoke(nameof(EnablePlayerInput), time);
     }
-    private void EnablePlayerInput()
+    public void EnablePlayerInput()
     {
         playerInput.enabled = true;
     }

@@ -4,19 +4,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ExLifeSkill/SoulStrikeSkill")]
 public class SoulStrikeSkill : ExLifeSkillSO
 {
-    public override IEnumerator ExLifeSkillCoroutine(PlayerAnimationHandler animHandler)
+    public override IEnumerator ExLifeSkillCoroutine(float parryingAnimTime, float exLifeSkillCastTime)
     {
-        float parryingAnimLength = animHandler.ParryingAnimLength;
-        float exLifeSkillLength = animHandler.ExLifeSkillLength;
-        yield return new WaitForSeconds(startupTime);
-        animHandler.TriggerExLifeSkill();
-        Debug.Log(parryingAnimLength);
-        yield return new WaitForSeconds(parryingAnimLength);
-        Debug.Log(exLifeSkillLength);
-        yield return new WaitForSeconds(exLifeSkillLength);
+        Debug.Log(parryingAnimTime);
+        yield return new WaitForSeconds(parryingAnimTime);
+        Debug.Log(exLifeSkillCastTime);
+        yield return new WaitForSeconds(exLifeSkillCastTime);
         UseExLifeSkill();
         KnockbackAllEnemy();
-        yield return new WaitForSeconds(recoveryTime);
     }
 
     protected override void UseExLifeSkill()

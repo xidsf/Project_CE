@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour, IInitializable, IEventSubscriber
 {
     private PlayerInputHandler inputHandler;
     private PlayerStat playerStat;
-    private PlayerAnimationHandler playerAnimationHandler;
+    private ExLifeSkillHandler exLifeSkillHandler;
 
     private Rigidbody2D playerRigid;
     private GameObject controlPlayer;
@@ -16,12 +16,10 @@ public class PlayerMovement : MonoBehaviour, IInitializable, IEventSubscriber
     {
         inputHandler = player.PlayerInputHandler;
         playerStat = player.PlayerStat;
-        playerAnimationHandler = player.PlayerAnimationHandler;
+        exLifeSkillHandler = player.ExLifeSkillHandler;
 
         playerRigid = player.PlayerRigid;
         controlPlayer = player.gameObject;
-
-        player.onExLifeSkillUsed += SetVelocityZero;
     }
 
     private void Move(InputAction.CallbackContext ctx)
@@ -31,14 +29,16 @@ public class PlayerMovement : MonoBehaviour, IInitializable, IEventSubscriber
         if (inputValue.x > 0) dir = 1;
         else dir = -1;
         playerRigid.linearVelocityX = dir * playerStat.MoveSpeed.GetFinalValue();
-
-        playerAnimationHandler.SetMoveStateAnim(lookDir == dir ? true : false);
     }
 
     private void CancelMove(InputAction.CallbackContext ctx)
     {
+        CancelMove(0);
+    }
+
+    private void CancelMove(float dur)
+    {
         playerRigid.linearVelocityX = 0;
-        playerAnimationHandler.SetIdleStateAnim();
     }
 
     private void Look(InputAction.CallbackContext ctx)
@@ -56,20 +56,24 @@ public class PlayerMovement : MonoBehaviour, IInitializable, IEventSubscriber
     public void SubscribeEvent()
     {
         inputHandler.OnMove += Move;
-        inputHandler.OnMoveCanceled += CancelMove;
         inputHandler.OnLook += Look;
-        inputHandler.OnExLifeUsed += CancelMove;
+        inputHandler.OnMoveCanceled += CancelMove;
+
+        exLifeSkillHandler.OnExLifeSkillUsedSuccess += CancelMove;
+        exLifeSkillHandler.OnExLifeSkillUsedSuccess += SetVelocityZero;
     }
 
     public void UnsubscribeEvent()
     {
         inputHandler.OnMove -= Move;
-        inputHandler.OnMoveCanceled -= CancelMove;
         inputHandler.OnLook -= Look;
-        inputHandler.OnExLifeUsed -= CancelMove;
+        inputHandler.OnMoveCanceled -= CancelMove;
+
+        exLifeSkillHandler.OnExLifeSkillUsedSuccess -= CancelMove;
+        exLifeSkillHandler.OnExLifeSkillUsedSuccess -= SetVelocityZero;
     }
 
-    private void SetVelocityZero(float time)
+    private void SetVelocityZero(float duration)
     {
         playerRigid.linearVelocityX = 0;
     }

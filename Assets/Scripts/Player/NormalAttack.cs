@@ -8,6 +8,7 @@ public class NormalAttack : MonoBehaviour, IInitializable, IEventSubscriber
     private ParticleSystem.MainModule skillEffectMainParticle;
     private PlayerStat stat;
     private Player player;
+    private ExLifeSkillHandler exLifeSkillHandler;
 
     private readonly float baseAttackSpeed = 10f;
     private float attackCooldown;
@@ -19,12 +20,11 @@ public class NormalAttack : MonoBehaviour, IInitializable, IEventSubscriber
     public void Initialize(Player player)
     {
         this.player = player;
-        player.onExLifeSkillUsed += StopAttackOnTime;
         stat = player.PlayerStat;
-
+        exLifeSkillHandler = player.ExLifeSkillHandler;
         InitParticle();
         CalculateAttackCooldown();
-        EnableAttack();
+        EnableNormalAttack();
     }
 
     protected void InitParticle()
@@ -93,18 +93,18 @@ public class NormalAttack : MonoBehaviour, IInitializable, IEventSubscriber
         skillEffectMainParticle.startSize = stat.AttackRange.GetFinalValue() * 0.5f;
     }
 
-    private void StopAttackOnTime(float time)
+    private void StopNormalAttackOnTime(float time)
     {
-        DisableAttack();
-        Invoke(nameof(EnableAttack), time);
+        DisableNormalAttack();
+        Invoke(nameof(EnableNormalAttack), time);
     }
 
-    private void EnableAttack()
+    private void EnableNormalAttack()
     {
         StartCoroutine(AttackCoroutine());
     }
 
-    private void DisableAttack()
+    private void DisableNormalAttack()
     {
         StopAllCoroutines();
     }
@@ -112,11 +112,13 @@ public class NormalAttack : MonoBehaviour, IInitializable, IEventSubscriber
     public void SubscribeEvent()
     {
         stat.AttackSpeed.OnStatChanged += CalculateAttackCooldown;
+        exLifeSkillHandler.OnExLifeSkillUsedSuccess += StopNormalAttackOnTime;
     }
 
     public void UnsubscribeEvent()
     {
         stat.AttackSpeed.OnStatChanged -= CalculateAttackCooldown;
+        exLifeSkillHandler.OnExLifeSkillUsedSuccess -= StopNormalAttackOnTime;
     }
 
     private void OnDrawGizmos()

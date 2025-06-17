@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,8 +28,6 @@ public class Player : MonoBehaviour
     public PlayerAnimationHandler PlayerAnimationHandler { get; protected set; }
     public ExLifeSkillHandler ExLifeSkillHandler { get; protected set; }
 
-    public event Action<float> onExLifeSkillUsed;
-
     protected virtual void Awake()
     {
         PlayerInput = GetComponent<PlayerInput>();
@@ -50,14 +46,12 @@ public class Player : MonoBehaviour
     protected virtual void OnEnable()
     {
         SubscribeEvent(true);
-        PlayerInputHandler.OnExLifeUsed += TryUseExLifeSkill;
         PlayerInputHandler.OnPause += Pause;
     }
 
     protected virtual void OnDisable()
     {
         SubscribeEvent(false);
-        PlayerInputHandler.OnExLifeUsed -= TryUseExLifeSkill;
         PlayerInputHandler.OnPause -= Pause;
     }
 
@@ -80,17 +74,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void TryUseExLifeSkill(InputAction.CallbackContext ctx)
-    {
-        if(ExLifeSkillHandler.TryUseExLiseSkill())
-        {
-            float exLifeSkillTime = exLifeSkill.sumOfCastingTime;
-            exLifeSkillTime += PlayerAnimationHandler.ExLifeSkillLength + PlayerAnimationHandler.ParryingAnimLength;
-            onExLifeSkillUsed?.Invoke(exLifeSkillTime);
-        }
-    }
-
-    //단순 일시정지 함수. Player말고 UI로 옮겨야함
+    //단순 일시정지 함수. Player말고 GameManager에서 관리하는게 더 좋을 것 같음
     private void Pause(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)

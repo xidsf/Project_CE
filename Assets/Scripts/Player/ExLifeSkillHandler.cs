@@ -1,33 +1,51 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class ExLifeSkillHandler : MonoBehaviour, IInitializable
+public class ExLifeSkillHandler : MonoBehaviour, IInitializable, IEventSubscriber
 {
     public float currentSkillCooldown { get; private set; }
     public int ExLifeSkillCount { get; private set; }
 
     ExLifeSkillSO exLifeSkillSO;
     PlayerAnimationHandler playerAnimationHandler;
+    PlayerInputHandler playerInputHandler;
+
+    public readonly float startupTime = 0.5f;
+
+    public event Action<float> OnExLifeSkillUsedSuccess;
 
     public void Initialize(Player player)
     {
         exLifeSkillSO = player.ExLifeSkillSO;
         playerAnimationHandler = player.PlayerAnimationHandler;
+        playerInputHandler = player.PlayerInputHandler;
         currentSkillCooldown = 0f;
         ExLifeSkillCount = 3;
     }
 
-    public bool TryUseExLiseSkill()
+    public void TryUseExLiseSkill(InputAction.CallbackContext ctx)
     {
         if (ExLifeSkillCount > 0 && currentSkillCooldown <= 0)
         {
-            ExLifeSkillCount--;
-            currentSkillCooldown = exLifeSkillSO.exLifeSkillCooldown;
-            StartCoroutine(exLifeSkillSO.ExLifeSkillCoroutine(playerAnimationHandler));
-            StartCoroutine(CalcSkillCoolDown());
-            return true;
+            StartCoroutine(UseExLifeSkill());
+            OnExLifeSkillUsedSuccess?.Invoke(playerAnimationHandler.GetAnimRunningTime());
         }
-        else return false;
+    }
+
+    IEnumerator UseExLifeSkill()
+    {
+        OnExLifeSkillUsedSuccess.Invoke(playerAnimationHandler.GetAnimRunningTime());
+
+        ExLifeSkillCount--;
+        currentSkillCooldown = exLifeSkillSO.exLifeSkillCooldown;
+        StartCoroutine(CalcSkillCoolDown());
+
+        yield return new WaitForSeconds(startupTime);
+
+        StartCoroutine(exLifeSkillSO.ExLifeSkillCoroutine(
+            playerAnimationHandler.ParryingAnimLength, playerAnimationHandler.ExLifeSkillLength));
     }
 
     private IEnumerator CalcSkillCoolDown()
@@ -42,5 +60,15 @@ public class ExLifeSkillHandler : MonoBehaviour, IInitializable
     public void AddExLifeSkill()
     {
         ExLifeSkillCount++;
+    }
+
+    public void SubscribeEvent()
+    {
+        playerInputHandler.OnExLifeUsed += TryUseExLiseSkill;
+    }
+
+    public void UnsubscribeEvent()
+    {
+        playerInputHandler.OnExLifeUsed -= TryUseExLiseSkill;
     }
 }
