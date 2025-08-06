@@ -5,8 +5,7 @@ public abstract class SkillEffectSO : ScriptableObject, ISkillEffect
     protected static readonly string damageableString = "Damageable";
 
     [SerializeField] protected GameObject attackParticle;
-    public GameObject AttackParticle { get => attackParticle; }
-    protected ParticleSystem.MainModule mainParticle;
+    [SerializeField] protected GameObject hitParticle;
 
-    public abstract void Activate(StatusContext context);
+    public abstract void Activate(Player player, StatusContext context);
 }

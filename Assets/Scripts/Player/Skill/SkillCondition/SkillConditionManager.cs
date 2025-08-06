@@ -6,6 +6,7 @@ using UnityEngine;
 public class SkillConditionManager : Singleton<SkillConditionManager>
 {
     public static readonly float TickRate = 0.1f;
+    public Player player;
 
     private readonly Dictionary<Type, List<ISkillCondition>> conditionDict = new();
     private readonly Dictionary<Type, Action> resetActionDict;
@@ -32,7 +33,7 @@ public class SkillConditionManager : Singleton<SkillConditionManager>
             RegisterResetableEvent(conditionType, resetableSkill);
         }
 
-        skill.SkillCondition.OnRegister(context => skill.SkillEffect.Activate(context));
+        skill.SkillCondition.OnRegister(context => skill.SkillEffect.Activate(player, context));
     }
 
     private void RegisterResetableEvent(Type type, IResetable skillTrigger)

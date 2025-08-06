@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     public PlayerMovement PlayerMovement { get; protected set; }
     public PlayerAnimationHandler PlayerAnimationHandler { get; protected set; }
     public ExLifeSkillHandler ExLifeSkillHandler { get; protected set; }
-
+    
     protected virtual void Awake()
     {
         PlayerInput = GetComponent<PlayerInput>();
