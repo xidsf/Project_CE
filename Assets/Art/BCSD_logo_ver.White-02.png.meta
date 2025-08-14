@@ -1,0 +1,1430 @@
+fileFormatVersion: 2
+guid: a96f06da5706e2a4ead36ad492cb07e2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7494674992849032884
+    second: BCSD_logo_ver.White-02_0
+  - first:
+      213: 5666448410543859630
+    second: BCSD_logo_ver.White-02_1
+  - first:
+      213: -4896612654770839254
+    second: BCSD_logo_ver.White-02_2
+  - first:
+      213: 966290051602067425
+    second: BCSD_logo_ver.White-02_3
+  - first:
+      213: -3890919743162202193
+    second: BCSD_logo_ver.White-02_4
+  - first:
+      213: 3602871807675440962
+    second: BCSD_logo_ver.White-02_5
+  - first:
+      213: -4550258564492615247
+    second: BCSD_logo_ver.White-02_6
+  - first:
+      213: -2097738554987832453
+    second: BCSD_logo_ver.White-02_7
+  - first:
+      213: -8155914696972696465
+    second: BCSD_logo_ver.White-02_8
+  - first:
+      213: 7081829795699360054
+    second: BCSD_logo_ver.White-02_9
+  - first:
+      213: 4564005272825212072
+    second: BCSD_logo_ver.White-02_10
+  - first:
+      213: -667835015775911347
+    second: BCSD_logo_ver.White-02_11
+  - first:
+      213: -7047614812792663328
+    second: BCSD_logo_ver.White-02_12
+  - first:
+      213: -6840859484786750781
+    second: BCSD_logo_ver.White-02_13
+  - first:
+      213: 7565612096886070445
+    second: BCSD_logo_ver.White-02_14
+  - first:
+      213: -6590449692981744147
+    second: BCSD_logo_ver.White-02_15
+  - first:
+      213: 8979061087270557999
+    second: BCSD_logo_ver.White-02_16
+  - first:
+      213: 1058561317113444897
+    second: BCSD_logo_ver.White-02_17
+  - first:
+      213: -2414905033066161343
+    second: BCSD_logo_ver.White-02_18
+  - first:
+      213: 5479544241424408990
+    second: BCSD_logo_ver.White-02_19
+  - first:
+      213: -1660418502320306118
+    second: BCSD_logo_ver.White-02_20
+  - first:
+      213: 308918320475631882
+    second: BCSD_logo_ver.White-02_21
+  - first:
+      213: 5069698059915976247
+    second: BCSD_logo_ver.White-02_22
+  - first:
+      213: 2207566065031462844
+    second: BCSD_logo_ver.White-02_23
+  - first:
+      213: -4733335093308250626
+    second: BCSD_logo_ver.White-02_24
+  - first:
+      213: 171828281540311716
+    second: BCSD_logo_ver.White-02_25
+  - first:
+      213: -2660961324886494656
+    second: BCSD_logo_ver.White-02_26
+  - first:
+      213: 4357862076150723128
+    second: BCSD_logo_ver.White-02_27
+  - first:
+      213: 7380795717955087551
+    second: BCSD_logo_ver.White-02_28
+  - first:
+      213: -589748107123236838
+    second: BCSD_logo_ver.White-02_29
+  - first:
+      213: 1873434247292269305
+    second: BCSD_logo_ver.White-02_30
+  - first:
+      213: 956133331769056981
+    second: BCSD_logo_ver.White-02_31
+  - first:
+      213: 4062869693142165075
+    second: BCSD_logo_ver.White-02_32
+  - first:
+      213: -467974227998073659
+    second: BCSD_logo_ver.White-02_33
+  - first:
+      213: 1349427411298081862
+    second: BCSD_logo_ver.White-02_34
+  - first:
+      213: -5160268827930602978
+    second: BCSD_logo_ver.White-02_35
+  - first:
+      213: 4935829205610559197
+    second: BCSD_logo_ver.White-02_36
+  - first:
+      213: 7944860633239011341
+    second: BCSD_logo_ver.White-02_37
+  - first:
+      213: -5125352283311825590
+    second: BCSD_logo_ver.White-02_38
+  - first:
+      213: 6318979678178163779
+    second: BCSD_logo_ver.White-02_39
+  - first:
+      213: -6449726739462591648
+    second: BCSD_logo_ver.White-02_40
+  - first:
+      213: -202050053962632859
+    second: BCSD_logo_ver.White-02_41
+  - first:
+      213: 5332093826972415419
+    second: BCSD_logo_ver.White-02_42
+  - first:
+      213: 1206344525672701123
+    second: BCSD_logo_ver.White-02_43
+  - first:
+      213: 3300923053668819339
+    second: BCSD_logo_ver.White-02_44
+  - first:
+      213: -3022298882356326983
+    second: BCSD_logo_ver.White-02_45
+  - first:
+      213: 3373707360785928895
+    second: BCSD_logo_ver.White-02_46
+  - first:
+      213: -1598121301879187267
+    second: BCSD_logo_ver.White-02_47
+  - first:
+      213: 5376827719768666871
+    second: BCSD_logo_ver.White-02_48
+  - first:
+      213: 6354203594965983188
+    second: BCSD_logo_ver.White-02_49
+  - first:
+      213: 4914776647754420566
+    second: BCSD_logo_ver.White-02_50
+  - first:
+      213: 3842009533633296715
+    second: BCSD_logo_ver.White-02_51
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_0
+      rect:
+        serializedVersion: 2
+        x: 882
+        y: 1390
+        width: 1135
+        height: 1183
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b615cf823f620860800000000000000
+      internalID: 7494674992849032884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_1
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 724
+        width: 248
+        height: 336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea72b88aec443ae40800000000000000
+      internalID: 5666448410543859630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_2
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 718
+        width: 249
+        height: 348
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a21a3bddbbcbb0cb0800000000000000
+      internalID: -4896612654770839254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_3
+      rect:
+        serializedVersion: 2
+        x: 915
+        y: 722
+        width: 233
+        height: 341
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ef2cbbaea3f86d00800000000000000
+      internalID: 966290051602067425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_4
+      rect:
+        serializedVersion: 2
+        x: 1190
+        y: 724
+        width: 288
+        height: 336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa7434bcb1da00ac0800000000000000
+      internalID: -3890919743162202193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_5
+      rect:
+        serializedVersion: 2
+        x: 1624
+        y: 724
+        width: 193
+        height: 336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24f93cbf1d8fff130800000000000000
+      internalID: 3602871807675440962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_6
+      rect:
+        serializedVersion: 2
+        x: 1828
+        y: 724
+        width: 324
+        height: 336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b12d33a1fb3ad0c0800000000000000
+      internalID: -4550258564492615247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_7
+      rect:
+        serializedVersion: 2
+        x: 2181
+        y: 724
+        width: 248
+        height: 336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7b1f4606e553e2e0800000000000000
+      internalID: -2097738554987832453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_8
+      rect:
+        serializedVersion: 2
+        x: 2455
+        y: 717
+        width: 106
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f640e848bce50de80800000000000000
+      internalID: -8155914696972696465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_9
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 486
+        width: 114
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63100749da6b74260800000000000000
+      internalID: 7081829795699360054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_10
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 485
+        width: 101
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8aca1cf4d9a965f30800000000000000
+      internalID: 4564005272825212072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_11
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 449
+        width: 110
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d420c1c679f5bb6f0800000000000000
+      internalID: -667835015775911347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_12
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 485
+        width: 105
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e256b9eaa7d13e90800000000000000
+      internalID: -7047614812792663328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_13
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 486
+        width: 96
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ca8ce20b826011a0800000000000000
+      internalID: -6840859484786750781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_14
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 485
+        width: 105
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dacda472e147ef860800000000000000
+      internalID: 7565612096886070445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_15
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 484
+        width: 121
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dedadb30ce40a84a0800000000000000
+      internalID: -6590449692981744147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_16
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 485
+        width: 105
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f295b4b5c780c9c70800000000000000
+      internalID: 8979061087270557999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_17
+      rect:
+        serializedVersion: 2
+        x: 1179
+        y: 486
+        width: 165
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12a348fc8e3c0be00800000000000000
+      internalID: 1058561317113444897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_18
+      rect:
+        serializedVersion: 2
+        x: 1374
+        y: 450
+        width: 104
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14bd9c9caa88c7ed0800000000000000
+      internalID: -2414905033066161343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_19
+      rect:
+        serializedVersion: 2
+        x: 1499
+        y: 485
+        width: 95
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e91a329a4704b0c40800000000000000
+      internalID: 5479544241424408990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_20
+      rect:
+        serializedVersion: 2
+        x: 1610
+        y: 485
+        width: 72
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3846be5b2205f8e0800000000000000
+      internalID: -1660418502320306118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_21
+      rect:
+        serializedVersion: 2
+        x: 1689
+        y: 485
+        width: 100
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a017f84639f794400800000000000000
+      internalID: 308918320475631882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_22
+      rect:
+        serializedVersion: 2
+        x: 1811
+        y: 486
+        width: 55
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73e57cb668f2b5640800000000000000
+      internalID: 5069698059915976247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_23
+      rect:
+        serializedVersion: 2
+        x: 1927
+        y: 484
+        width: 102
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbf3864d3a9d2ae10800000000000000
+      internalID: 2207566065031462844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_24
+      rect:
+        serializedVersion: 2
+        x: 2042
+        y: 485
+        width: 104
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef5a8789fc0df4eb0800000000000000
+      internalID: -4733335093308250626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_25
+      rect:
+        serializedVersion: 2
+        x: 2154
+        y: 486
+        width: 72
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4aa739369e4726200800000000000000
+      internalID: 171828281540311716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_26
+      rect:
+        serializedVersion: 2
+        x: 2219
+        y: 485
+        width: 72
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 042761df5cd521bd0800000000000000
+      internalID: -2660961324886494656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_27
+      rect:
+        serializedVersion: 2
+        x: 2292
+        y: 486
+        width: 167
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8323c15287c3a7c30800000000000000
+      internalID: 4357862076150723128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_28
+      rect:
+        serializedVersion: 2
+        x: 2463
+        y: 485
+        width: 88
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbcef60b99add6660800000000000000
+      internalID: 7380795717955087551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_29
+      rect:
+        serializedVersion: 2
+        x: 2581
+        y: 486
+        width: 55
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a10e5ff983bc0d7f0800000000000000
+      internalID: -589748107123236838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_30
+      rect:
+        serializedVersion: 2
+        x: 2645
+        y: 485
+        width: 101
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f238e3a586cff910800000000000000
+      internalID: 1873434247292269305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_31
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 264
+        width: 127
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5de510e033ed44d00800000000000000
+      internalID: 956133331769056981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_32
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 263
+        width: 100
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 356607cb576326830800000000000000
+      internalID: 4062869693142165075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_33
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 264
+        width: 107
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cc13284beb6189f0800000000000000
+      internalID: -467974227998073659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_34
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 263
+        width: 101
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64cd89cb4112ab210800000000000000
+      internalID: 1349427411298081862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_35
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 264
+        width: 21
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e12dcad57da0368b0800000000000000
+      internalID: -5160268827930602978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_36
+      rect:
+        serializedVersion: 2
+        x: 808
+        y: 263
+        width: 104
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd67a68e2869f7440800000000000000
+      internalID: 4935829205610559197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_37
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 229
+        width: 104
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d00423af6a0d14e60800000000000000
+      internalID: 7944860633239011341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_38
+      rect:
+        serializedVersion: 2
+        x: 1060
+        y: 264
+        width: 165
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4d167ce0471fd8b0800000000000000
+      internalID: -5125352283311825590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_39
+      rect:
+        serializedVersion: 2
+        x: 1247
+        y: 263
+        width: 100
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34cb8b4b98681b750800000000000000
+      internalID: 6318979678178163779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_40
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 264
+        width: 95
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06b6efbd3b7fd76a0800000000000000
+      internalID: -6449726739462591648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_41
+      rect:
+        serializedVersion: 2
+        x: 1480
+        y: 263
+        width: 72
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56175b2eb8c223df0800000000000000
+      internalID: -202050053962632859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_42
+      rect:
+        serializedVersion: 2
+        x: 1623
+        y: 264
+        width: 91
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb57eb1c5176ff940800000000000000
+      internalID: 5332093826972415419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_43
+      rect:
+        serializedVersion: 2
+        x: 1723
+        y: 263
+        width: 88
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cc557164fbcdb010800000000000000
+      internalID: 1206344525672701123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_44
+      rect:
+        serializedVersion: 2
+        x: 1841
+        y: 263
+        width: 104
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b81e3dc370c3fcd20800000000000000
+      internalID: 3300923053668819339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_45
+      rect:
+        serializedVersion: 2
+        x: 1958
+        y: 263
+        width: 104
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bd4718ed23ae06d0800000000000000
+      internalID: -3022298882356326983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_46
+      rect:
+        serializedVersion: 2
+        x: 2084
+        y: 264
+        width: 56
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb214cf48f0d1de20800000000000000
+      internalID: 3373707360785928895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_47
+      rect:
+        serializedVersion: 2
+        x: 2151
+        y: 263
+        width: 88
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db89185a42552d9e0800000000000000
+      internalID: -1598121301879187267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_48
+      rect:
+        serializedVersion: 2
+        x: 2254
+        y: 263
+        width: 73
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f2f84fc2545e9a40800000000000000
+      internalID: 5376827719768666871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_49
+      rect:
+        serializedVersion: 2
+        x: 2333
+        y: 263
+        width: 104
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4df157ce08aae2850800000000000000
+      internalID: 6354203594965983188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_50
+      rect:
+        serializedVersion: 2
+        x: 2459
+        y: 264
+        width: 56
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65199cf425bc43440800000000000000
+      internalID: 4914776647754420566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BCSD_logo_ver.White-02_51
+      rect:
+        serializedVersion: 2
+        x: 2517
+        y: 228
+        width: 110
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4970e3a05f815530800000000000000
+      internalID: 3842009533633296715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
