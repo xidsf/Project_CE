@@ -1,124 +1,46 @@
+using System.Collections.Generic;
+using System;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerAnimationHandler : MonoBehaviour, IInitializable, IEventSubscriber
+[RequireComponent(typeof(Player))]
+public class PlayerAnimationHandler : MonoBehaviour
 {
-    Animator anim;
-    PlayerInputHandler inputHandler;
-    ExLifeSkillHandler exLifeSkillHandler;
+    [SerializeField] private SPUM_Prefabs m_Prefabs;
+    private Dictionary<PlayerState, int> m_IndexPair = new();
+    private PlayerMovement m_PlayerMovement;
 
-    private const string moveFrontAnimParamString = "isMoveFront";
-    private const string moveBackAnimParamString = "isMoveBack";
-    private const string exLifeSkillAnimParamString = "isExLifeSkill";
+    public PlayerState PlayerState { get; set; } = PlayerState.IDLE;
 
-    private const string parryingRegexString = "_Parrying$";
-    private const string exLifeSkillRegexString = "_ExLifeSkill$";
-
-    public float ParryingAnimLength { get; private set; } = 0f;
-    public float ExLifeSkillLength { get; private set; } = 0f;
-    public float GetAnimRunningTime()
+    void Start()
     {
-        return ParryingAnimLength + ExLifeSkillLength;
-    }
+        m_PlayerMovement = GetComponent<PlayerMovement>();
 
-    private Vector2 inputVector;
-
-    bool isIdleState = true;
-
-    private void Update()
-    {
-        if(isIdleState)
-            SetMoveStateAnim();
-    }
-
-    public void Initialize(Player player)
-    {
-        anim = player.Animator;
-        inputHandler = player.PlayerInputHandler;
-        exLifeSkillHandler = player.ExLifeSkillHandler;
-
-        foreach (var animClip in anim.runtimeAnimatorController.animationClips)
+        if (m_Prefabs == null)
         {
-            if (Regex.IsMatch(animClip.name, parryingRegexString))
+            m_Prefabs = transform.GetChild(0).GetComponent<SPUM_Prefabs>();
+            if (!m_Prefabs.allListsHaveItemsExist())
             {
-                ParryingAnimLength = animClip.length;
-            }
-            else if (Regex.IsMatch(animClip.name, exLifeSkillRegexString))
-            {
-                ExLifeSkillLength = animClip.length;
+                m_Prefabs.PopulateAnimationLists();
             }
         }
-    }
-
-    private void SetInputVector(InputAction.CallbackContext ctx)
-    {
-        inputVector = ctx.ReadValue<Vector2>();
-    }
-
-    private void SetMoveStateAnim()
-    {
-        int playerMovingDir = inputVector.x > 0 ? 1 : -1; // 1: right, -1: left
-        int playerLookingDir = transform.localScale.x > 0 ? 1 : -1; // 1: right, -1: left
-
-        if(inputVector == Vector2.zero)
+        m_Prefabs.OverrideControllerInit();
+        foreach (PlayerState state in Enum.GetValues(typeof(PlayerState)))
         {
-            SetIdleStateAnim();
-        }
-        else if (playerLookingDir == playerMovingDir)
-        {
-            SetMoveForwardAnim();
-        }
-        else
-        {
-            SetMoveBackwardAnim();
+            m_IndexPair[state] = 0;
         }
     }
 
-    private void SetMoveForwardAnim()
+    private void LateUpdate()
     {
-        anim.SetBool(moveFrontAnimParamString, true);
-        anim.SetBool(moveBackAnimParamString, false);
+        PlayStateAnimation();
     }
 
-    private void SetMoveBackwardAnim()
+    public void PlayStateAnimation()
     {
-        anim.SetBool(moveFrontAnimParamString, false);
-        anim.SetBool(moveBackAnimParamString, true);
+        m_Prefabs.PlayAnimation(PlayerState, m_IndexPair[PlayerState]);
+        transform.localScale = m_PlayerMovement.LookDirection == PlayerLookDirection.Right ? new Vector3(-1, 1, 1) : new Vector3(1, 1, 1);
     }
 
-    private void SetIdleStateAnim()
-    {
-        anim.SetBool(moveFrontAnimParamString, false);
-        anim.SetBool(moveBackAnimParamString, false);
-    }
-
-    private void TriggerExLifeSkillAnim(float duration)
-    {
-        isIdleState = false;
-        inputVector = Vector2.zero;
-        anim.SetTrigger(exLifeSkillAnimParamString);
-        Invoke(nameof(ResetIdleState), duration);
-    }
-
-    private void ResetIdleState()
-    {
-        isIdleState = true;
-    }
-
-    public void SubscribeEvent()
-    {
-        inputHandler.OnMove += SetInputVector;
-        inputHandler.OnMoveCanceled += SetInputVector;
-
-        exLifeSkillHandler.OnExLifeSkillUsedSuccess += TriggerExLifeSkillAnim;
-    }
-
-    public void UnsubscribeEvent()
-    {
-        inputHandler.OnMove -= SetInputVector;
-        inputHandler.OnMoveCanceled -= SetInputVector;
-
-        exLifeSkillHandler.OnExLifeSkillUsedSuccess -= TriggerExLifeSkillAnim;
-    }
 }

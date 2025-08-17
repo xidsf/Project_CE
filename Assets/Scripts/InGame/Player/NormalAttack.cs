@@ -20,7 +20,6 @@ public class NormalAttack : MonoBehaviour, IInitializable, IEventSubscriber
     {
         this.player = player;
         stat = player.PlayerStat;
-        exLifeSkillHandler = player.ExLifeSkillHandler;
         CalculateAttackCooldown();
         EnableNormalAttack();
     }
@@ -98,13 +97,11 @@ public class NormalAttack : MonoBehaviour, IInitializable, IEventSubscriber
     public void SubscribeEvent()
     {
         stat.AttackSpeed.OnStatChanged += CalculateAttackCooldown;
-        exLifeSkillHandler.OnExLifeSkillUsedSuccess += StopNormalAttackOnTime;
     }
 
     public void UnsubscribeEvent()
     {
         stat.AttackSpeed.OnStatChanged -= CalculateAttackCooldown;
-        exLifeSkillHandler.OnExLifeSkillUsedSuccess -= StopNormalAttackOnTime;
     }
 
     private void OnDrawGizmos()

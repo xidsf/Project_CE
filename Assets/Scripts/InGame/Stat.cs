@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum ModifierType { Flat, Percent }
 
-public readonly struct StatModifier
+public class StatModifier
 {
     public readonly float value;
     public readonly ModifierType isPercentage;
@@ -20,7 +20,7 @@ public readonly struct StatModifier
 
 public class Stat
 {
-    readonly private float baseValue;
+    readonly public float baseValue;
     private List<StatModifier> modifiers;
 
     public event Action OnStatChanged;

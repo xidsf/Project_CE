@@ -1,80 +1,57 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour, IInitializable, IEventSubscriber
+public enum PlayerLookDirection
 {
-    private PlayerInputHandler inputHandler;
+    Right = 1,
+    Left = -1
+}
+
+public class PlayerMovement : MonoBehaviour
+{
+    [SerializeField] private Player player;
     private PlayerStat playerStat;
-    private ExLifeSkillHandler exLifeSkillHandler;
 
     private Rigidbody2D playerRigid;
-    private GameObject controlPlayer;
 
-    private int lookDir = 1; // 1: right, -1: left Move함수에서의 float연산 방지를 위한 변수
+    public PlayerLookDirection LookDirection { get; private set; } = PlayerLookDirection.Right;
+    public Vector2 MoveDirection { get; private set; } = Vector2.zero;
 
-    public void Initialize(Player player)
+    private void Start()
     {
-        inputHandler = player.PlayerInputHandler;
         playerStat = player.PlayerStat;
-        exLifeSkillHandler = player.ExLifeSkillHandler;
-
         playerRigid = player.PlayerRigid;
-        controlPlayer = player.gameObject;
     }
 
-    private void Move(InputAction.CallbackContext ctx)
+    private void Update()
     {
-        Vector2 inputValue = ctx.ReadValue<Vector2>();
-        int dir;
-        if (inputValue.x > 0) dir = 1;
-        else dir = -1;
-        playerRigid.linearVelocityX = dir * playerStat.MoveSpeed.GetFinalValue();
+        Move();
     }
 
-    private void CancelMove(InputAction.CallbackContext ctx)
+    private void Move()
     {
-        CancelMove(0);
+        playerRigid.linearVelocity = MoveDirection * playerStat.MoveSpeed.GetFinalValue();
     }
 
-    private void CancelMove(float dur)
+    public void ChangeMoveDirection(Vector2 dir)
     {
-        playerRigid.linearVelocityX = 0;
+        MoveDirection = dir.normalized;
+        if (player.PlayerActionState == PlayerState.ATTACK)
+        {
+            return;
+        }
+        if (MoveDirection.x > 0)
+        {
+            LookDirection = PlayerLookDirection.Right;
+        }
+        else if (MoveDirection.x < 0)
+        {
+            LookDirection = PlayerLookDirection.Left;
+        }
     }
 
-    private void Look(InputAction.CallbackContext ctx)
+    public void CancelMove()
     {
-        Vector2 inputValue = ctx.ReadValue<Vector2>();
-        lookDir = inputValue.x > 0 ? 1 : -1;
-        controlPlayer.transform.localScale = new Vector3(lookDir, 1, 1);
-    }
-
-    public Vector2 GetLookDirection()
-    {
-        return new Vector2(lookDir, 0);
-    }
-
-    public void SubscribeEvent()
-    {
-        inputHandler.OnMove += Move;
-        inputHandler.OnLook += Look;
-        inputHandler.OnMoveCanceled += CancelMove;
-
-        exLifeSkillHandler.OnExLifeSkillUsedSuccess += CancelMove;
-        exLifeSkillHandler.OnExLifeSkillUsedSuccess += SetVelocityZero;
-    }
-
-    public void UnsubscribeEvent()
-    {
-        inputHandler.OnMove -= Move;
-        inputHandler.OnLook -= Look;
-        inputHandler.OnMoveCanceled -= CancelMove;
-
-        exLifeSkillHandler.OnExLifeSkillUsedSuccess -= CancelMove;
-        exLifeSkillHandler.OnExLifeSkillUsedSuccess -= SetVelocityZero;
-    }
-
-    private void SetVelocityZero(float duration)
-    {
-        playerRigid.linearVelocityX = 0;
+        MoveDirection = Vector2.zero;
     }
 }

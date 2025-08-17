@@ -3,12 +3,12 @@ using System;
 public class ElapsedTimeConditionSkill : BaseSkillCondition, IResetable
 {
     public float TimeCondition { get; }
-    private float currentTime;
+    //private float currentTime;
 
     public ElapsedTimeConditionSkill(float time)
     {
         TimeCondition = time;
-        currentTime = 0;
+        //currentTime = 0;
     }
 
     public override Type GetConditionType()
@@ -18,17 +18,17 @@ public class ElapsedTimeConditionSkill : BaseSkillCondition, IResetable
 
     public void Reset()
     {
-        currentTime = 0;
+        //currentTime = 0;
     }
 
     public override void Trigger(StatusContext onConditionMet)
     {
-        currentTime += SkillConditionManager.TickRate;
-        if(currentTime >= TimeCondition)
-        {
-            currentTime = 0;
-            onMet?.Invoke(null);
-        }
+        //currentTime += TimeScheduleManager.Instance.TickRate;
+        //if(currentTime >= TimeCondition)
+        //{
+        //    currentTime = 0;
+        //    onMet?.Invoke(null);
+        //}
     }
 
 }

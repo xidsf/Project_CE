@@ -39,8 +39,9 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
                 DontDestroyOnLoad(this);
             }
         }
-        else
+        else if(m_Instance != null && m_Instance.gameObject != gameObject)
         {
+            Logger.Log($"{m_Instance.gameObject.name} is already exist. Destroy {gameObject.name}");
             Destroy(gameObject);
         }
     }

@@ -1,6 +1,6 @@
 using System;
 
-public abstract class BaseSkillCondition : ISkillCondition
+public abstract class BaseSkillCondition
 {
     protected Action<StatusContext> onMet;
 
