@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6f6d7a30095cb98499e8086a88396fa0
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 160353
+  packageName: Pub-Sub Messenger
+  packageVersion: 1.0.1
+  assetPath: Assets/SuperMaxim/Demo/Scenes/ChatExampleScene.unity
+  uploadId: 449845
