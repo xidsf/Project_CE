@@ -47,5 +47,4 @@ public class DataTableManager : Singleton<DataTableManager>
 
     #endregion
 
-
 }

@@ -1,30 +1,43 @@
-public class EveryNAttackCondition : BaseCondition
-{
-    public int ConditionInterval = 5;
-    private int attackCount = 0;
+using System;
 
-    public EveryNAttackCondition()
+public class EveryNAttackCondition : SkillCondition
+{
+    private int attackCount = 0;
+    public int ConditionInterval { get; private set; }
+
+    public EveryNAttackCondition(Player player, int attackCountCondition = 5) : base(player)
     {
-        ConditionType = SkillCondition.EveryNAttack;
+        ConditionType = SkillTriggerCondition.EveryNAttack;
+        ConditionInterval = attackCountCondition > 0 ? attackCountCondition : 5;
     }
 
-    public void CheckConditionMet()
+    protected override void CheckConditionMet(PlayerContext ctx)
     {
         attackCount++;
         if(attackCount >= ConditionInterval)
         {
             attackCount = 0;
-            OnConditionMet?.Invoke();
+            OnConditionMet?.Invoke(ctx);
         }
     }
-    //TODO: 현재 플레이어의 OnAttack 이벤트가 없어서 나중에 연결해야함
+
+    public override void UpgradeCondition(float amount)
+    {
+        int step = (int)amount;
+        ConditionInterval -= step;
+        if (ConditionInterval < 1)
+        {
+            ConditionInterval = 1; // 최소 1로 제한
+        }
+    }
+
     public override void OnRegister()
     {
-        //InGameManager.Instance.Player.OnAttack += CheckConditionMet;
+        currentPlayer.OnPlayerAttack += CheckConditionMet;
     }
 
     public override void OnUnregister()
     {
-        //InGameManager.Instance.Player.OnAttack -= CheckConditionMet;
+        currentPlayer.OnPlayerAttack -= CheckConditionMet;
     }
 }

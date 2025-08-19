@@ -1,26 +1,43 @@
 using System;
 using UnityEngine;
 
-public class ElapsedTimeCondition : BaseCondition
+public class ElapsedTimeCondition : SkillCondition
 {
-    [SerializeField] private double ConditionInterval = 5f; // 예시 시간. 이후에 수정 및 인스팩터에서 조정 가능
+    public double ConditionInterval { get; private set; } = 5f;
     IDisposable conditionTimer;
 
-    public ElapsedTimeCondition(double interval = 5f)
+    public ElapsedTimeCondition(Player player , double interval = 5f) : base(player)
     {
-        ConditionType = SkillCondition.EveryNTime;
+        ConditionType = SkillTriggerCondition.EveryNTime;
         ConditionInterval = interval;
-        conditionTimer = TimeScheduleManager.Instance.StartRepeatingTimerCondition(ConditionInterval, TimeScaleType.Scaled, () =>
+    }
+
+    protected override void CheckConditionMet(PlayerContext ctx)
+    {
+    }
+
+    public override void UpgradeCondition(float amount)
+    {
+        ConditionInterval -= amount;
+        if (ConditionInterval < 0.5f)
         {
-            OnConditionMet?.Invoke();
-        });
+            ConditionInterval = 0.5f; // 최소 0.5초로 제한
+        }
     }
 
     public override void OnRegister()
     {
+        conditionTimer = TimeScheduleManager.Instance.StartRepeatingTimerCondition(ConditionInterval, TimeScaleType.Scaled, () =>
+        {
+            var ctx = currentPlayer.GetCurrentPlayerContext(PlayerContextType.ElapsedTime);
+            OnConditionMet?.Invoke(ctx);
+        });
     }
 
     public override void OnUnregister()
     {
+        conditionTimer?.Dispose();
+        conditionTimer = null;
     }
+
 }

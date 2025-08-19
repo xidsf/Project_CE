@@ -1,29 +1,40 @@
-public class AttackChanceCondition : BaseCondition
-{
-    public float ConditionChance = 0.1f; // 10% chance to trigger the skill
+using System;
 
-    public AttackChanceCondition()
+public class AttackChanceCondition : SkillCondition
+{
+    public float Chance { get; private set; }
+
+    public AttackChanceCondition(Player player, float change = 0.1f) : base(player)
     {
-        ConditionType = SkillCondition.AttackChance;
+        ConditionType = SkillTriggerCondition.AttackChance;
+        Chance = change;
     }
 
-    public void CheckConditionMet()
+    protected override void CheckConditionMet(PlayerContext ctx)
     {
         var randomValue = UnityEngine.Random.Range(0f, 1f);
-        if (randomValue <= ConditionChance)
+        if (randomValue <= Chance)
         {
-            OnConditionMet?.Invoke();
+            OnConditionMet?.Invoke(ctx);
         }
     }
 
-    //TODO: 현재 플레이어의 OnAttack 이벤트가 없어서 나중에 연결해야함
+    public override void UpgradeCondition(float amount)
+    {
+        Chance += amount;
+        if (Chance > 1f)
+        {
+            Chance = 1f;
+        }
+    }
+
     public override void OnRegister()
     {
-        //InGameManager.Instance.Player.OnAttack += CheckConditionMet;
+        currentPlayer.OnPlayerAttack += CheckConditionMet;
     }
 
     public override void OnUnregister()
     {
-        //InGameManager.Instance.Player.OnAttack -= CheckConditionMet;
+        currentPlayer.OnPlayerAttack -= CheckConditionMet;
     }
 }
