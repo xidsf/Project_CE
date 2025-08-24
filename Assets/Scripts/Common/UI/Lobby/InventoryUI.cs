@@ -81,16 +81,63 @@ public class InventoryUI : BaseUI
             if (item.isEquipped)
             {
                 var itemData = DataTableManager.Instance.GetItemData(item.itemID);
-                foreach(var modifier in itemData.StatModifiers)
-                {
 
+                if (itemData == null)
+                {
+                    Logger.LogError($"ItemData not found for item ID: {item.itemID}");
+                    continue;
                 }
+
+                foreach(var itemModifierKey in itemData.StatModifiers.Keys)
+                {
+                    switch(itemModifierKey)
+                    {
+                        case GlobalDefine.STAT_ATTACKDAMAGE_FLAT:
+                            equippedItemStat.AttackDamage.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Flat, item));
+                            break;
+                        case GlobalDefine.STAT_ATTACKRANGE_FLAT:
+                            equippedItemStat.AttackRange.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Flat, item));
+                            break;
+                        case GlobalDefine.STAT_MOVESPEED_FLAT:
+                            equippedItemStat.MoveSpeed.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Flat, item));
+                            break;
+                        case GlobalDefine.STAT_ATTACKSPEED_FLAT:
+                            equippedItemStat.AttackSpeed.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Flat, item));
+                            break;
+                        case GlobalDefine.STAT_CRITICALCHANCE_PERCENT:
+                            equippedItemStat.CriticalChance.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Flat, item));
+                            break;
+                        case GlobalDefine.STAT_CRITICALDAMAGE_FLAT:
+                            equippedItemStat.CriticalDamage.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Flat, item));
+                            break;
+                        case GlobalDefine.STAT_HEALTHPOINT_FLAT:
+                            equippedItemStat.HealthPoint.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Flat, item));
+                            break;
+                        case GlobalDefine.STAT_ATTACKDAMAGE_PERCENT:
+                            equippedItemStat.AttackDamage.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Percent, item));
+                            break;
+                        case GlobalDefine.STAT_ATTACKRANGE_PERCENT:
+                            equippedItemStat.AttackRange.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Percent, item));
+                            break;
+                        case GlobalDefine.STAT_MOVESPEED_PERCENT:
+                            equippedItemStat.MoveSpeed.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Percent, item));
+                            break;
+                        case GlobalDefine.STAT_ATTACKSPEED_PERCENT:
+                            equippedItemStat.AttackSpeed.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Percent, item));
+                            break;
+                        case GlobalDefine.STAT_HEALTHPOINT_PERCENT:
+                            equippedItemStat.HealthPoint.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Percent, item));
+                            break;
+                    }
+                }
+
             }
         }
 
         statInfiniteScroll.InsertData(new StatSlotUIData
         {
-            StatName = "Move Speed",
+            StatImageName = "Move Speed",
+            StatName = "이동속도",
             IsCriticalStat = false,
             CharacterStatAmount = 1f,
             FlatIncreasementAmount = equippedItemStat.MoveSpeed.GetAllFlatModifierSum(),
@@ -98,7 +145,8 @@ public class InventoryUI : BaseUI
         });
         statInfiniteScroll.InsertData(new StatSlotUIData
         {
-            StatName = "Attack Damage",
+            StatImageName = "Attack Damage",
+            StatName = "공격력",
             IsCriticalStat = false,
             CharacterStatAmount = 5f,
             FlatIncreasementAmount = equippedItemStat.AttackDamage.GetAllFlatModifierSum(),
@@ -106,7 +154,8 @@ public class InventoryUI : BaseUI
         });
         statInfiniteScroll.InsertData(new StatSlotUIData
         {
-            StatName = "Attack Range",
+            StatImageName = "Attack Range",
+            StatName = "공격 범위",
             IsCriticalStat = false,
             CharacterStatAmount = 1f,
             FlatIncreasementAmount = equippedItemStat.AttackRange.GetAllFlatModifierSum(),
@@ -114,7 +163,8 @@ public class InventoryUI : BaseUI
         });
         statInfiniteScroll.InsertData(new StatSlotUIData
         {
-            StatName = "Attack Speed",
+            StatImageName = "Attack Speed",
+            StatName = "공격 속도",
             IsCriticalStat = false,
             CharacterStatAmount = 5f,
             FlatIncreasementAmount = equippedItemStat.AttackSpeed.GetAllFlatModifierSum(),
@@ -122,7 +172,8 @@ public class InventoryUI : BaseUI
         });
         statInfiniteScroll.InsertData(new StatSlotUIData
         {
-            StatName = "Critical Chance",
+            StatImageName = "Critical Chance",
+            StatName = "치명타 확률",
             IsCriticalStat = true,
             CharacterStatAmount = 0.05f,
             FlatIncreasementAmount = equippedItemStat.CriticalChance.GetAllFlatModifierSum(),
@@ -130,7 +181,8 @@ public class InventoryUI : BaseUI
         });
         statInfiniteScroll.InsertData(new StatSlotUIData
         {
-            StatName = "Critical Damage",
+            StatImageName = "Critical Damage",
+            StatName = "치명타 피해",
             IsCriticalStat = true,
             CharacterStatAmount = 1.1f,
             FlatIncreasementAmount = equippedItemStat.CriticalDamage.GetAllFlatModifierSum(),
@@ -138,7 +190,8 @@ public class InventoryUI : BaseUI
         });
         statInfiniteScroll.InsertData(new StatSlotUIData
         {
-            StatName = "Health Point",
+            StatImageName = "HP",
+            StatName = "체력",
             IsCriticalStat = false,
             CharacterStatAmount = 50f,
             FlatIncreasementAmount = equippedItemStat.HealthPoint.GetAllFlatModifierSum(),

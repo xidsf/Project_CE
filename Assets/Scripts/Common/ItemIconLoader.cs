@@ -44,25 +44,37 @@ public static class ItemIconLoader
         }
         else if (itemEquipType == ItemEquipType.SubWeapon)
         {
-            if (jobNum == 2)
+            switch(jobNum)
             {
-                return "Shield";
-            }
-            else if (jobNum == 3)
-            {
-                return "Tome";
+                case 2:
+                    return "Shield";
+                case 3:
+                    return "Tome";
+                case 4:
+                    return "Arrow";
+                default:
+                    Logger.LogError($"Unknown sub-weapon job number: {jobNum}");
+                    return "UnknownSubWeapon";
             }
         }
         else if (itemEquipType == ItemEquipType.Weapon)
         {
-            if (jobNum == 2)
+            switch(jobNum)
             {
-                return "Sword";
+                case 2:
+                    return "Sword";
+                case 3:
+                    return "Staff";
+                case 4:
+                    return "Bow";
+                default:
+                    Logger.LogError($"Unknown weapon job number: {jobNum}");
+                    return "UnknownWeapon";
             }
-            else if (jobNum == 3)
-            {
-                return "Staff";
-            }
+        }
+        else if (itemEquipType == ItemEquipType.Food)
+        {
+            return "Food";
         }
         return "Unknown Item";
     }

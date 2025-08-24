@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static Unity.Cinemachine.CinemachineFreeLookModifier;
 
 public enum ItemEquipType
 {
     Weapon = 1,
     SubWeapon,
-    Helmet,
     Potion,
+    Helmet,
     Accessory,
     Food,
     COUNT,
@@ -41,7 +40,17 @@ public class Item
     public int abilityID;
     public bool isEquipped;
 
-    public ItemData ItemData { get; private set; }
+    private ItemData itemData = null;
+    public ItemData ItemData
+    {
+        get
+        {
+            if (itemData == null)
+                itemData = DataTableManager.Instance.GetItemData(itemID);
+            return itemData;
+        }
+        private set => itemData = value;
+    }
 
     public Item(long serialNumber, int itemID, bool isEquipped = false, int abilityID = 0)
     {
@@ -92,9 +101,6 @@ public class Item
                     case GlobalDefine.STAT_ATTACKSPEED_FLAT:
                         stat.AttackSpeed.AddModifier(new StatModifier(modifier.Value.value, ModifierType.Flat, source));
                         break;
-                    case GlobalDefine.STAT_CRITICALCHANCE_FLAT:
-                        stat.CriticalChance.AddModifier(new StatModifier(modifier.Value.value, ModifierType.Flat, source));
-                        break;
                     case GlobalDefine.STAT_CRITICALDAMAGE_FLAT:
                         stat.CriticalDamage.AddModifier(new StatModifier(modifier.Value.value, ModifierType.Flat, source));
                         break;
@@ -125,6 +131,9 @@ public class Item
                         break;
                     case GlobalDefine.STAT_HEALTHPOINT_PERCENT:
                         stat.HealthPoint.AddModifier(new StatModifier(modifier.Value.value, ModifierType.Percent, source));
+                        break;
+                    case GlobalDefine.STAT_CRITICALCHANCE_PERCENT:
+                        stat.CriticalChance.AddModifier(new StatModifier(modifier.Value.value, ModifierType.Percent, source));
                         break;
                     default:
                         Debug.LogWarning($"Unknown percent modifier key: {modifier.Key}");

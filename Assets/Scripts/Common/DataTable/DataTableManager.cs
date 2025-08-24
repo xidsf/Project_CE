@@ -65,6 +65,11 @@ public class DataTableManager : Singleton<DataTableManager>
         return itemDataList.Where(item => item.itemID == itemID).FirstOrDefault();
     }
 
+    public List<ItemData> GetAllItemDatas()
+    {
+        return itemDataList;
+    }
+
     #endregion
 
 }

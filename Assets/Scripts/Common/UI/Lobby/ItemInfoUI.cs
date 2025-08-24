@@ -106,9 +106,9 @@ public class ItemInfoUI : BaseUI
             {
                 sb.Append($"공격범위: +{itemStatModifiers[GlobalDefine.STAT_ATTACKRANGE_PERCENT].value * 100}%\n");
             }
-            if (itemStatModifiers.ContainsKey(GlobalDefine.STAT_CRITICALCHANCE_FLAT))
+            if (itemStatModifiers.ContainsKey(GlobalDefine.STAT_CRITICALCHANCE_PERCENT))
             {
-                sb.Append($"치명타 확률: +{itemStatModifiers[GlobalDefine.STAT_CRITICALCHANCE_FLAT].value * 100}%\n");
+                sb.Append($"치명타 확률: +{itemStatModifiers[GlobalDefine.STAT_CRITICALCHANCE_PERCENT].value * 100}%\n");
             }
             if (itemStatModifiers.ContainsKey(GlobalDefine.STAT_CRITICALDAMAGE_FLAT))
             {
@@ -163,6 +163,7 @@ public class ItemInfoUI : BaseUI
             userData.EquipItem(itemInfoData.serialNumer);
         }
         userData.SaveData();
+
         InventoryUI inventoryUI = UIManager.Instance.GetActiveUI<InventoryUI>() as InventoryUI;
         if (inventoryUI == null)
         {

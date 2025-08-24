@@ -17,14 +17,21 @@ public class UserInventoryData : IUserData
     {
         InventoryItems.Add(new Item(SerialNumberGenerator.GenerateSerialNumber(), 113000, true));
         InventoryItems.Add(new Item(SerialNumberGenerator.GenerateSerialNumber(), 212000));
-        InventoryItems.Add(new Item(SerialNumberGenerator.GenerateSerialNumber(), 211020));
-        InventoryItems.Add(new Item(SerialNumberGenerator.GenerateSerialNumber(), 213006));
-        InventoryItems.Add(new Item(SerialNumberGenerator.GenerateSerialNumber(), 214007));
-        InventoryItems.Add(new Item(SerialNumberGenerator.GenerateSerialNumber(), 215011));
+        InventoryItems.Add(new Item(SerialNumberGenerator.GenerateSerialNumber(), 211020, true));
         InventoryItems.Add(new Item(SerialNumberGenerator.GenerateSerialNumber(), 125017));
         InventoryItems.Add(new Item(SerialNumberGenerator.GenerateSerialNumber(), 135018));
         InventoryItems.Add(new Item(SerialNumberGenerator.GenerateSerialNumber(), 311000));
         InventoryItems.Add(new Item(SerialNumberGenerator.GenerateSerialNumber(), 331012));
+        InventoryItems.Add(new Item(SerialNumberGenerator.GenerateSerialNumber(), 221000));
+        InventoryItems.Add(new Item(SerialNumberGenerator.GenerateSerialNumber(), 251011));
+        InventoryItems.Add(new Item(SerialNumberGenerator.GenerateSerialNumber(), 125005));
+        InventoryItems.Add(new Item(SerialNumberGenerator.GenerateSerialNumber(), 242008));
+        InventoryItems.Add(new Item(SerialNumberGenerator.GenerateSerialNumber(), 123002));
+        InventoryItems.Add(new Item(SerialNumberGenerator.GenerateSerialNumber(), 354019));
+        InventoryItems.Add(new Item(SerialNumberGenerator.GenerateSerialNumber(), 431001));
+        InventoryItems.Add(new Item(SerialNumberGenerator.GenerateSerialNumber(), 126002));
+        InventoryItems.Add(new Item(SerialNumberGenerator.GenerateSerialNumber(), 156015));
+
     }
 
     public bool LoadData()
@@ -75,20 +82,19 @@ public class UserInventoryData : IUserData
     public void EquipItem(long serialNum)
     {
         var equippingItem = InventoryItems.Find(item => item.serialNumber == serialNum);
-
-        Item alreadyEquippedItem = InventoryItems.FirstOrDefault(item => item.ItemData.itemEquipType == equippingItem.ItemData.itemEquipType && item.isEquipped);
-
-        if (alreadyEquippedItem != default)
-        {
-            alreadyEquippedItem.isEquipped = false;
-        }
-
         if(equippingItem == default)
         {
             Logger.LogError($"Item with serial number {serialNum} not found in inventory.");
+            return;
+        }
+        var equippedItems = InventoryItems.FindAll(item => item.isEquipped);
+        var alreadyEquippedEqualItem = equippedItems.Find(item => item.ItemData.itemEquipType == equippingItem.ItemData.itemEquipType);
+
+        if (alreadyEquippedEqualItem != default)
+        {
+            alreadyEquippedEqualItem.isEquipped = false;
         }
         equippingItem.isEquipped = true;
-        SaveData();
     }
 
     public void UnequipItem(long serialNum)
@@ -98,7 +104,5 @@ public class UserInventoryData : IUserData
         {
             foundItem.isEquipped = false;
         }
-
-        SaveData();
     }
 }

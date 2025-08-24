@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
@@ -168,4 +169,66 @@ public class UIManager : Singleton<UIManager>
 
         onFinish?.Invoke();
     }
+
+    public void OpenDebugUI<T>(BaseUIData uiData)
+    {
+        if(SceneManager.GetActiveScene().name != "DebugScene")
+        {
+            Logger.LogError("Debug UI can only be opened in DebugScene.");
+            return;
+        }
+        System.Type uiType = typeof(T);
+        Logger.Log($"{GetType()}:: OpenUI({uiType})");
+        bool isAlreadyOpen = false;
+        var ui = GetDebugUI<T>(out isAlreadyOpen);
+
+        if (ui == null)
+        {
+            Logger.LogError($"{uiType} does not exist.");
+            return;
+        }
+
+        if (isAlreadyOpen)
+        {
+            Logger.LogWarning($"{uiType} is already open.");
+            return;
+        }
+
+        var siblingIndex = m_UICanvasTransform.childCount - 1;
+        ui.Init(m_UICanvasTransform);
+        ui.transform.SetSiblingIndex(siblingIndex);
+        ui.gameObject.SetActive(true);
+        ui.SetInfo(uiData);
+        ui.ShowUI();
+
+        m_FrontUI = ui;
+        m_OpendUIPool[uiType] = ui.gameObject;
+    }
+
+    private BaseUI GetDebugUI<T>(out bool isAlreadyOpen)
+    {
+        System.Type uiType = typeof(T);
+
+        BaseUI ui = null;
+        isAlreadyOpen = false;
+
+        if (m_OpendUIPool.ContainsKey(uiType))
+        {
+            ui = m_OpendUIPool[uiType].GetComponent<BaseUI>();
+            isAlreadyOpen = true;
+        }
+        else if (m_ClosedUIPool.ContainsKey(uiType))
+        {
+            ui = m_ClosedUIPool[uiType].GetComponent<BaseUI>();
+            m_ClosedUIPool.Remove(uiType);
+        }
+        else
+        {
+            var uiObj = Instantiate(Resources.Load<GameObject>($"UI/Debug/{uiType}"));
+            ui = uiObj.GetComponent<BaseUI>();
+        }
+
+        return ui;
+    }
+
 }
