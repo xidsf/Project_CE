@@ -2,12 +2,12 @@ public class Skill
 {
     public long SkillSerialNumber { get; private set; }
     SkillCondition condition;
-    IAbility effect;
+    BaseAbility effect;
 
     public SkillCondition Condition => condition;
-    public IAbility Effect => effect;
+    public BaseAbility Effect => effect;
 
-    public Skill(long serialNum, SkillCondition condition, IAbility effect)
+    public Skill(long serialNum, SkillCondition condition, BaseAbility effect)
     {
         SkillSerialNumber = serialNum;
         this.condition = condition;

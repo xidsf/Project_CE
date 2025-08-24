@@ -423,6 +423,7 @@ MonoBehaviour:
   continuousAttackCount: 0
   isContinuousAttackEnabled: 0
   NormalAttackParticle: {fileID: 1014309420855095210, guid: 4858059387926584193a8a3cf31326dd, type: 3}
+  initParticleRotation: 35
 --- !u!114 &1184234374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -783,37 +784,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
---- !u!1 &1798941361
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1798941362}
-  m_Layer: 0
-  m_Name: test
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1798941362
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1798941361}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0, z: -0.9808873, w: -0.1945768}
-  m_LocalPosition: {x: 2.47, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -202.44}
 --- !u!1001 &2098199517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1127,4 +1097,3 @@ SceneRoots:
   - {fileID: 4808903179902852828}
   - {fileID: 152917127286121420}
   - {fileID: 541650336}
-  - {fileID: 1798941362}

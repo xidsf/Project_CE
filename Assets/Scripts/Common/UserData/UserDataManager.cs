@@ -6,7 +6,7 @@ public class UserDataManager : Singleton<UserDataManager>
 {
     private List<IUserData> userDataList = new();
 
-    bool isExistSavedData;
+    public bool IsExistSavedData { get; private set; }
 
     protected override void Init()
     {
@@ -14,13 +14,29 @@ public class UserDataManager : Singleton<UserDataManager>
 
         userDataList.Add(new UserSettingsData());
         userDataList.Add(new UserGoodsData());
+        userDataList.Add(new UserInventoryData());
+    }
+
+    public void SetDefaultData()
+    {
+        IsExistSavedData = PlayerPrefs.GetInt("ExistsSavedData") == 1 ? true : false;
+        if (!IsExistSavedData)
+        {
+            foreach(var data in userDataList)
+            {
+                data.SetDefaultData();
+            }
+            IsExistSavedData = true;
+            PlayerPrefs.SetInt("ExistsSavedData", 1);
+            SaveUserData();
+        }
     }
 
     public void LoadUserData()
     {
-        isExistSavedData = PlayerPrefs.GetInt("ExistsSavedData") == 1 ? true : false;
+        IsExistSavedData = PlayerPrefs.GetInt("ExistsSavedData") == 1 ? true : false;
 
-        if (isExistSavedData)
+        if (IsExistSavedData)
         {
             for (int i = 0; i < userDataList.Count; i++)
             {
@@ -44,7 +60,7 @@ public class UserDataManager : Singleton<UserDataManager>
 
         if (!hasSaveError)
         {
-            isExistSavedData = true;
+            IsExistSavedData = true;
             PlayerPrefs.SetInt("ExistsSavedData", 1);
             PlayerPrefs.Save();
         }

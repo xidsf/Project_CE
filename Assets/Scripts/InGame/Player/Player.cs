@@ -28,6 +28,8 @@ public abstract class Player : MonoBehaviour
 
     private float accumulatedAttackTime = 0f;
 
+
+
     #region INPUT_EVENTS
 
     private InputAction m_MoveAction;
@@ -95,9 +97,9 @@ public abstract class Player : MonoBehaviour
             float damage;
             var ctx = GetCurrentPlayerContext(PlayerContextType.None);
 
-            if (calcCrit < PlayerStat.CritChance.GetFinalValue())
+            if (calcCrit < PlayerStat.CriticalChance.GetFinalValue())
             {
-                damage = PlayerStat.AttackDamage.GetFinalValue() * PlayerStat.CritDamage.GetFinalValue();
+                damage = PlayerStat.AttackDamage.GetFinalValue() * PlayerStat.CriticalDamage.GetFinalValue();
                 ctx.ContextType = PlayerContextType.CriticalNormalAttack;
                 CritAttack(damage);
             }

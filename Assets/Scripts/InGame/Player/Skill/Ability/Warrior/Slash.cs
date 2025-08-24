@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Slash", menuName = "ScriptableObjects/Abilities/Warrior/Slash")]
 public class Slash : BaseAbility
 {
+    public override int AbilityID { get => 2001; }
     public GameObject SlashObject;
     private ISkillTargeting _targeting = new SelfTargeting();
     public override ISkillTargeting TargetingConfig => _targeting;

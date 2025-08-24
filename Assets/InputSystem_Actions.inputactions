@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pause",
+                    "name": "Exit",
                     "type": "Button",
                     "id": "b1de2ee9-c079-4234-998b-7d2c094350c2",
                     "expectedControlType": "",
@@ -235,7 +235,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Pause",
+                    "action": "Exit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

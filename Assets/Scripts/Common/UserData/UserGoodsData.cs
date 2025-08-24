@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class UserGoodsData : IUserData
 {
-    public long Gold { get; private set; }
+    public long Gold { get; private set; } = 0;
 
     public bool LoadData()
     {
@@ -27,6 +27,7 @@ public class UserGoodsData : IUserData
         try
         {
             PlayerPrefs.SetString("Gold", Gold.ToString());
+            PlayerPrefs.Save();
             result = true;
         }
         catch (System.Exception e)

@@ -1,14 +1,10 @@
 using System;
 using UnityEngine;
 
-public interface IAbility
+public abstract class BaseAbility : ScriptableObject
 {
-    public ISkillTargeting TargetingConfig { get; }
-    public void ExecuteSkill(PlayerContext ctx);
-}
+    public abstract int AbilityID { get; }
 
-public abstract class BaseAbility : ScriptableObject, IAbility
-{
     public abstract ISkillTargeting TargetingConfig { get; }
 
     public virtual void ExecuteSkill(PlayerContext ctx)

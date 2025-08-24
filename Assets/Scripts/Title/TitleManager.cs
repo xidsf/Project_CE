@@ -24,6 +24,15 @@ public class TitleManager : Singleton<TitleManager>
         StartCoroutine(TitleLoadCoroutine());
     }
 
+    private void Start()
+    {
+        UserDataManager.Instance.LoadUserData();
+        if(!UserDataManager.Instance.IsExistSavedData)
+        {
+            UserDataManager.Instance.SetDefaultData();
+        }
+    }
+
     private IEnumerator TitleLoadCoroutine()
     {
         titleLogoUIAnim.Play();

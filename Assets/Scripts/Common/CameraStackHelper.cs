@@ -14,9 +14,9 @@ public class CameraStackHelper : MonoBehaviour
         sceneCameraData.renderType = CameraRenderType.Overlay;
         mainCameraData.cameraStack.Add(sceneUICamera);
 
-        Camera MainUICamera = UIManager.Instance.UICamera;
-        var MainUICameraData = MainUICamera.GetUniversalAdditionalCameraData();
+        Camera UIManagerCamera = UIManager.Instance.UICamera;
+        var MainUICameraData = UIManagerCamera.GetUniversalAdditionalCameraData();
         MainUICameraData.renderType = CameraRenderType.Overlay;
-        mainCameraData.cameraStack.Add(MainUICamera);
+        mainCameraData.cameraStack.Add(UIManagerCamera);
     }
 }

@@ -5,12 +5,11 @@ public class Warrior : Player
     [SerializeField] int continuousAttackCount = 0;
     [SerializeField] bool isContinuousAttackEnabled = false;
     [SerializeField] ParticleSystem NormalAttackParticle;
-    float initParticleRotation;
+    [SerializeField] float initParticleRotation = 35;
 
     protected override void Awake()
     {
-        PlayerStat = new PlayerStat(3f, 2f, 5f, 5f);
-        initParticleRotation = NormalAttackParticle.main.startRotation.constant;
+        PlayerStat = new PlayerStat(3f, 2f, 5f, 20f);
         base.Awake();
     }
 
@@ -18,9 +17,11 @@ public class Warrior : Player
     {
         var ctx = GetCurrentPlayerContext(PlayerContextType.None);
         var attackVector = (ctx.MousePosition - transform.position).normalized;
-        var maxAttackAnglePos = attackVector * PlayerStat.AttackRange.GetFinalValue() * 0.5f ;
-        SetParticleConfig(ctx.TargetingRotation, PlayerStat.AttackRange.GetFinalValue());
-        Instantiate(NormalAttackParticle, transform.position + maxAttackAnglePos, ctx.TargetingRotation);
+        var attackRange = PlayerStat.AttackRange.GetFinalValue();
+        var maxAttackAnglePos = attackVector * attackRange * 0.5f ;
+
+        SetParticleConfig(ctx.TargetingRotation, attackRange);
+        Instantiate(NormalAttackParticle, transform.position + maxAttackAnglePos, Quaternion.identity);
     }
 
     protected override void CritAttack(float damage)
@@ -87,9 +88,9 @@ public class Warrior : Player
         Vector3 euler = angle.eulerAngles;
 
         float zRotationRad = euler.z * Mathf.Deg2Rad;
-        main.startRotation = initParticleRotation + zRotationRad;
+        main.startRotation = initParticleRotation - zRotationRad;
 
-        main.startSize = size;
+        main.startSize = size * 0.9f;
     }
 
     public void IncrementContinuousAttackCount(int count)

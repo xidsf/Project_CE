@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 
 public class DataTableManager : Singleton<DataTableManager>
@@ -21,20 +22,39 @@ public class DataTableManager : Singleton<DataTableManager>
     private void LoadItemDataTable()
     {
         var readData = CSVReader.Read($"{DATA_TABLE_PATH}/ItemDataTable");
+        StringBuilder sb = new();
 
         foreach (var item in readData)
         {
             var itemData = new ItemData
             {
                 itemID = Convert.ToInt32(item["item_id"]),
-                itemName = item["item_name"].ToString(),
-                moveSpeed = Convert.ToSingle(item["move_speed"]),
-                attackRange = Convert.ToSingle(item["attack_range"]),
-                attackDamage = Convert.ToSingle(item["attack_damage"]),
-                attackSpeed = Convert.ToSingle(item["attack_speed"]),
-                criticalChange = Convert.ToSingle(item["crit_chance"]),
-                criticalDamage = Convert.ToSingle(item["crit_damage"])
+                itemName = item["item_name"].ToString()
             };
+
+            foreach(var str in GlobalDefine.StatStrings)
+            {
+                var statValue = Convert.ToSingle(item[str]);
+                if (statValue != 0)
+                {
+                    sb.Clear();
+                    sb.Append(str);
+                    ModifierType modifierType = ModifierType.Percent;
+
+                    if (sb[4] == '_')
+                    {
+                        modifierType = ModifierType.Flat;
+                    }
+
+                    if (statValue != 0)
+                    {
+                        itemData.StatModifiers.Add(str, new StatModifier(statValue, modifierType, this));
+                    }
+                }
+            }
+
+            itemData.itemRarity = (ItemRarity)(itemData.itemID / 10000 % 10);
+            itemData.itemEquipType = (ItemEquipType)(itemData.itemID / 1000 % 10);
 
             itemDataList.Add(itemData);
         }

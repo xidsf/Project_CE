@@ -7,13 +7,13 @@ public enum ModifierType { Flat, Percent }
 public class StatModifier
 {
     public readonly float value;
-    public readonly ModifierType isPercentage;
+    public readonly ModifierType modifierType;
     public readonly object source;
 
     public StatModifier(float value, ModifierType isPercentage, object source)
     {
         this.value = value;
-        this.isPercentage = isPercentage;
+        this.modifierType = isPercentage;
         this.source = source;
     }
 };
@@ -55,7 +55,7 @@ public class Stat
         float _flat = 0;
         foreach (StatModifier mod in modifiers)
         {
-            if (mod.isPercentage == ModifierType.Flat)
+            if (mod.modifierType == ModifierType.Flat)
                 _flat += mod.value;
         }
         return _flat;
@@ -66,7 +66,7 @@ public class Stat
         float _percent = 0;
         foreach (StatModifier mod in modifiers)
         {
-            if (mod.isPercentage == ModifierType.Percent)
+            if (mod.modifierType == ModifierType.Percent)
                 _percent += mod.value;
         }
         return _percent;
@@ -82,7 +82,7 @@ public class Stat
         float percent = 0;
         foreach (StatModifier mod in modifiers)
         {
-            if (mod.isPercentage == ModifierType.Flat)
+            if (mod.modifierType == ModifierType.Flat)
                 flat += mod.value;
             else
                 percent += mod.value;

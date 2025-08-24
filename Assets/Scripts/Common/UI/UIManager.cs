@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
     public Transform m_UICanvasTransform;
     public Transform m_ClosedUITransform;
+
+    public InputActionReference ExitInputReference;
 
     public Image fadeImage;
 
@@ -21,6 +24,17 @@ public class UIManager : Singleton<UIManager>
         base.Init();
 
         fadeImage.transform.localScale = Vector3.zero;
+        ExitInputReference.action.performed += ctx =>
+        {
+            if (m_FrontUI != null)
+            {
+                m_FrontUI.CloseUI();
+            }
+            else
+            {
+                Logger.Log("No UI is currently open.");
+            }
+        };
     }
 
     public Camera UICamera;
@@ -90,7 +104,7 @@ public class UIManager : Singleton<UIManager>
         ui.transform.SetParent(m_ClosedUITransform);
         m_FrontUI = null;
 
-        var lastChild = m_UICanvasTransform.GetChild(m_UICanvasTransform.childCount - 3);
+        var lastChild = m_UICanvasTransform.GetChild(m_UICanvasTransform.childCount - 2);
         if (lastChild)
         {
             m_FrontUI = lastChild.GetComponent<BaseUI>();
