@@ -7,8 +7,6 @@ public class TitleManager : Singleton<TitleManager>
 {
     public GameObject titleLogoUI;
     public Animation titleLogoUIAnim;
-    public GameObject loadingUI;
-    public Slider loadingSlider;
 
     private AsyncOperation asyncOp;
 
@@ -19,13 +17,12 @@ public class TitleManager : Singleton<TitleManager>
         base.Init();
 
         titleLogoUI.SetActive(true);
-        loadingUI.SetActive(false);
-
-        StartCoroutine(TitleLoadCoroutine());
     }
 
     private void Start()
     {
+        StartCoroutine(TitleLoadCoroutine());
+
         UserDataManager.Instance.LoadUserData();
         if(!UserDataManager.Instance.IsExistSavedData)
         {
@@ -39,8 +36,6 @@ public class TitleManager : Singleton<TitleManager>
         yield return new WaitForSeconds(titleLogoUIAnim.clip.length);
 
         titleLogoUI.SetActive(false);
-        loadingUI.SetActive(true);
-        loadingSlider.value = 0.1f;
 
         asyncOp = SceneLoader.Instance.LoadSceneAsync(SceneType.Lobby);
 
@@ -52,22 +47,14 @@ public class TitleManager : Singleton<TitleManager>
 
         asyncOp.allowSceneActivation = false;
 
-        yield return new WaitForSeconds(0.3f);
-
-        while (!asyncOp.isDone)
+        var uiData = new LoadingUIData() //AsyncOperation을 넘겨주는 부분은 별로인거 같은데 좋은 방법이 떠오르지 않음;;
         {
-            if(asyncOp.progress < 0.9f)
-            {
-                loadingSlider.value = asyncOp.progress < 0.1f ? 0.1f : asyncOp.progress;
-                yield return null;
-            }
-            if(asyncOp.progress >= 0.9f)
-            {
-                asyncOp.allowSceneActivation = true;
-                yield break;
-            }
-        }
+            AsyncOperation = asyncOp,
+            fadeDuration = 0.5f,
+        };
+        UIManager.Instance.OpenUI<LoadingUI>(uiData);
 
-        yield return null;
+        while(!asyncOp.isDone) yield return null;
+
     }
 }

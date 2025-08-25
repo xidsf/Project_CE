@@ -40,7 +40,7 @@ public class UIManager : Singleton<UIManager>
 
     public Camera UICamera;
 
-    private BaseUI GetUI<T>(out bool isAlreadyOpen)
+    private BaseUI GetUI<T>(out bool isAlreadyOpen) where T : BaseUI
     {
         System.Type uiType = typeof(T);
 
@@ -66,7 +66,7 @@ public class UIManager : Singleton<UIManager>
         return ui;
     }
 
-    public void OpenUI<T>(BaseUIData uiData)
+    public void OpenUI<T>(BaseUIData uiData) where T : BaseUI
     {
         System.Type uiType = typeof(T);
         Logger.Log($"{GetType()}:: OpenUI({uiType})");
@@ -141,6 +141,7 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
+
     public void Fade(Color color, float startAlpha, float endAlpha, float duration, float startDelay, bool deactivateOnFinish, Action onFinish = null)
     {
         StartCoroutine(FadeCoroutine(color, startAlpha, endAlpha, duration, startDelay, deactivateOnFinish, onFinish));
@@ -169,6 +170,9 @@ public class UIManager : Singleton<UIManager>
 
         onFinish?.Invoke();
     }
+
+
+    #region DEBUG_UI
 
     public void OpenDebugUI<T>(BaseUIData uiData)
     {
@@ -230,5 +234,5 @@ public class UIManager : Singleton<UIManager>
 
         return ui;
     }
-
+    #endregion
 }

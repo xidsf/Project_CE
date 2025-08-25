@@ -414,9 +414,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2419735761849138693, guid: 03a4a3f29cc20614eabd5bb78f3ba43f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4869098645393888369, guid: 03a4a3f29cc20614eabd5bb78f3ba43f, type: 3}
       propertyPath: m_Name
       value: TitleUIManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7101605863507062083, guid: 03a4a3f29cc20614eabd5bb78f3ba43f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7101605863507062083, guid: 03a4a3f29cc20614eabd5bb78f3ba43f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9218388465498620770, guid: 03a4a3f29cc20614eabd5bb78f3ba43f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -427,7 +439,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2419735761849138693, guid: 03a4a3f29cc20614eabd5bb78f3ba43f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03a4a3f29cc20614eabd5bb78f3ba43f, type: 3}

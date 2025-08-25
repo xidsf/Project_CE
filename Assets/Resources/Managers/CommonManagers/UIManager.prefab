@@ -229,6 +229,7 @@ MonoBehaviour:
   m_ClosedUITransform: {fileID: 3751778757371216776}
   ExitInputReference: {fileID: -3237338977024050029, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   fadeImage: {fileID: 9088982569993892315}
+  loadingUI: {fileID: 0}
   UICamera: {fileID: 6510182563428773350}
 --- !u!1 &4110814487697245508
 GameObject:
