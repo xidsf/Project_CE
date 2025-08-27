@@ -11,7 +11,8 @@ public class LoadingUIData : BaseUIData
 }
 
 /// <summary>
-/// AsyncOperation의 allowSceneActivation = false를 보장하지 않음
+/// AsyncOperation의 allowSceneActivation = false를 내부에서 하긴 하지만
+/// 외부에서 미리 설정 후 하는 것을 추천
 /// </summary>
 /// 
 public class LoadingUI : BaseUI
@@ -46,12 +47,11 @@ public class LoadingUI : BaseUI
             LoadingUIData.AsyncOperation.allowSceneActivation = false;
             return;
         }
-
-        LoadingSlider.value = MIN_SLIDER_VALUE;
     }
 
     private void StartLoading()
     {
+        LoadingSlider.value = MIN_SLIDER_VALUE;
         StartCoroutine(LoadingUICoroutine());
     }
     

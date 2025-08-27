@@ -57,7 +57,7 @@ public abstract class Player : MonoBehaviour
         m_MoveAction = playerInput.actions["Move"];
         m_ItemASkillAction = playerInput.actions["SkillA"];
         m_ItemBSkillAction = playerInput.actions["SkillB"];
-        m_PauseAction = playerInput.actions["Pause"];
+        m_PauseAction = playerInput.actions["Exit"];
         m_ExLifeAction = playerInput.actions["ExLife"];
 
         if (m_MoveAction == null || m_ItemASkillAction == null || m_ItemBSkillAction == null || m_PauseAction == null || m_ExLifeAction == null)

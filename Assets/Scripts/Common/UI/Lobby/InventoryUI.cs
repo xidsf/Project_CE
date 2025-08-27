@@ -284,4 +284,9 @@ public class InventoryUI : BaseUI
         SetEquipmentData();
     }
 
+    public void OnClickGameStartButton()
+    {
+        UIManager.Instance.CloseAllUI();
+        LobbyManager.Instance.StartInGame();
+    }
 }

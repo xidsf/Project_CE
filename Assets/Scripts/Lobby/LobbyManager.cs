@@ -1,20 +1,36 @@
+using System.Collections;
 using UnityEngine;
 
 public class LobbyManager : Singleton<LobbyManager>
 {
+    bool isInGameLoading = false;
+
     protected override void Init()
     {
         m_IsDestroyOnLoad = true;
 
         base.Init();
-
-        
     }
 
     public void StartInGame()
     {
-        UIManager.Instance.CloseAllUI();
+        if(isInGameLoading) return;
+        isInGameLoading = true;
+        StartCoroutine(LoadInGameCoroutine());
+    }
 
-        SceneLoader.Instance.LoadScene(SceneType.InGame);
+    IEnumerator LoadInGameCoroutine()
+    {
+        AsyncOperation async = SceneLoader.Instance.LoadSceneAsync(SceneType.InGame);
+        var uiData = new LoadingUIData()
+        {
+            AsyncOperation = async,
+            fadeDuration = 0.5f,
+        };
+        UIManager.Instance.OpenUI<LoadingUI>(uiData);
+        while (async.isDone)
+        {
+            yield return null;
+        }
     }
 }
