@@ -10,23 +10,12 @@ public class InventoryUI : BaseUI
     [SerializeField] InfiniteScroll statInfiniteScroll;
 
     [Header("Equipped Item Slots")]
-    [SerializeField] GameObject weaponEmptyIcon;
-    [SerializeField] EquippedItemSlot weaponItemSlot;
-
-    [SerializeField] GameObject subWeaponEmptyIcon;
-    [SerializeField] EquippedItemSlot subWeaponItemSlot;
-
-    [SerializeField] GameObject helmetEmptyIcon;
-    [SerializeField] EquippedItemSlot helmetItemSlot;
-
-    [SerializeField] GameObject potionEmptyIcon;
-    [SerializeField] EquippedItemSlot potionItemSlot;
-
-    [SerializeField] GameObject accessoryEmptyIcon;
-    [SerializeField] EquippedItemSlot accessoryItemSlot;
-
-    [SerializeField] GameObject foodEmptyIcon;
-    [SerializeField] EquippedItemSlot foodItemSlot;
+    [SerializeField] EquipmentSlot weaponItemSlot;
+    [SerializeField] EquipmentSlot subWeaponItemSlot;
+    [SerializeField] EquipmentSlot helmetItemSlot;
+    [SerializeField] EquipmentSlot accessoryItemSlot;
+    [SerializeField] EquipmentSlot potionItemSlot;
+    [SerializeField] EquipmentSlot foodItemSlot;
 
     public override void SetInfo(BaseUIData data)
     {
@@ -217,20 +206,6 @@ public class InventoryUI : BaseUI
             accessoryItemSlot.ResetItem();
             foodItemSlot.ResetItem();
 
-            weaponEmptyIcon.SetActive(true);
-            subWeaponEmptyIcon.SetActive(true);
-            helmetEmptyIcon.SetActive(true);
-            potionEmptyIcon.SetActive(true);
-            accessoryEmptyIcon.SetActive(true);
-            foodEmptyIcon.SetActive(true);
-
-            weaponItemSlot.gameObject.SetActive(false);
-            subWeaponItemSlot.gameObject.SetActive(false);
-            helmetItemSlot.gameObject.SetActive(false);
-            potionItemSlot.gameObject.SetActive(false);
-            accessoryItemSlot.gameObject.SetActive(false);
-            foodItemSlot.gameObject.SetActive(false);
-
         } //¿Â∫Ò ¿Â¬¯ƒ≠ √ ±‚»≠
 
         foreach (var item in userInventoryList)
@@ -242,33 +217,21 @@ public class InventoryUI : BaseUI
                 switch (itemData.itemEquipType)
                 {
                     case ItemEquipType.Weapon:
-                        weaponEmptyIcon.SetActive(false);
-                        weaponItemSlot.gameObject.SetActive(true);
                         weaponItemSlot.SetItem(item.serialNumber);
                         break;
                     case ItemEquipType.SubWeapon:
-                        subWeaponEmptyIcon.SetActive(false);
-                        subWeaponItemSlot.gameObject.SetActive(true);
                         subWeaponItemSlot.SetItem(item.serialNumber);
                         break;
                     case ItemEquipType.Helmet:
-                        helmetEmptyIcon.SetActive(false);
-                        helmetItemSlot.gameObject.SetActive(true);
                         helmetItemSlot.SetItem(item.serialNumber);
                         break;
                     case ItemEquipType.Potion:
-                        potionEmptyIcon.SetActive(false);
-                        potionItemSlot.gameObject.SetActive(true);
                         potionItemSlot.SetItem(item.serialNumber);
                         break;
                     case ItemEquipType.Accessory:
-                        accessoryEmptyIcon.SetActive(false);
-                        accessoryItemSlot.gameObject.SetActive(true);
                         accessoryItemSlot.SetItem(item.serialNumber);
                         break;
                     case ItemEquipType.Food:
-                        foodEmptyIcon.SetActive(false);
-                        foodItemSlot.gameObject.SetActive(true);
                         foodItemSlot.SetItem(item.serialNumber);
                         break;
 

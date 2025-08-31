@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -129,11 +128,11 @@ public class ItemInfoUI : BaseUI
 
         if (itemInfoData.isEquipped)
         {
-            itemEquipButtonText.text = "Unequip";
+            itemEquipButtonText.text = "«ÿ¡¶";
         }
         else
         {
-            itemEquipButtonText.text = "Equip";
+            itemEquipButtonText.text = "¿Â¬¯";
         }
     }
 

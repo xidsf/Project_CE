@@ -10,7 +10,7 @@ public class StatModifier
     public readonly ModifierType modifierType;
     public readonly object source;
 
-    public StatModifier(float value, ModifierType isPercentage, object source)
+    public StatModifier(float value, ModifierType isPercentage, object source = null)
     {
         this.value = value;
         this.modifierType = isPercentage;
@@ -27,6 +27,8 @@ public class Stat
 
     private readonly float minValue;
     private readonly float maxValue;
+    private bool isDirty = true;
+    private float lastFinalValue = 0f;
 
     public event Action OnStatChanged;
 
@@ -41,12 +43,19 @@ public class Stat
 
     public void AddModifier(StatModifier mod)
     {
+        if(mod.source == null)
+        {
+            Logger.LogError("Adding null source StatModifier");
+            return;
+        }
         modifiers.Add(mod);
+        isDirty = true;
         OnStatChanged?.Invoke();
     }
     public void RemoveModifier(object source)
     {
         modifiers.RemoveAll(mod => mod.source == source);
+        isDirty = true;
         OnStatChanged?.Invoke();
     }
 
@@ -78,6 +87,10 @@ public class Stat
         {
             return fixedValue;
         }
+        if(!isDirty)
+        {
+            return lastFinalValue;
+        }
         float flat = 0;
         float percent = 0;
         foreach (StatModifier mod in modifiers)
@@ -87,19 +100,19 @@ public class Stat
             else
                 percent += mod.value;
         }
-        float finalValue = baseValue + flat;
-        finalValue *= 1 + percent;
+        lastFinalValue = baseValue + flat;
+        lastFinalValue *= 1 + percent;
 
-        if(finalValue < minValue)
+        if(lastFinalValue < minValue)
         {
-            finalValue = minValue;
+            lastFinalValue = minValue;
         }
-        else if (finalValue > maxValue)
+        else if (lastFinalValue > maxValue)
         {
-            finalValue = maxValue;
+            lastFinalValue = maxValue;
         }
-
-        return finalValue;
+        isDirty = false;
+        return lastFinalValue;
     }
 
     public int GetRoundedInt() => Mathf.RoundToInt(GetFinalValue());

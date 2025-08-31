@@ -1,5 +1,4 @@
 using Gpm.Ui;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -63,7 +62,7 @@ public class InventorySlotUIItem : InfiniteScrollItem
             Logger.LogError("UserInventoryData is null.");
             return;
         }
-        var itemData = userInventoryData.InventoryItems.FirstOrDefault(item => item.serialNumber == infiniteScrollData.serialNumber);
+        var itemData = userInventoryData.InventoryItems.Find(item => item.serialNumber == infiniteScrollData.serialNumber);
         if (itemData == null)
         {
             Logger.LogError($"Item with serial number {infiniteScrollData.serialNumber} not found in inventory.");

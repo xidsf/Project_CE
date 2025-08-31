@@ -24,12 +24,34 @@ public enum ItemRarity
 
 public class ItemData
 {
-    public int itemID;
-    public string itemName;
-    public ItemEquipType itemEquipType;
-    public ItemRarity itemRarity;
+    public readonly int itemID;
+    public readonly string itemName;
+    public readonly ItemEquipType itemEquipType;
+    public readonly ItemRarity itemRarity;
+    public readonly IReadOnlyDictionary<string, StatModifier> StatModifiers;
 
-    public Dictionary<string, StatModifier> StatModifiers = new();
+    public ItemData(int itemID, string itemName, ItemEquipType itemEquipType, ItemRarity itemRarity, Dictionary<string, StatModifier> statModifiers)
+    {
+        this.itemID = itemID;
+        this.itemName = itemName;
+        this.itemEquipType = itemEquipType;
+        this.itemRarity = itemRarity;
+        StatModifiers = statModifiers;
+    }
+
+    public ItemData(ItemData other, object source)
+    {
+        itemID = other.itemID;
+        itemName = other.itemName;
+        itemEquipType = other.itemEquipType;
+        itemRarity = other.itemRarity;
+        Dictionary<string, StatModifier> copiedModifiers = new();
+        foreach (var kvp in other.StatModifiers)
+        {
+            copiedModifiers[kvp.Key] = new StatModifier(kvp.Value.value, kvp.Value.modifierType, source);
+        }
+        StatModifiers = copiedModifiers;
+    }
 }
 
 [Serializable]
@@ -46,10 +68,25 @@ public class Item
         get
         {
             if (itemData == null)
-                itemData = DataTableManager.Instance.GetItemData(itemID);
-            return itemData;
+            {
+                var itemData = DataTableManager.Instance.GetItemData(itemID);
+                if(itemData == null)
+                {
+                    Logger.LogError($"ItemID {itemID} not found in DataTableManager");
+                    return null;
+                }
+                else
+                {
+                    itemData = new ItemData(itemData, this);
+                    return itemData;
+                }
+            }
+            else
+            {
+                return itemData;
+            }
+            
         }
-        private set => itemData = value;
     }
 
     public Item(long serialNumber, int itemID, bool isEquipped = false, int abilityID = 0)
@@ -59,8 +96,6 @@ public class Item
         this.isEquipped = isEquipped;
 
         this.abilityID = abilityID;
-
-        ItemData = DataTableManager.Instance.GetItemData(itemID);
 
         if(ItemData == null)
         {

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class UserDataManager : Singleton<UserDataManager>
@@ -66,8 +65,14 @@ public class UserDataManager : Singleton<UserDataManager>
         }
     }
 
-    public T GetUserData<T>()
+    public T GetUserData<T>() where T : class, IUserData
     {
-        return userDataList.OfType<T>().FirstOrDefault();
+        var list = userDataList;
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (list[i] is T typed)
+                return typed;
+        }
+        return null;
     }
 }

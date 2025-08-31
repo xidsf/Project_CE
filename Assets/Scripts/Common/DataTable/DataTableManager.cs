@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Text;
-using UnityEngine;
 
 public class DataTableManager : Singleton<DataTableManager>
 {
@@ -23,16 +20,11 @@ public class DataTableManager : Singleton<DataTableManager>
     {
         var readData = CSVReader.Read($"{DATA_TABLE_PATH}/ItemDataTable");
         StringBuilder sb = new();
-
+        
         foreach (var item in readData)
         {
-            var itemData = new ItemData
-            {
-                itemID = Convert.ToInt32(item["item_id"]),
-                itemName = item["item_name"].ToString()
-            };
-
-            foreach(var str in GlobalDefine.StatStrings)
+            Dictionary<string, StatModifier> statModifiers = new();
+            foreach (var str in GlobalDefine.StatStrings)
             {
                 var statValue = Convert.ToSingle(item[str]);
                 if (statValue != 0)
@@ -45,16 +37,14 @@ public class DataTableManager : Singleton<DataTableManager>
                     {
                         modifierType = ModifierType.Flat;
                     }
-
-                    if (statValue != 0)
-                    {
-                        itemData.StatModifiers.Add(str, new StatModifier(statValue, modifierType, this));
-                    }
+                    statModifiers.Add(str, new StatModifier(statValue, modifierType, this));
                 }
             }
 
-            itemData.itemRarity = (ItemRarity)(itemData.itemID / 10000 % 10);
-            itemData.itemEquipType = (ItemEquipType)(itemData.itemID / 1000 % 10);
+            var itemID = Convert.ToInt32(item["item_id"]);
+
+            var itemData = new ItemData(itemID, item["item_name"].ToString(),
+                (ItemEquipType)(itemID / 1000 % 10), (ItemRarity)(itemID / 10000 % 10), statModifiers);
 
             itemDataList.Add(itemData);
         }
@@ -62,7 +52,7 @@ public class DataTableManager : Singleton<DataTableManager>
     
     public ItemData GetItemData(int itemID)
     {
-        return itemDataList.Where(item => item.itemID == itemID).FirstOrDefault();
+        return itemDataList.Find(item => item.itemID == itemID);
     }
 
     public List<ItemData> GetAllItemDatas()
@@ -71,5 +61,6 @@ public class DataTableManager : Singleton<DataTableManager>
     }
 
     #endregion
+
 
 }
