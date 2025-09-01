@@ -125,6 +125,10 @@ public class ItemInfoUI : BaseUI
 
         itemStatDescriptionText.text = sb.ToString();
 
+        itemRarityText.text = itemData.itemRarity.ToString();
+        itemRarityText.color = Item.GetRarityColor(itemData.itemRarity);
+        itemEquipmentTypeText.text = itemData.itemEquipType.ToString();
+
         if (itemInfoData.isEquipped)
         {
             itemEquipButtonText.text = "«ÿ¡¶";
