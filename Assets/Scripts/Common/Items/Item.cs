@@ -28,9 +28,9 @@ public class ItemData
     public readonly string itemName;
     public readonly ItemEquipType itemEquipType;
     public readonly ItemRarity itemRarity;
-    public readonly IReadOnlyDictionary<string, StatModifier> StatModifiers;
+    public readonly IReadOnlyDictionary<string, ItemStatData> StatModifiers;
 
-    public ItemData(int itemID, string itemName, ItemEquipType itemEquipType, ItemRarity itemRarity, Dictionary<string, StatModifier> statModifiers)
+    public ItemData(int itemID, string itemName, ItemEquipType itemEquipType, ItemRarity itemRarity, Dictionary<string, ItemStatData> statModifiers)
     {
         this.itemID = itemID;
         this.itemName = itemName;
@@ -38,19 +38,17 @@ public class ItemData
         this.itemRarity = itemRarity;
         StatModifiers = statModifiers;
     }
+}
 
-    public ItemData(ItemData other, object source)
+public class ItemStatData
+{
+    public readonly float value;
+    public readonly ModifierType modifierType;
+
+    public ItemStatData(float value, ModifierType type)
     {
-        itemID = other.itemID;
-        itemName = other.itemName;
-        itemEquipType = other.itemEquipType;
-        itemRarity = other.itemRarity;
-        Dictionary<string, StatModifier> copiedModifiers = new();
-        foreach (var kvp in other.StatModifiers)
-        {
-            copiedModifiers[kvp.Key] = new StatModifier(kvp.Value.value, kvp.Value.modifierType, source);
-        }
-        StatModifiers = copiedModifiers;
+        this.value = value;
+        this.modifierType = type;
     }
 }
 
@@ -61,6 +59,7 @@ public class Item
     public int itemID;
     public int abilityID;
     public bool isEquipped;
+    public Dictionary<string, StatModifier> appliedModifiers = new Dictionary<string, StatModifier>();
 
     private ItemData itemData = null;
     public ItemData ItemData
@@ -69,7 +68,7 @@ public class Item
         {
             if (itemData == null)
             {
-                var itemData = DataTableManager.Instance.GetItemData(itemID);
+                itemData = DataTableManager.Instance.GetItemData(itemID);
                 if(itemData == null)
                 {
                     Logger.LogError($"ItemID {itemID} not found in DataTableManager");
@@ -77,7 +76,6 @@ public class Item
                 }
                 else
                 {
-                    itemData = new ItemData(itemData, this);
                     return itemData;
                 }
             }
@@ -101,6 +99,14 @@ public class Item
         {
             Logger.LogError($"{itemID} item cannot load ItemData");
         }
+        else
+        {
+            appliedModifiers.Clear();
+            foreach (var modifier in ItemData.StatModifiers)
+            {
+                appliedModifiers.Add(modifier.Key, new StatModifier(modifier.Value.value, modifier.Value.modifierType, this));
+            }
+        }
     }
 
     public void ExecuteSkill(PlayerContext ctx)
@@ -116,31 +122,30 @@ public class Item
         if (isEquipped) return;
         
         var stat = player.PlayerStat;
-        object source = this;
 
-        foreach (var modifier in ItemData.StatModifiers)
+        foreach (var modifier in appliedModifiers)
         {
             if (modifier.Value.modifierType == ModifierType.Flat)
             {
                 switch(modifier.Key)
                 {
                     case GlobalDefine.STAT_MOVESPEED_FLAT:
-                        stat.MoveSpeed.AddModifier(new StatModifier(modifier.Value.value, ModifierType.Flat, source));
+                        stat.MoveSpeed.AddModifier(modifier.Value);
                         break;
                     case GlobalDefine.STAT_ATTACKRANGE_FLAT:
-                        stat.AttackRange.AddModifier(new StatModifier(modifier.Value.value, ModifierType.Flat, source));
+                        stat.AttackRange.AddModifier(modifier.Value);
                         break;
                     case GlobalDefine.STAT_ATTACKDAMAGE_FLAT:
-                        stat.AttackDamage.AddModifier(new StatModifier(modifier.Value.value, ModifierType.Flat, source));
+                        stat.AttackDamage.AddModifier(modifier.Value);
                         break;
                     case GlobalDefine.STAT_ATTACKSPEED_FLAT:
-                        stat.AttackSpeed.AddModifier(new StatModifier(modifier.Value.value, ModifierType.Flat, source));
+                        stat.AttackSpeed.AddModifier(modifier.Value);
                         break;
                     case GlobalDefine.STAT_CRITICALDAMAGE_FLAT:
-                        stat.CriticalDamage.AddModifier(new StatModifier(modifier.Value.value, ModifierType.Flat, source));
+                        stat.CriticalDamage.AddModifier(modifier.Value);
                         break;
                     case GlobalDefine.STAT_HEALTHPOINT_FLAT:
-                        stat.HealthPoint.AddModifier(new StatModifier(modifier.Value.value, ModifierType.Flat, source));
+                        stat.HealthPoint.AddModifier(modifier.Value);
                         break;
                     default:
                         Debug.LogWarning($"Unknown flat modifier key: {modifier.Key}");
@@ -153,22 +158,22 @@ public class Item
                 switch(modifier.Key)
                 {
                     case GlobalDefine.STAT_MOVESPEED_PERCENT:
-                        stat.MoveSpeed.AddModifier(new StatModifier(modifier.Value.value, ModifierType.Percent, source));
+                        stat.MoveSpeed.AddModifier(modifier.Value);
                         break;
                     case GlobalDefine.STAT_ATTACKRANGE_PERCENT:
-                        stat.AttackRange.AddModifier(new StatModifier(modifier.Value.value, ModifierType.Percent, source));
+                        stat.AttackRange.AddModifier(modifier.Value);
                         break;
                     case GlobalDefine.STAT_ATTACKDAMAGE_PERCENT:
-                        stat.AttackDamage.AddModifier(new StatModifier(modifier.Value.value, ModifierType.Percent, source));
+                        stat.AttackDamage.AddModifier(modifier.Value);
                         break;
                     case GlobalDefine.STAT_ATTACKSPEED_PERCENT:
-                        stat.AttackSpeed.AddModifier(new StatModifier(modifier.Value.value, ModifierType.Percent, source));
+                        stat.AttackSpeed.AddModifier(modifier.Value);
                         break;
                     case GlobalDefine.STAT_HEALTHPOINT_PERCENT:
-                        stat.HealthPoint.AddModifier(new StatModifier(modifier.Value.value, ModifierType.Percent, source));
+                        stat.HealthPoint.AddModifier(modifier.Value);
                         break;
                     case GlobalDefine.STAT_CRITICALCHANCE_PERCENT:
-                        stat.CriticalChance.AddModifier(new StatModifier(modifier.Value.value, ModifierType.Percent, source));
+                        stat.CriticalChance.AddModifier(modifier.Value);
                         break;
                     default:
                         Debug.LogWarning($"Unknown percent modifier key: {modifier.Key}");

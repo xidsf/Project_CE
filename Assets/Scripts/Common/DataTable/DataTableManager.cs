@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+
+
 public class DataTableManager : Singleton<DataTableManager>
 {
     private const string DATA_TABLE_PATH = "DataTables";
@@ -15,6 +17,7 @@ public class DataTableManager : Singleton<DataTableManager>
 
     #region ITEM_DATA
 
+    
     private List<ItemData> itemDataList = new();
     private void LoadItemDataTable()
     {
@@ -23,7 +26,7 @@ public class DataTableManager : Singleton<DataTableManager>
         
         foreach (var item in readData)
         {
-            Dictionary<string, StatModifier> statModifiers = new();
+            Dictionary<string, ItemStatData> statModifiers = new();
             foreach (var str in GlobalDefine.StatStrings)
             {
                 var statValue = Convert.ToSingle(item[str]);
@@ -37,7 +40,7 @@ public class DataTableManager : Singleton<DataTableManager>
                     {
                         modifierType = ModifierType.Flat;
                     }
-                    statModifiers.Add(str, new StatModifier(statValue, modifierType, this));
+                    statModifiers.Add(str, new ItemStatData(statValue, modifierType));
                 }
             }
 

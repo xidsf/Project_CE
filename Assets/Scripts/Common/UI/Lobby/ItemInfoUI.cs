@@ -57,7 +57,6 @@ public class ItemInfoUI : BaseUI
         itemNameText.text = itemData.itemName;
         itemRarityText.text = itemData.itemRarity.ToString();
         
-        itemData = DataTableManager.Instance.GetItemData(itemInfoData.itemID);
         if (itemData == null)
         {
             Logger.LogError($"ItemData not found for item ID: {itemInfoData.itemID}");
