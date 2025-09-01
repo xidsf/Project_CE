@@ -431,6 +431,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2291630800527710179, guid: a840e6959632c044393145e622d2f1c2, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 3568507155124146289, guid: a840e6959632c044393145e622d2f1c2, type: 3}
       propertyPath: m_Name
       value: UIManager

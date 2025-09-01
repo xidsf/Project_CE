@@ -59,7 +59,7 @@ public class Item
     public int itemID;
     public int abilityID;
     public bool isEquipped;
-    public Dictionary<string, StatModifier> appliedModifiers = new Dictionary<string, StatModifier>();
+    public Dictionary<string, StatModifier> appliedStats = new Dictionary<string, StatModifier>();
 
     private ItemData itemData = null;
     public ItemData ItemData
@@ -101,10 +101,10 @@ public class Item
         }
         else
         {
-            appliedModifiers.Clear();
+            appliedStats.Clear();
             foreach (var modifier in ItemData.StatModifiers)
             {
-                appliedModifiers.Add(modifier.Key, new StatModifier(modifier.Value.value, modifier.Value.modifierType, this));
+                appliedStats.Add(modifier.Key, new StatModifier(modifier.Value.value, modifier.Value.modifierType, this));
             }
         }
     }
@@ -123,7 +123,7 @@ public class Item
         
         var stat = player.PlayerStat;
 
-        foreach (var modifier in appliedModifiers)
+        foreach (var modifier in appliedStats)
         {
             if (modifier.Value.modifierType == ModifierType.Flat)
             {
