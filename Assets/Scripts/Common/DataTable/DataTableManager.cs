@@ -55,7 +55,7 @@ public class DataTableManager : Singleton<DataTableManager>
     
     public ItemData GetItemData(int itemID)
     {
-        return itemDataList.Find(item => item.itemID == itemID);
+        return itemDataList.Find(item => item.ItemID == itemID);
     }
 
     public List<ItemData> GetAllItemDatas()

@@ -17,12 +17,12 @@ public class StatSlotUIItem : InfiniteScrollItem
 {
     StatSlotUIData statSlotData;
 
-    public Image Icon;
-    public TextMeshProUGUI statNameText;
-    public TextMeshProUGUI characterStatText;
-    public TextMeshProUGUI flatIncreaseStatText;
-    public TextMeshProUGUI percentIncreaseStatText;
-    public TextMeshProUGUI totalStatText;
+    [SerializeField] private Image Icon;
+    [SerializeField] private TextMeshProUGUI statNameText;
+    [SerializeField] private TextMeshProUGUI characterStatText;
+    [SerializeField] private TextMeshProUGUI flatIncreaseStatText;
+    [SerializeField] private TextMeshProUGUI percentIncreaseStatText;
+    [SerializeField] private TextMeshProUGUI totalStatText;
 
     public override void UpdateData(InfiniteScrollData scrollData)
     {

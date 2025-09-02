@@ -2,10 +2,11 @@ using UnityEngine;
 
 public enum CharacterType
 {
-    None = 0,
-    Warrior = 1,
-    Mage = 2,
-    Archer = 3
+    None = -1,
+    Warrior,
+    Mage,
+    Archer,
+    Count
 }
 
 public class UserPlayData : IUserData
@@ -27,6 +28,7 @@ public class UserPlayData : IUserData
             if(SelectedCharacter != CharacterType.None)
             {
                 SelectedCharacter = lastSelectedCharacter;
+                Logger.Log($"User play data loaded. SelectedCharacter: {SelectedCharacter}");
                 result = true;
             }
         }
@@ -47,6 +49,7 @@ public class UserPlayData : IUserData
             {
                 PlayerPrefs.SetInt("LastSelectedCharacter", (int)SelectedCharacter);
                 PlayerPrefs.Save();
+                Logger.Log($"User play data saved. SelectedCharacter: {SelectedCharacter}");
                 result = true;
             }
             

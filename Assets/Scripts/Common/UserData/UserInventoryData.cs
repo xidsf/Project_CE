@@ -81,28 +81,28 @@ public class UserInventoryData : IUserData
 
     public void EquipItem(long serialNum)
     {
-        var equippingItem = InventoryItems.Find(item => item.serialNumber == serialNum);
+        var equippingItem = InventoryItems.Find(item => item.SerialNumber == serialNum);
         if(equippingItem == default)
         {
             Logger.LogError($"Item with serial number {serialNum} not found in inventory.");
             return;
         }
-        var equippedItems = InventoryItems.FindAll(item => item.isEquipped);
-        var alreadyEquippedEqualItem = equippedItems.Find(item => item.ItemData.itemEquipType == equippingItem.ItemData.itemEquipType);
+        var equippedItems = InventoryItems.FindAll(item => item.IsEquipped);
+        var alreadyEquippedEqualItem = equippedItems.Find(item => item.ItemData.ItemEquipType == equippingItem.ItemData.ItemEquipType);
 
         if (alreadyEquippedEqualItem != default)
         {
-            alreadyEquippedEqualItem.isEquipped = false;
+            alreadyEquippedEqualItem.IsEquipped = false;
         }
-        equippingItem.isEquipped = true;
+        equippingItem.IsEquipped = true;
     }
 
     public void UnequipItem(long serialNum)
     {
-        var foundItem = InventoryItems.Find(item => item.serialNumber == serialNum);
+        var foundItem = InventoryItems.Find(item => item.SerialNumber == serialNum);
         if (foundItem != null)
         {
-            foundItem.isEquipped = false;
+            foundItem.IsEquipped = false;
         }
     }
 }

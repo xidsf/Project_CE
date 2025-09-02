@@ -50,7 +50,7 @@ public class TitleManager : Singleton<TitleManager>
         var uiData = new LoadingUIData() //AsyncOperation을 넘겨주는 부분은 별로인거 같은데 좋은 방법이 떠오르지 않음;;
         {
             AsyncOperation = asyncOp,
-            fadeDuration = 0.5f,
+            FadeDuration = 0.5f,
         };
         UIManager.Instance.OpenUI<LoadingUI>(uiData);
 

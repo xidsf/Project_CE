@@ -5,20 +5,20 @@ using UnityEngine.UI;
 
 public class ItemInfoUIData : BaseUIData
 {
-    public int itemID;
-    public bool isEquipped;
-    public long serialNumer;
+    public int ItemID;
+    public bool IsEquipped;
+    public long SerialNumer;
 }
 
 public class ItemInfoUI : BaseUI
 {
-    public Image itemRarityBgImage;
-    public Image itemIconImage;
-    public TextMeshProUGUI itemNameText;
-    public TextMeshProUGUI itemRarityText;
-    public TextMeshProUGUI itemEquipmentTypeText;
-    public TextMeshProUGUI itemStatDescriptionText;
-    public TextMeshProUGUI itemEquipButtonText;
+    [SerializeField] private Image itemRarityBgImage;
+    [SerializeField] private Image itemIconImage;
+    [SerializeField] private TextMeshProUGUI itemNameText;
+    [SerializeField] private TextMeshProUGUI itemRarityText;
+    [SerializeField] private TextMeshProUGUI itemEquipmentTypeText;
+    [SerializeField] private TextMeshProUGUI itemStatDescriptionText;
+    [SerializeField] private TextMeshProUGUI itemEquipButtonText;
 
     private ItemInfoUIData itemInfoData;
 
@@ -34,32 +34,32 @@ public class ItemInfoUI : BaseUI
             return;
         }
 
-        var itemData = DataTableManager.Instance.GetItemData(itemInfoData.itemID);
+        var itemData = DataTableManager.Instance.GetItemData(itemInfoData.ItemID);
         if(itemData == null)
         {
-            Logger.LogError($"ItemData not found for item ID: {itemInfoData.itemID}");
+            Logger.LogError($"ItemData not found for item ID: {itemInfoData.ItemID}");
             return;
         }
 
         Sprite loadedSprite = null;
 
-        if(ItemIconLoader.LoadItemIcon(itemData.itemID, out loadedSprite))
+        if(ItemIconLoader.LoadItemIcon(itemData.ItemID, out loadedSprite))
         {
             itemIconImage.sprite = loadedSprite;
-            itemRarityBgImage.color = Item.GetRarityColor(itemData.itemRarity);
+            itemRarityBgImage.color = Item.GetRarityColor(itemData.ItemRarity);
         }
         else
         {
-            Logger.LogError($"Failed to load icon for item ID: {itemInfoData.itemID}");
+            Logger.LogError($"Failed to load icon for item ID: {itemInfoData.ItemID}");
             return;
         }
 
-        itemNameText.text = itemData.itemName;
-        itemRarityText.text = itemData.itemRarity.ToString();
+        itemNameText.text = itemData.ItemName;
+        itemRarityText.text = itemData.ItemRarity.ToString();
         
         if (itemData == null)
         {
-            Logger.LogError($"ItemData not found for item ID: {itemInfoData.itemID}");
+            Logger.LogError($"ItemData not found for item ID: {itemInfoData.ItemID}");
             return;
         }
         var itemStatModifiers = itemData.StatModifiers;
@@ -74,62 +74,62 @@ public class ItemInfoUI : BaseUI
         {
             if(itemStatModifiers.ContainsKey(GlobalDefine.STAT_ATTACKDAMAGE_FLAT))
             {
-                sb.Append($"공격력: +{itemStatModifiers[GlobalDefine.STAT_ATTACKDAMAGE_FLAT].value}\n");
+                sb.Append($"공격력: +{itemStatModifiers[GlobalDefine.STAT_ATTACKDAMAGE_FLAT].Value}\n");
             }
             if (itemStatModifiers.ContainsKey(GlobalDefine.STAT_ATTACKDAMAGE_PERCENT))
             {
-                sb.Append($"공격력: +{itemStatModifiers[GlobalDefine.STAT_ATTACKDAMAGE_PERCENT].value * 100}%\n");
+                sb.Append($"공격력: +{itemStatModifiers[GlobalDefine.STAT_ATTACKDAMAGE_PERCENT].Value * 100}%\n");
             }
             if (itemStatModifiers.ContainsKey(GlobalDefine.STAT_ATTACKSPEED_FLAT))
             {
-                sb.Append($"공격속도: {itemStatModifiers[GlobalDefine.STAT_ATTACKSPEED_FLAT].value}\n");
+                sb.Append($"공격속도: {itemStatModifiers[GlobalDefine.STAT_ATTACKSPEED_FLAT].Value}\n");
             }
             if (itemStatModifiers.ContainsKey(GlobalDefine.STAT_ATTACKSPEED_PERCENT))
             {
-                sb.Append($"공격속도: +{itemStatModifiers[GlobalDefine.STAT_ATTACKSPEED_PERCENT].value * 100}%\n");
+                sb.Append($"공격속도: +{itemStatModifiers[GlobalDefine.STAT_ATTACKSPEED_PERCENT].Value * 100}%\n");
             }
             if (itemStatModifiers.ContainsKey(GlobalDefine.STAT_MOVESPEED_FLAT))
             {
-                sb.Append($"이동속도: +{itemStatModifiers[GlobalDefine.STAT_MOVESPEED_FLAT].value}\n");
+                sb.Append($"이동속도: +{itemStatModifiers[GlobalDefine.STAT_MOVESPEED_FLAT].Value}\n");
             }
             if (itemStatModifiers.ContainsKey(GlobalDefine.STAT_MOVESPEED_PERCENT))
             {
-                sb.Append($"이동속도: +{itemStatModifiers[GlobalDefine.STAT_MOVESPEED_PERCENT].value * 100}%\n");
+                sb.Append($"이동속도: +{itemStatModifiers[GlobalDefine.STAT_MOVESPEED_PERCENT].Value * 100}%\n");
             }
             if (itemStatModifiers.ContainsKey(GlobalDefine.STAT_ATTACKRANGE_FLAT))
             {
-                sb.Append($"공격범위: +{itemStatModifiers[GlobalDefine.STAT_ATTACKRANGE_FLAT].value}\n");
+                sb.Append($"공격범위: +{itemStatModifiers[GlobalDefine.STAT_ATTACKRANGE_FLAT].Value}\n");
             }
             if (itemStatModifiers.ContainsKey(GlobalDefine.STAT_ATTACKRANGE_PERCENT))
             {
-                sb.Append($"공격범위: +{itemStatModifiers[GlobalDefine.STAT_ATTACKRANGE_PERCENT].value * 100}%\n");
+                sb.Append($"공격범위: +{itemStatModifiers[GlobalDefine.STAT_ATTACKRANGE_PERCENT].Value * 100}%\n");
             }
             if (itemStatModifiers.ContainsKey(GlobalDefine.STAT_CRITICALCHANCE_PERCENT))
             {
-                sb.Append($"치명타 확률: +{itemStatModifiers[GlobalDefine.STAT_CRITICALCHANCE_PERCENT].value * 100}%\n");
+                sb.Append($"치명타 확률: +{itemStatModifiers[GlobalDefine.STAT_CRITICALCHANCE_PERCENT].Value * 100}%\n");
             }
             if (itemStatModifiers.ContainsKey(GlobalDefine.STAT_CRITICALDAMAGE_FLAT))
             {
-                sb.Append($"치명타 피해: +{itemStatModifiers[GlobalDefine.STAT_CRITICALDAMAGE_FLAT].value * 100}%\n");
+                sb.Append($"치명타 피해: +{itemStatModifiers[GlobalDefine.STAT_CRITICALDAMAGE_FLAT].Value * 100}%\n");
             }
             if (itemStatModifiers.ContainsKey(GlobalDefine.STAT_HEALTHPOINT_FLAT))
             {
-                sb.Append($"체력: +{itemStatModifiers[GlobalDefine.STAT_HEALTHPOINT_FLAT].value}\n");
+                sb.Append($"체력: +{itemStatModifiers[GlobalDefine.STAT_HEALTHPOINT_FLAT].Value}\n");
             }
             if (itemStatModifiers.ContainsKey(GlobalDefine.STAT_HEALTHPOINT_PERCENT))
             {
-                sb.Append($"체력: +{itemStatModifiers[GlobalDefine.STAT_HEALTHPOINT_PERCENT].value * 100}%\n");
+                sb.Append($"체력: +{itemStatModifiers[GlobalDefine.STAT_HEALTHPOINT_PERCENT].Value * 100}%\n");
             }
 
         }
 
         itemStatDescriptionText.text = sb.ToString();
 
-        itemRarityText.text = itemData.itemRarity.ToString();
-        itemRarityText.color = Item.GetRarityColor(itemData.itemRarity);
-        itemEquipmentTypeText.text = itemData.itemEquipType.ToString();
+        itemRarityText.text = itemData.ItemRarity.ToString();
+        itemRarityText.color = Item.GetRarityColor(itemData.ItemRarity);
+        itemEquipmentTypeText.text = itemData.ItemEquipType.ToString();
 
-        if (itemInfoData.isEquipped)
+        if (itemInfoData.IsEquipped)
         {
             itemEquipButtonText.text = "해제";
         }
@@ -154,15 +154,15 @@ public class ItemInfoUI : BaseUI
             return;
         }
 
-        var userEquipType = (ItemEquipType)(itemInfoData.itemID / 1000 % 10);
+        var userEquipType = (ItemEquipType)(itemInfoData.ItemID / 1000 % 10);
 
-        if (itemInfoData.isEquipped)
+        if (itemInfoData.IsEquipped)
         {
-            userData.UnequipItem(itemInfoData.serialNumer);
+            userData.UnequipItem(itemInfoData.SerialNumer);
         }
         else
         {
-            userData.EquipItem(itemInfoData.serialNumer);
+            userData.EquipItem(itemInfoData.SerialNumer);
         }
         userData.SaveData();
 

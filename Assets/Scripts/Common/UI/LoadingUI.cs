@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class LoadingUIData : BaseUIData 
 {
     public AsyncOperation AsyncOperation;
-    public float fadeDuration;
+    public float FadeDuration;
 }
 
 /// <summary>
@@ -17,8 +17,8 @@ public class LoadingUIData : BaseUIData
 /// 
 public class LoadingUI : BaseUI
 {
-    public Slider LoadingSlider;
-    public TextMeshProUGUI TipText;
+    [SerializeField] private Slider LoadingSlider;
+    [SerializeField] private TextMeshProUGUI TipText;
 
     private LoadingUIData LoadingUIData;
 
@@ -82,8 +82,8 @@ public class LoadingUI : BaseUI
                 else
                 {
                     LoadingSlider.value = MAX_SLIDER_VALUE;
-                    UIManager.Instance.Fade(Color.black, 0f, 1f, LoadingUIData.fadeDuration, 0f, true);
-                    yield return new WaitForSeconds(LoadingUIData.fadeDuration);
+                    UIManager.Instance.Fade(Color.black, 0f, 1f, LoadingUIData.FadeDuration, 0f, true);
+                    yield return new WaitForSeconds(LoadingUIData.FadeDuration);
                     LoadingUIData.AsyncOperation.allowSceneActivation = true;
                     break;
                 }

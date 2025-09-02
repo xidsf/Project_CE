@@ -16,7 +16,7 @@ public class DebugUIHandler : MonoBehaviour
         {
             DebugItemScrollData itemInfo = new DebugItemScrollData
             {
-                itemID = itemData.itemID
+                itemID = itemData.ItemID
             };
             ItemListScroll.InsertData(itemInfo);
         }

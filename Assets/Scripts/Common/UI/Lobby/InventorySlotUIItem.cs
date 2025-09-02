@@ -4,14 +4,14 @@ using UnityEngine.UI;
 
 public class InventorySlotUIData : InfiniteScrollData
 {
-    public long serialNumber;
+    public long SerialNumber;
     public int ItemId;
 }
 
 public class InventorySlotUIItem : InfiniteScrollItem
 {
-    public Image itemImageBg;
-    public Image itemImage;
+    public Image ItemImageBg;
+    public Image ItemImage;
 
     InventorySlotUIData infiniteScrollData;
 
@@ -36,10 +36,10 @@ public class InventorySlotUIItem : InfiniteScrollItem
 
         Sprite sprite = null;
 
-        if (ItemIconLoader.LoadItemIcon(itemData.itemID, out sprite))
+        if (ItemIconLoader.LoadItemIcon(itemData.ItemID, out sprite))
         {
-            itemImage.sprite = sprite;
-            itemImageBg.color = Item.GetRarityColor(itemData.itemRarity);
+            ItemImage.sprite = sprite;
+            ItemImageBg.color = Item.GetRarityColor(itemData.ItemRarity);
         }
         else
         {
@@ -62,17 +62,17 @@ public class InventorySlotUIItem : InfiniteScrollItem
             Logger.LogError("UserInventoryData is null.");
             return;
         }
-        var itemData = userInventoryData.InventoryItems.Find(item => item.serialNumber == infiniteScrollData.serialNumber);
+        var itemData = userInventoryData.InventoryItems.Find(item => item.SerialNumber == infiniteScrollData.SerialNumber);
         if (itemData == null)
         {
-            Logger.LogError($"Item with serial number {infiniteScrollData.serialNumber} not found in inventory.");
+            Logger.LogError($"Item with serial number {infiniteScrollData.SerialNumber} not found in inventory.");
             return;
         }
         var itemInfoData = new ItemInfoUIData
         {
-            itemID = infiniteScrollData.ItemId,
-            isEquipped = itemData.isEquipped,
-            serialNumer = infiniteScrollData.serialNumber
+            ItemID = infiniteScrollData.ItemId,
+            IsEquipped = itemData.IsEquipped,
+            SerialNumer = infiniteScrollData.SerialNumber
         };
 
         UIManager.Instance.OpenUI<ItemInfoUI>(itemInfoData);

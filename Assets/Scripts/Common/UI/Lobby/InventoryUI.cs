@@ -39,12 +39,12 @@ public class InventoryUI : BaseUI
         itemInfiniteScroll.SetSpace(new Vector2(20, 20)); 
         foreach (var item in userInventoryList)
         {
-            if(item.isEquipped)
+            if(item.IsEquipped)
                 continue;
             var newItem = new InventorySlotUIData
             {
-                serialNumber = item.serialNumber,
-                ItemId = item.itemID
+                SerialNumber = item.SerialNumber,
+                ItemId = item.ItemID
             };
 
             itemInfiniteScroll.InsertData(newItem);
@@ -67,13 +67,13 @@ public class InventoryUI : BaseUI
 
         foreach (var item in userInventoryList)
         {
-            if (item.isEquipped)
+            if (item.IsEquipped)
             {
-                var itemData = DataTableManager.Instance.GetItemData(item.itemID);
+                var itemData = DataTableManager.Instance.GetItemData(item.ItemID);
 
                 if (itemData == null)
                 {
-                    Logger.LogError($"ItemData not found for item ID: {item.itemID}");
+                    Logger.LogError($"ItemData not found for item ID: {item.ItemID}");
                     continue;
                 }
 
@@ -82,40 +82,40 @@ public class InventoryUI : BaseUI
                     switch(itemModifierKey)
                     {
                         case GlobalDefine.STAT_ATTACKDAMAGE_FLAT:
-                            equippedItemStat.AttackDamage.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Flat, item));
+                            equippedItemStat.AttackDamage.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].Value, ModifierType.Flat, item));
                             break;
                         case GlobalDefine.STAT_ATTACKRANGE_FLAT:
-                            equippedItemStat.AttackRange.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Flat, item));
+                            equippedItemStat.AttackRange.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].Value, ModifierType.Flat, item));
                             break;
                         case GlobalDefine.STAT_MOVESPEED_FLAT:
-                            equippedItemStat.MoveSpeed.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Flat, item));
+                            equippedItemStat.MoveSpeed.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].Value, ModifierType.Flat, item));
                             break;
                         case GlobalDefine.STAT_ATTACKSPEED_FLAT:
-                            equippedItemStat.AttackSpeed.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Flat, item));
+                            equippedItemStat.AttackSpeed.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].Value, ModifierType.Flat, item));
                             break;
                         case GlobalDefine.STAT_CRITICALCHANCE_PERCENT:
-                            equippedItemStat.CriticalChance.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Flat, item));
+                            equippedItemStat.CriticalChance.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].Value, ModifierType.Flat, item));
                             break;
                         case GlobalDefine.STAT_CRITICALDAMAGE_FLAT:
-                            equippedItemStat.CriticalDamage.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Flat, item));
+                            equippedItemStat.CriticalDamage.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].Value, ModifierType.Flat, item));
                             break;
                         case GlobalDefine.STAT_HEALTHPOINT_FLAT:
-                            equippedItemStat.HealthPoint.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Flat, item));
+                            equippedItemStat.HealthPoint.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].Value, ModifierType.Flat, item));
                             break;
                         case GlobalDefine.STAT_ATTACKDAMAGE_PERCENT:
-                            equippedItemStat.AttackDamage.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Percent, item));
+                            equippedItemStat.AttackDamage.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].Value, ModifierType.Percent, item));
                             break;
                         case GlobalDefine.STAT_ATTACKRANGE_PERCENT:
-                            equippedItemStat.AttackRange.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Percent, item));
+                            equippedItemStat.AttackRange.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].Value, ModifierType.Percent, item));
                             break;
                         case GlobalDefine.STAT_MOVESPEED_PERCENT:
-                            equippedItemStat.MoveSpeed.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Percent, item));
+                            equippedItemStat.MoveSpeed.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].Value, ModifierType.Percent, item));
                             break;
                         case GlobalDefine.STAT_ATTACKSPEED_PERCENT:
-                            equippedItemStat.AttackSpeed.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Percent, item));
+                            equippedItemStat.AttackSpeed.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].Value, ModifierType.Percent, item));
                             break;
                         case GlobalDefine.STAT_HEALTHPOINT_PERCENT:
-                            equippedItemStat.HealthPoint.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].value, ModifierType.Percent, item));
+                            equippedItemStat.HealthPoint.AddModifier(new StatModifier(itemData.StatModifiers[itemModifierKey].Value, ModifierType.Percent, item));
                             break;
                     }
                 }
@@ -210,29 +210,29 @@ public class InventoryUI : BaseUI
 
         foreach (var item in userInventoryList)
         {
-            if (item.isEquipped)
+            if (item.IsEquipped)
             {
-                var itemData = DataTableManager.Instance.GetItemData(item.itemID);
+                var itemData = DataTableManager.Instance.GetItemData(item.ItemID);
 
-                switch (itemData.itemEquipType)
+                switch (itemData.ItemEquipType)
                 {
                     case ItemEquipType.Weapon:
-                        weaponItemSlot.SetItem(item.serialNumber);
+                        weaponItemSlot.SetItem(item.SerialNumber);
                         break;
                     case ItemEquipType.SubWeapon:
-                        subWeaponItemSlot.SetItem(item.serialNumber);
+                        subWeaponItemSlot.SetItem(item.SerialNumber);
                         break;
                     case ItemEquipType.Helmet:
-                        helmetItemSlot.SetItem(item.serialNumber);
+                        helmetItemSlot.SetItem(item.SerialNumber);
                         break;
                     case ItemEquipType.Potion:
-                        potionItemSlot.SetItem(item.serialNumber);
+                        potionItemSlot.SetItem(item.SerialNumber);
                         break;
                     case ItemEquipType.Accessory:
-                        accessoryItemSlot.SetItem(item.serialNumber);
+                        accessoryItemSlot.SetItem(item.SerialNumber);
                         break;
                     case ItemEquipType.Food:
-                        foodItemSlot.SetItem(item.serialNumber);
+                        foodItemSlot.SetItem(item.SerialNumber);
                         break;
 
                 } 

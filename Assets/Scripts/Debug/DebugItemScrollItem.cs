@@ -36,10 +36,10 @@ public class DebugItemScrollItem : InfiniteScrollItem
 
         Sprite sprite = null;
 
-        if (ItemIconLoader.LoadItemIcon(itemData.itemID, out sprite))
+        if (ItemIconLoader.LoadItemIcon(itemData.ItemID, out sprite))
         {
             itemImage.sprite = sprite;
-            itemImageBg.color = Item.GetRarityColor(itemData.itemRarity);
+            itemImageBg.color = Item.GetRarityColor(itemData.ItemRarity);
         }
         else
         {

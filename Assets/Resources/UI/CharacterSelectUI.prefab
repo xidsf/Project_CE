@@ -1042,6 +1042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5301682919076629748}
   - component: {fileID: 8062733528432678227}
+  - component: {fileID: 5948715782309389370}
   m_Layer: 5
   m_Name: CharacterSelectUI
   m_TagString: Untagged
@@ -1081,6 +1082,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7619865447085621760}
   m_CullTransparentMesh: 1
+--- !u!114 &5948715782309389370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7619865447085621760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a2c1250d2a99cc4b8f79e0b3da9328f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIOpenAnim: {fileID: 0}
+  characterScroll: {fileID: 0}
 --- !u!1001 &7185837982075801275
 PrefabInstance:
   m_ObjectHideFlags: 0

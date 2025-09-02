@@ -25,7 +25,7 @@ public class LobbyManager : Singleton<LobbyManager>
         var uiData = new LoadingUIData()
         {
             AsyncOperation = async,
-            fadeDuration = 0.5f,
+            FadeDuration = 0.5f,
         };
         UIManager.Instance.OpenUI<LoadingUI>(uiData);
         while (async.isDone)

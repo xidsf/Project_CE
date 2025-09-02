@@ -5,16 +5,16 @@ public class EquipmentSlot : MonoBehaviour
 {
     [SerializeField] GameObject weaponEmptyIcon;
     [SerializeField] GameObject EquippedItemObject;
-    [SerializeField] Image EquippedItemBgImage;
-    [SerializeField] Image EquippedItemIconImage;
+    [SerializeField] Image equippedItemBgImage;
+    [SerializeField] Image equippedItemIconImage;
 
     private long serialNum;
     private int itemID;
 
     public void ResetItem()
     {
-        EquippedItemBgImage.color = Color.white;
-        EquippedItemIconImage.sprite = null;
+        equippedItemBgImage.color = Color.white;
+        equippedItemIconImage.sprite = null;
         weaponEmptyIcon.SetActive(true);
         EquippedItemObject.SetActive(false);
     }
@@ -24,27 +24,27 @@ public class EquipmentSlot : MonoBehaviour
         EquippedItemObject.SetActive(true);
         weaponEmptyIcon.SetActive(false);
         serialNum = itemSerialNum;
-        if (EquippedItemIconImage.sprite != null)
+        if (equippedItemIconImage.sprite != null)
         {
             Logger.LogError($"{itemSerialNum}: {gameObject.name} is already exist. Please Reset Slot First.");
             return;
         }
 
         var inventoryData = UserDataManager.Instance.GetUserData<UserInventoryData>();
-        var item = inventoryData.InventoryItems.Find(i => i.serialNumber == itemSerialNum);
+        var item = inventoryData.InventoryItems.Find(i => i.SerialNumber == itemSerialNum);
         if (item == null)
         {
             Logger.LogError($"Item with serial number {itemSerialNum} not found in inventory.");
             return;
         }
-        itemID = item.itemID;
+        itemID = item.ItemID;
 
         var itemData = DataTableManager.Instance.GetItemData(itemID);
         Sprite itemIcon = null;
         if (ItemIconLoader.LoadItemIcon(itemID, out itemIcon))
         {
-            EquippedItemIconImage.sprite = itemIcon;
-            EquippedItemBgImage.color = Item.GetRarityColor(itemData.itemRarity);
+            equippedItemIconImage.sprite = itemIcon;
+            equippedItemBgImage.color = Item.GetRarityColor(itemData.ItemRarity);
         }
         else
         {
@@ -56,9 +56,9 @@ public class EquipmentSlot : MonoBehaviour
     {
         var data = new ItemInfoUIData
         {
-            itemID = itemID,
-            isEquipped = true,
-            serialNumer = serialNum
+            ItemID = itemID,
+            IsEquipped = true,
+            SerialNumer = serialNum
         };
 
         UIManager.Instance.OpenUI<ItemInfoUI>(data);

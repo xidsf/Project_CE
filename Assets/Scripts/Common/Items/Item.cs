@@ -24,42 +24,42 @@ public enum ItemRarity
 
 public class ItemData
 {
-    public readonly int itemID;
-    public readonly string itemName;
-    public readonly ItemEquipType itemEquipType;
-    public readonly ItemRarity itemRarity;
+    public readonly int ItemID;
+    public readonly string ItemName;
+    public readonly ItemEquipType ItemEquipType;
+    public readonly ItemRarity ItemRarity;
     public readonly IReadOnlyDictionary<string, ItemStatData> StatModifiers;
 
     public ItemData(int itemID, string itemName, ItemEquipType itemEquipType, ItemRarity itemRarity, Dictionary<string, ItemStatData> statModifiers)
     {
-        this.itemID = itemID;
-        this.itemName = itemName;
-        this.itemEquipType = itemEquipType;
-        this.itemRarity = itemRarity;
+        ItemID = itemID;
+        ItemName = itemName;
+        ItemEquipType = itemEquipType;
+        ItemRarity = itemRarity;
         StatModifiers = statModifiers;
     }
 }
 
 public class ItemStatData
 {
-    public readonly float value;
-    public readonly ModifierType modifierType;
+    public readonly float Value;
+    public readonly ModifierType ModifierType;
 
     public ItemStatData(float value, ModifierType type)
     {
-        this.value = value;
-        this.modifierType = type;
+        Value = value;
+        ModifierType = type;
     }
 }
 
 [Serializable]
 public class Item
 {
-    public long serialNumber;
-    public int itemID;
-    public int abilityID;
-    public bool isEquipped;
-    public Dictionary<string, StatModifier> appliedStats = new Dictionary<string, StatModifier>();
+    public long SerialNumber;
+    public int ItemID;
+    public int AbilityID;
+    public bool IsEquipped;
+    public Dictionary<string, StatModifier> AppliedStats = new Dictionary<string, StatModifier>();
 
     private ItemData itemData = null;
     public ItemData ItemData
@@ -68,10 +68,10 @@ public class Item
         {
             if (itemData == null)
             {
-                itemData = DataTableManager.Instance.GetItemData(itemID);
+                itemData = DataTableManager.Instance.GetItemData(ItemID);
                 if(itemData == null)
                 {
-                    Logger.LogError($"ItemID {itemID} not found in DataTableManager");
+                    Logger.LogError($"ItemID {ItemID} not found in DataTableManager");
                     return null;
                 }
                 else
@@ -89,11 +89,10 @@ public class Item
 
     public Item(long serialNumber, int itemID, bool isEquipped = false, int abilityID = 0)
     {
-        this.serialNumber = serialNumber;
-        this.itemID = itemID;
-        this.isEquipped = isEquipped;
-
-        this.abilityID = abilityID;
+        SerialNumber = serialNumber;
+        ItemID = itemID;
+        IsEquipped = isEquipped;
+        AbilityID = abilityID;
 
         if(ItemData == null)
         {
@@ -101,17 +100,17 @@ public class Item
         }
         else
         {
-            appliedStats.Clear();
+            AppliedStats.Clear();
             foreach (var modifier in ItemData.StatModifiers)
             {
-                appliedStats.Add(modifier.Key, new StatModifier(modifier.Value.value, modifier.Value.modifierType, this));
+                AppliedStats.Add(modifier.Key, new StatModifier(modifier.Value.Value, modifier.Value.ModifierType, this));
             }
         }
     }
 
     public void ExecuteSkill(PlayerContext ctx)
     {
-        if (abilityID != 0)
+        if (AbilityID != 0)
         {
             //ability.ExecuteSkill(ctx);
         }
@@ -119,11 +118,11 @@ public class Item
 
     public void Equip(Player player)
     {
-        if (isEquipped) return;
+        if (IsEquipped) return;
         
         var stat = player.PlayerStat;
 
-        foreach (var modifier in appliedStats)
+        foreach (var modifier in AppliedStats)
         {
             if (modifier.Value.modifierType == ModifierType.Flat)
             {
@@ -182,12 +181,12 @@ public class Item
             }
         }
 
-        isEquipped = true;
+        IsEquipped = true;
     }
 
     public void UnEquip(Player player)
     {
-        if (!isEquipped) return;
+        if (!IsEquipped) return;
         var stat = player.PlayerStat;
         object source = this;
 
@@ -199,7 +198,7 @@ public class Item
         stat.CriticalDamage.RemoveModifier(source);
         stat.HealthPoint.RemoveModifier(source);
 
-        isEquipped = false;
+        IsEquipped = false;
 
     }
 
