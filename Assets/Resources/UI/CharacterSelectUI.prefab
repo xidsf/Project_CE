@@ -770,7 +770,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8816886385036247871}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5948715782309389370}
+        m_TargetAssemblyTypeName: CharacterSelectUI, Assembly-CSharp
+        m_MethodName: OnClickConfirmButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6775817050795738944
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,7 +903,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1789752334985484619}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5948715782309389370}
+        m_TargetAssemblyTypeName: BaseUI, Assembly-CSharp
+        m_MethodName: OnClickCloseButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7119892613809597368
 GameObject:
   m_ObjectHideFlags: 0
@@ -977,7 +1001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Content: {fileID: 0}
+  m_Content: {fileID: 2786063614650113598}
   m_Horizontal: 1
   m_Vertical: 1
   m_MovementType: 1
@@ -985,7 +1009,7 @@ MonoBehaviour:
   m_Inertia: 1
   m_DecelerationRate: 0.135
   m_ScrollSensitivity: 1
-  m_Viewport: {fileID: 0}
+  m_Viewport: {fileID: 5148476100453951722}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}
   m_HorizontalScrollbarVisibility: 0
@@ -1021,10 +1045,10 @@ MonoBehaviour:
       m_Calls: []
   snap: 1
   needItemCount: 0
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 6995116605310147418, guid: 9b79ef14904531b41ad19ed2c902ffb4, type: 3}
   dynamicItemSize: 0
   layout:
-    axis: 1
+    axis: 5
     padding: {x: 0, y: 0}
     space: {x: 0, y: 0}
     topToBotton: 1
@@ -1095,7 +1119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UIOpenAnim: {fileID: 0}
-  characterScroll: {fileID: 0}
+  characterScroll: {fileID: 6964681796848185253}
+  characterNameText: {fileID: 3451139449328749275}
 --- !u!1001 &7185837982075801275
 PrefabInstance:
   m_ObjectHideFlags: 0

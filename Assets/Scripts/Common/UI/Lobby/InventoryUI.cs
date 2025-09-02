@@ -252,4 +252,10 @@ public class InventoryUI : BaseUI
         UIManager.Instance.CloseAllUI();
         LobbyManager.Instance.StartInGame();
     }
+
+    public void OnClickCharacterChangeButton()
+    {
+        var uiData = new BaseUIData();
+        UIManager.Instance.OpenUI<CharacterSelectUI>(uiData);
+    }
 }

@@ -223,8 +223,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoApplySize: 0
-  itemImageBg: {fileID: 2794002554586196106}
-  itemImage: {fileID: 2794002555972019349}
+  ItemImageBg: {fileID: 2794002554586196106}
+  ItemImage: {fileID: 2794002555972019349}
 --- !u!1 &2794002555972019351
 GameObject:
   m_ObjectHideFlags: 0

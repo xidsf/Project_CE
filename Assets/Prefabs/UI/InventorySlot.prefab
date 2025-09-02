@@ -451,5 +451,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponEmptyIcon: {fileID: 4420590072960401618}
   EquippedItemObject: {fileID: 1941548843477452834}
-  EquippedItemBgImage: {fileID: 1941548843748849672}
-  EquippedItemIconImage: {fileID: 1941548842312954903}
+  equippedItemBgImage: {fileID: 1941548843748849672}
+  equippedItemIconImage: {fileID: 1941548842312954903}

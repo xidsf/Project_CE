@@ -8,33 +8,32 @@ public class CharacterSelectUI : BaseUI
     [SerializeField] InfiniteScroll characterScroll;
     [SerializeField] TextMeshProUGUI characterNameText;
 
-    private UserPlayData userPlayData;
     private CharacterType selectedCharacterType = CharacterType.None;
-    private List<GameObject> playerPrefabs = new();
 
     public override void SetInfo(BaseUIData data)
     {
         base.SetInfo(data);
 
-        userPlayData = UserDataManager.Instance.GetUserData<UserPlayData>();
+        var userPlayData = UserDataManager.Instance.GetUserData<UserPlayData>();
         int playerSelectIndex = (int)userPlayData.SelectedCharacter;
-        if(playerSelectIndex <= 0 || playerSelectIndex >= (int)CharacterType.Count)
+        if (playerSelectIndex <= 0 || playerSelectIndex >= (int)CharacterType.Count)
         {
             playerSelectIndex = 1;
         }
+
+        characterScroll.SetSpace(new Vector2 (50, 0));
+
+        SetCharacterScrollList();
+
         selectedCharacterType = (CharacterType)playerSelectIndex;
-        characterScroll.MoveTo(playerSelectIndex);
+        characterScroll.MoveTo(playerSelectIndex - 1, InfiniteScroll.MoveToType.MOVE_TO_CENTER);
 
-        for(int i = 0; i < (int)CharacterType.Count; i++)
+        characterScroll.OnSnap = (currentSnappedIndex) =>
         {
-            var prefab = Resources.Load<GameObject>($"Prefabs/Units/Dummy_{(CharacterType)i}");
-            if(prefab != null)
-            {
-                playerPrefabs.Add(prefab);
-            }
-        }
+            selectedCharacterType = (CharacterType)(currentSnappedIndex + 1);
+            SetCharacterTextUI();
+        };
 
-        //characterScroll.OnSnap =>
     }
 
     private void SetCharacterTextUI()
@@ -49,7 +48,28 @@ public class CharacterSelectUI : BaseUI
     {
         for (int i = 0; i < (int)CharacterType.Count; i++)
         {
+            CharacterSelectUIItemData characterData = new CharacterSelectUIItemData();
+            characterData.CharacterType = (CharacterType)i;
+            characterScroll.InsertData(characterData);
         }
+
     }
 
+    public void OnClickConfirmButton()
+    {
+        if (selectedCharacterType != CharacterType.None)
+        {
+            var userPlayData = UserDataManager.Instance.GetUserData<UserPlayData>();
+            if(userPlayData == null)
+            {
+                Logger.LogError("userPlayData is null.");
+            }
+            else
+            {
+                userPlayData.SelectedCharacter = selectedCharacterType;
+                userPlayData.SaveData();
+            }
+        }
+        CloseUI();
+    }
 }
