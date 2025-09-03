@@ -7,7 +7,10 @@ public class CharacterSelectUI : BaseUI
 {
     [SerializeField] InfiniteScroll characterScroll;
     [SerializeField] TextMeshProUGUI characterNameText;
+    [SerializeField] Transform instantiatedCharacterParent;
 
+    private List<GameObject> instantiatedCharacterList = new List<GameObject>();
+    private bool isInstantiated = false;
     private CharacterType selectedCharacterType = CharacterType.None;
 
     public override void SetInfo(BaseUIData data)
@@ -22,7 +25,7 @@ public class CharacterSelectUI : BaseUI
         }
 
         characterScroll.SetSpace(new Vector2 (50, 0));
-
+        characterScroll.Clear();
         SetCharacterScrollList();
 
         selectedCharacterType = (CharacterType)playerSelectIndex;
@@ -46,13 +49,38 @@ public class CharacterSelectUI : BaseUI
 
     private void SetCharacterScrollList()
     {
+        if(isInstantiated == false)
+        {
+            InstantiateCharacterPrefabs();
+        }
         for (int i = 0; i < (int)CharacterType.Count; i++)
         {
             CharacterSelectUIItemData characterData = new CharacterSelectUIItemData();
             characterData.CharacterType = (CharacterType)i;
+            characterData.InstantiatedPrefabs = instantiatedCharacterList[i];
             characterScroll.InsertData(characterData);
         }
 
+    }
+
+    private void InstantiateCharacterPrefabs()
+    {
+        for (int i = 0; i < (int)CharacterType.Count; i++)
+        {
+            var characterPrefab = Resources.Load<GameObject>($"Units/Dummy_{i}");
+            if(characterPrefab == null)
+            {
+                Logger.LogError($"Character Prefab is null. CharacterType : {(CharacterType)i}");
+                return;
+            }
+            else
+            {
+                var obj = Instantiate(characterPrefab, instantiatedCharacterParent);
+                characterPrefab.SetActive(false);
+                instantiatedCharacterList.Add(obj);
+            }
+        }
+        isInstantiated = true;
     }
 
     public void OnClickConfirmButton()
@@ -71,5 +99,15 @@ public class CharacterSelectUI : BaseUI
             }
         }
         CloseUI();
+    }
+
+    public override void CloseUI(bool isCloseAll = false)
+    {
+        base.CloseUI(isCloseAll);
+        foreach(var obj in instantiatedCharacterList)
+        {
+            obj.SetActive(false);
+            obj.transform.SetParent(instantiatedCharacterParent, false);
+        }
     }
 }
