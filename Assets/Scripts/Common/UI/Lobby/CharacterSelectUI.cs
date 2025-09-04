@@ -1,5 +1,4 @@
 using Gpm.Ui;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -9,8 +8,6 @@ public class CharacterSelectUI : BaseUI
     [SerializeField] TextMeshProUGUI characterNameText;
     [SerializeField] Transform instantiatedCharacterParent;
 
-    private List<GameObject> instantiatedCharacterList = new List<GameObject>();
-    private bool isInstantiated = false;
     private CharacterType selectedCharacterType = CharacterType.None;
 
     public override void SetInfo(BaseUIData data)
@@ -24,17 +21,21 @@ public class CharacterSelectUI : BaseUI
             playerSelectIndex = 1;
         }
 
-        characterScroll.SetSpace(new Vector2 (50, 0));
-        characterScroll.Clear();
+        characterScroll.SetSpace(new Vector2 (50, 50));
+
         SetCharacterScrollList();
+        SetCharacterTextUI();
 
         selectedCharacterType = (CharacterType)playerSelectIndex;
-        characterScroll.MoveTo(playerSelectIndex - 1, InfiniteScroll.MoveToType.MOVE_TO_CENTER);
+        characterScroll.MoveTo(playerSelectIndex, InfiniteScroll.MoveToType.MOVE_TO_CENTER);
 
         characterScroll.OnSnap = (currentSnappedIndex) =>
         {
-            selectedCharacterType = (CharacterType)(currentSnappedIndex + 1);
-            SetCharacterTextUI();
+            var CharacterSelectUI = UIManager.Instance.GetActiveUI<CharacterSelectUI>() as CharacterSelectUI;
+            if (CharacterSelectUI != null)
+            {
+                CharacterSelectUI.OnSnap(currentSnappedIndex);
+            }
         };
 
     }
@@ -49,38 +50,21 @@ public class CharacterSelectUI : BaseUI
 
     private void SetCharacterScrollList()
     {
-        if(isInstantiated == false)
-        {
-            InstantiateCharacterPrefabs();
-        }
+        characterScroll.Clear();
         for (int i = 0; i < (int)CharacterType.Count; i++)
         {
             CharacterSelectUIItemData characterData = new CharacterSelectUIItemData();
             characterData.CharacterType = (CharacterType)i;
-            characterData.InstantiatedPrefabs = instantiatedCharacterList[i];
             characterScroll.InsertData(characterData);
         }
 
     }
+    
 
-    private void InstantiateCharacterPrefabs()
+    public void OnSnap(int snappedIndex)
     {
-        for (int i = 0; i < (int)CharacterType.Count; i++)
-        {
-            var characterPrefab = Resources.Load<GameObject>($"Units/Dummy_{i}");
-            if(characterPrefab == null)
-            {
-                Logger.LogError($"Character Prefab is null. CharacterType : {(CharacterType)i}");
-                return;
-            }
-            else
-            {
-                var obj = Instantiate(characterPrefab, instantiatedCharacterParent);
-                characterPrefab.SetActive(false);
-                instantiatedCharacterList.Add(obj);
-            }
-        }
-        isInstantiated = true;
+        selectedCharacterType = (CharacterType)snappedIndex;
+        SetCharacterTextUI();
     }
 
     public void OnClickConfirmButton()
@@ -101,13 +85,4 @@ public class CharacterSelectUI : BaseUI
         CloseUI();
     }
 
-    public override void CloseUI(bool isCloseAll = false)
-    {
-        base.CloseUI(isCloseAll);
-        foreach(var obj in instantiatedCharacterList)
-        {
-            obj.SetActive(false);
-            obj.transform.SetParent(instantiatedCharacterParent, false);
-        }
-    }
 }

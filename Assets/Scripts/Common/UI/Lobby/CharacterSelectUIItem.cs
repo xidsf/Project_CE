@@ -5,14 +5,14 @@ using UnityEngine;
 public class CharacterSelectUIItemData : InfiniteScrollData
 {
     public CharacterType CharacterType;
-    public GameObject InstantiatedPrefabs;
 }
 
 public class CharacterSelectUIItem : InfiniteScrollItem
 {
-    [SerializeField] Transform characterPrefabParent;
+    [SerializeField] Transform CharacterPosParent;
 
     private CharacterSelectUIItemData characterSelectUIItemData;
+    private GameObject playerCardInstance;
 
     public override void UpdateData(InfiniteScrollData scrollData)
     {
@@ -25,10 +25,46 @@ public class CharacterSelectUIItem : InfiniteScrollItem
             return;
         }
 
-        var playerPrefabs = characterSelectUIItemData.InstantiatedPrefabs;
-
-        playerPrefabs.SetActive(true);
-        playerPrefabs.transform.SetParent(characterPrefabParent, false);
-        playerPrefabs.transform.localPosition = Vector3.zero;
+        if(playerCardInstance == null)
+        {
+            SetPlayerCharacterCard();
+        }
+        if(playerCardInstance != null)
+        {
+            playerCardInstance.SetActive(true);
+            playerCardInstance.transform.localPosition = Vector3.zero;
+            playerCardInstance.transform.localScale = Vector3.one * 300;
+        }
+        
     }
+
+    private void SetPlayerCharacterCard()
+    {
+        LayerMask UILayer = LayerMask.NameToLayer("UI");
+
+        var characterPrefab = Resources.Load<GameObject>($"Units/Dummy_{(int)characterSelectUIItemData.CharacterType}");
+        if (characterPrefab == null)
+        {
+            Logger.LogError($"Character Prefab is null. CharacterType : {characterSelectUIItemData.CharacterType}");
+            playerCardInstance = null;
+        }
+        else
+        {
+            var obj = Instantiate(characterPrefab, CharacterPosParent);
+            obj.layer = UILayer;
+            SetLayerRecursively(obj, UILayer);
+            playerCardInstance = obj;
+
+        }
+    }
+
+    private void SetLayerRecursively(GameObject gameObject, LayerMask layer)
+    {
+        gameObject.layer = layer;
+        foreach (Transform trans in gameObject.transform)
+        {
+            SetLayerRecursively(trans.gameObject, layer);
+        }
+    }
+
 }

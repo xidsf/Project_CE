@@ -6,6 +6,7 @@ public enum CharacterType
     Warrior,
     Mage,
     Archer,
+    Dummy,
     Count
 }
 

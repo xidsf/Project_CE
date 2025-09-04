@@ -35,4 +35,5 @@ public static class GlobalDefine
     public const string STAT_ATTACKSPEED_PERCENT = "percent_attack_speed";
     public const string STAT_HEALTHPOINT_PERCENT = "percent_health_point";
 
+    
 }
