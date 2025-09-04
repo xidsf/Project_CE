@@ -58,7 +58,7 @@ public class CharacterSelectUIItem : InfiniteScrollItem
 
             foreach(var str in GlobalDefine.STAT_NAME)
             {
-
+                
             }
 
         }

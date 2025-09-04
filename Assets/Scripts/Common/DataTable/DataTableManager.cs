@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-public class ChaaracterData
+public class CharacterData
 {
     public readonly int CharacterID;
     public readonly string CharacterName;
@@ -13,6 +13,19 @@ public class ChaaracterData
     public readonly float CritChance;
     public readonly float CritDamage;
     public readonly float HP;
+
+    public CharacterData(int characterID, string characterName, float moveSpeed, float attackDamage, float attackRange, float attackSpeed, float critChance, float critDamage, float healthPoint)
+    {
+        CharacterID = characterID;
+        CharacterName = characterName;
+        MoveSpeed = moveSpeed;
+        AttackDamage = attackDamage;
+        AttackRange = attackRange;
+        AttackSpeed = attackSpeed;
+        CritChance = critChance;
+        CritDamage = critDamage;
+        HP = healthPoint;
+    }
 }
 
 public class DataTableManager : Singleton<DataTableManager>
@@ -24,6 +37,7 @@ public class DataTableManager : Singleton<DataTableManager>
         base.Init();
 
         LoadItemDataTable();
+        LoadCharacterData();
     }
 
     #region ITEM_DATA
@@ -78,7 +92,45 @@ public class DataTableManager : Singleton<DataTableManager>
 
     #region CHARACTER_DATA
 
-    private List<ChaaracterData> characterDataList = new();
+    private List<CharacterData> characterDataList = new();
+
+    private void LoadCharacterData()
+    {
+        var readData = CSVReader.Read($"{DATA_TABLE_PATH}/CharacterDataTable");
+        StringBuilder sb = new();
+
+        foreach (var item in readData)
+        {
+            var charData = new CharacterData(
+                characterID: Convert.ToInt32(item["character_id"]),
+                characterName: item["character_name"].ToString(),
+                moveSpeed: Convert.ToSingle(item["move_speed"]),
+                attackDamage: Convert.ToSingle(item["attack_damage"]),
+                attackRange: Convert.ToSingle(item["attack_range"]),
+                attackSpeed: Convert.ToSingle(item["attack_speed"]),
+                critChance: Convert.ToSingle(item["crit_chance"]),
+                critDamage: Convert.ToSingle(item["crit_damage"]),
+                healthPoint: Convert.ToSingle(item["health_point"])
+                );
+
+            characterDataList.Add(charData);
+        }
+    }
+
+    public CharacterData GetCharacterData(int charID)
+    {
+        return characterDataList.Find(cd => cd.CharacterID == charID);
+    }
+
+    public CharacterData GetCharacterData(CharacterType type)
+    {
+        if (type == CharacterType.None)
+        {
+            Logger.LogError("Can not Get None Type CharacterData");
+            return null;
+        }
+        return characterDataList.Find(cd => cd.CharacterID - 1 == (int)type);
+    }
 
     #endregion
 }

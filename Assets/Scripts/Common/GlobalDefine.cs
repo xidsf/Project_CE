@@ -7,13 +7,13 @@ public static class GlobalDefine
 
     public static string[] STAT_NAME =
     {
-        "move_speed",
-        "attack_range",
-        "attack_damage",
-        "attack_speed",
-        "cirt_chance",
-        "crit_damage",
-        "health_point"
+        "Move Speed",
+        "Attack Range",
+        "Attack Damage",
+        "Attack Speed",
+        "Cirt Chance",
+        "Crit Damage",
+        "HP"    
     };
 
     public static string[] StatModifierStrings = {
