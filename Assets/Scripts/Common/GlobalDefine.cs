@@ -5,7 +5,18 @@ public static class GlobalDefine
     public const string ITEM_ICONS_PATH = "Textures/ItemIcons/";
     public const string STAT_ICONS_PATH = "Textures/StatIcons/";
 
-    public static string[] StatStrings = {
+    public static string[] STAT_NAME =
+    {
+        "move_speed",
+        "attack_range",
+        "attack_damage",
+        "attack_speed",
+        "cirt_chance",
+        "crit_damage",
+        "health_point"
+    };
+
+    public static string[] StatModifierStrings = {
         "flat_move_speed",
         "flat_attack_range",
         "flat_attack_damage",

@@ -244,8 +244,8 @@ RectTransform:
   - {fileID: 2786063614650113598}
   m_Father: {fileID: 4586136992671917616}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.4, y: 0.2}
-  m_AnchorMax: {x: 0.6, y: 0.8}
+  m_AnchorMin: {x: 0.1, y: 0.2}
+  m_AnchorMax: {x: 0.9, y: 0.8}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
@@ -1043,7 +1043,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 6995116605310147418, guid: 9b79ef14904531b41ad19ed2c902ffb4, type: 3}
   dynamicItemSize: 0
   layout:
-    axis: 5
+    axis: 2
     padding: {x: 0, y: 0}
     space: {x: 0, y: 0}
     topToBotton: 1

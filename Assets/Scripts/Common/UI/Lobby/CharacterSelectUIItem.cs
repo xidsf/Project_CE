@@ -10,6 +10,7 @@ public class CharacterSelectUIItemData : InfiniteScrollData
 public class CharacterSelectUIItem : InfiniteScrollItem
 {
     [SerializeField] Transform CharacterPosParent;
+    [SerializeField] GameObject StatArea;
 
     private CharacterSelectUIItemData characterSelectUIItemData;
     private GameObject playerCardInstance;
@@ -27,7 +28,7 @@ public class CharacterSelectUIItem : InfiniteScrollItem
 
         if(playerCardInstance == null)
         {
-            SetPlayerCharacterCard();
+            SetPlayerData();
         }
         if(playerCardInstance != null)
         {
@@ -38,7 +39,7 @@ public class CharacterSelectUIItem : InfiniteScrollItem
         
     }
 
-    private void SetPlayerCharacterCard()
+    private void SetPlayerData()
     {
         LayerMask UILayer = LayerMask.NameToLayer("UI");
 
@@ -54,6 +55,11 @@ public class CharacterSelectUIItem : InfiniteScrollItem
             obj.layer = UILayer;
             SetLayerRecursively(obj, UILayer);
             playerCardInstance = obj;
+
+            foreach(var str in GlobalDefine.STAT_NAME)
+            {
+
+            }
 
         }
     }

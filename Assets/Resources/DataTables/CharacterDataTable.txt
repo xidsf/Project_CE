@@ -1,0 +1,5 @@
+character_id,character_name,move_speed,attack_damage,attack_range,attack_speed,crit_chance,crit_damage,health_point
+1,전사,5,3,1,1,0.05,0.5,20
+2,마법사,3,4,2,0.5,0.02,0.3,15
+3,궁수,7,3.5,3,0.8,0.08,0.8,16
+4,Dummy,1,1,1,1,1,1,20

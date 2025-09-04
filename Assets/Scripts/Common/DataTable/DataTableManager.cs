@@ -2,7 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-
+public class ChaaracterData
+{
+    public readonly int CharacterID;
+    public readonly string CharacterName;
+    public readonly float MoveSpeed;
+    public readonly float AttackDamage;
+    public readonly float AttackRange;
+    public readonly float AttackSpeed;
+    public readonly float CritChance;
+    public readonly float CritDamage;
+    public readonly float HP;
+}
 
 public class DataTableManager : Singleton<DataTableManager>
 {
@@ -27,7 +38,7 @@ public class DataTableManager : Singleton<DataTableManager>
         foreach (var item in readData)
         {
             Dictionary<string, ItemStatData> statModifiers = new();
-            foreach (var str in GlobalDefine.StatStrings)
+            foreach (var str in GlobalDefine.StatModifierStrings)
             {
                 var statValue = Convert.ToSingle(item[str]);
                 if (statValue != 0)
@@ -65,5 +76,9 @@ public class DataTableManager : Singleton<DataTableManager>
 
     #endregion
 
+    #region CHARACTER_DATA
 
+    private List<ChaaracterData> characterDataList = new();
+
+    #endregion
 }
