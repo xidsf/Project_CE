@@ -43,7 +43,7 @@ public class ItemInfoUI : BaseUI
 
         Sprite loadedSprite = null;
 
-        if(ItemIconLoader.LoadItemIcon(itemData.ItemID, out loadedSprite))
+        if(ResourcesLoader.LoadItemIcon(itemData.ItemID, out loadedSprite))
         {
             itemIconImage.sprite = loadedSprite;
             itemRarityBgImage.color = Item.GetRarityColor(itemData.ItemRarity);

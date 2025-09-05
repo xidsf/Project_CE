@@ -1,8 +1,10 @@
 using System.Linq;
 using UnityEngine;
 
-public static class ItemIconLoader
+public static class ResourcesLoader
 {
+    #region ITEM_ICON
+
     public static bool LoadItemIcon(int itemID, out Sprite itemIcon)
     {
         string itemFileFirstName = GetItemFileFirstName(itemID);
@@ -44,7 +46,7 @@ public static class ItemIconLoader
         }
         else if (itemEquipType == ItemEquipType.SubWeapon)
         {
-            switch(jobNum)
+            switch (jobNum)
             {
                 case 2:
                     return "Shield";
@@ -59,7 +61,7 @@ public static class ItemIconLoader
         }
         else if (itemEquipType == ItemEquipType.Weapon)
         {
-            switch(jobNum)
+            switch (jobNum)
             {
                 case 2:
                     return "Sword";
@@ -78,5 +80,34 @@ public static class ItemIconLoader
         }
         return "Unknown Item";
     }
+
+    #endregion
+
+    #region CHARACTER_PREFAB
+
+    public static bool LoadPlayerPrefab(out GameObject obj, int objNum)
+    {
+        obj = Resources.Load<GameObject>($"Units/Dummy_{objNum}");
+        if(obj == null)
+        {
+            Logger.LogError($"Failed Loading Dummy_{objNum} Character");
+            return false;
+        }
+        return true;
+    }
+
+    public static bool LoadPlayerPrefab(out GameObject obj, CharacterType type)
+    {
+        if(type == CharacterType.None)
+        {
+            Logger.LogError("Trying to load None Type Character");
+            obj = null;
+            return false;
+        }
+        return LoadPlayerPrefab(out obj, (int)type);
+    }
+
+
+    #endregion
 
 }

@@ -41,7 +41,7 @@ public class EquipmentSlot : MonoBehaviour
 
         var itemData = DataTableManager.Instance.GetItemData(itemID);
         Sprite itemIcon = null;
-        if (ItemIconLoader.LoadItemIcon(itemID, out itemIcon))
+        if (ResourcesLoader.LoadItemIcon(itemID, out itemIcon))
         {
             equippedItemIconImage.sprite = itemIcon;
             equippedItemBgImage.color = Item.GetRarityColor(itemData.ItemRarity);

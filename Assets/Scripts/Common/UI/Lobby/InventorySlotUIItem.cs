@@ -36,7 +36,7 @@ public class InventorySlotUIItem : InfiniteScrollItem
 
         Sprite sprite = null;
 
-        if (ItemIconLoader.LoadItemIcon(itemData.ItemID, out sprite))
+        if (ResourcesLoader.LoadItemIcon(itemData.ItemID, out sprite))
         {
             ItemImage.sprite = sprite;
             ItemImageBg.color = Item.GetRarityColor(itemData.ItemRarity);

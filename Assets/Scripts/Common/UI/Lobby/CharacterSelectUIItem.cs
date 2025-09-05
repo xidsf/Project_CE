@@ -1,6 +1,7 @@
 using Gpm.Ui;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterSelectUIItemData : InfiniteScrollData
 {
@@ -9,11 +10,20 @@ public class CharacterSelectUIItemData : InfiniteScrollData
 
 public class CharacterSelectUIItem : InfiniteScrollItem
 {
-    [SerializeField] Transform CharacterPosParent;
     [SerializeField] GameObject StatArea;
+    [SerializeField] RawImage CharImage;
 
     private CharacterSelectUIItemData characterSelectUIItemData;
-    private GameObject playerCardInstance;
+
+    [Header("Ω∫≈» ≈ÿΩ∫∆Æ")]
+    [SerializeField] TextMeshProUGUI moveSpeedText;
+    [SerializeField] TextMeshProUGUI attackDamageText;
+    [SerializeField] TextMeshProUGUI attackSpeedText;
+    [SerializeField] TextMeshProUGUI attackRangeText;
+    [SerializeField] TextMeshProUGUI critChanceText;
+    [SerializeField] TextMeshProUGUI critDamageText;
+    [SerializeField] TextMeshProUGUI healthPointText;
+
 
     public override void UpdateData(InfiniteScrollData scrollData)
     {
@@ -26,51 +36,23 @@ public class CharacterSelectUIItem : InfiniteScrollItem
             return;
         }
 
-        if(playerCardInstance == null)
+        CharImage.texture = UIPlayerManager.Instance.GetUIPlayerRT(characterSelectUIItemData.CharacterType);
+
+        var charData = DataTableManager.Instance.GetCharacterData(characterSelectUIItemData.CharacterType);
+        if(charData == null)
         {
-            SetPlayerData();
-        }
-        if(playerCardInstance != null)
-        {
-            playerCardInstance.SetActive(true);
-            playerCardInstance.transform.localPosition = Vector3.zero;
-            playerCardInstance.transform.localScale = Vector3.one * 300;
+            Logger.LogError($"Cannot load CharacterData: CharType:{characterSelectUIItemData.CharacterType}");
+            return;
         }
         
+        moveSpeedText.text = charData.MoveSpeed.ToString();
+        attackDamageText.text = charData.AttackDamage.ToString();
+        attackSpeedText.text = charData.AttackSpeed.ToString();
+        attackRangeText.text = charData.AttackRange.ToString();
+        critChanceText.text = charData.CritChance.ToString();
+        critDamageText.text= charData.CritDamage.ToString();
+        healthPointText.text = charData.HP.ToString();
     }
 
-    private void SetPlayerData()
-    {
-        LayerMask UILayer = LayerMask.NameToLayer("UI");
-
-        var characterPrefab = Resources.Load<GameObject>($"Units/Dummy_{(int)characterSelectUIItemData.CharacterType}");
-        if (characterPrefab == null)
-        {
-            Logger.LogError($"Character Prefab is null. CharacterType : {characterSelectUIItemData.CharacterType}");
-            playerCardInstance = null;
-        }
-        else
-        {
-            var obj = Instantiate(characterPrefab, CharacterPosParent);
-            obj.layer = UILayer;
-            SetLayerRecursively(obj, UILayer);
-            playerCardInstance = obj;
-
-            foreach(var str in GlobalDefine.STAT_NAME)
-            {
-                
-            }
-
-        }
-    }
-
-    private void SetLayerRecursively(GameObject gameObject, LayerMask layer)
-    {
-        gameObject.layer = layer;
-        foreach (Transform trans in gameObject.transform)
-        {
-            SetLayerRecursively(trans.gameObject, layer);
-        }
-    }
 
 }

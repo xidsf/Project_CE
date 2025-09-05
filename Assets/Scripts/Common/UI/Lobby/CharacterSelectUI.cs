@@ -5,8 +5,6 @@ using UnityEngine;
 public class CharacterSelectUI : BaseUI
 {
     [SerializeField] InfiniteScroll characterScroll;
-    [SerializeField] TextMeshProUGUI characterNameText;
-    [SerializeField] Transform instantiatedCharacterParent;
 
     private CharacterType selectedCharacterType = CharacterType.None;
 
@@ -18,13 +16,14 @@ public class CharacterSelectUI : BaseUI
         int playerSelectIndex = (int)userPlayData.SelectedCharacter;
         if (playerSelectIndex <= 0 || playerSelectIndex >= (int)CharacterType.Count)
         {
-            playerSelectIndex = 1;
+            playerSelectIndex = 0;
         }
 
-        characterScroll.SetSpace(new Vector2 (50, 50));
+        characterScroll.Clear();
+        characterScroll.SetPadding(new Vector2(200, 0));
+        characterScroll.SetSpace(new Vector2(200, 50));
 
         SetCharacterScrollList();
-        SetCharacterTextUI();
 
         selectedCharacterType = (CharacterType)playerSelectIndex;
         characterScroll.MoveTo(playerSelectIndex, InfiniteScroll.MoveToType.MOVE_TO_CENTER);
@@ -40,13 +39,6 @@ public class CharacterSelectUI : BaseUI
 
     }
 
-    private void SetCharacterTextUI()
-    {
-        if(selectedCharacterType != CharacterType.None)
-        {
-            characterNameText.text = selectedCharacterType.ToString();
-        }
-    }
 
     private void SetCharacterScrollList()
     {
@@ -64,7 +56,6 @@ public class CharacterSelectUI : BaseUI
     public void OnSnap(int snappedIndex)
     {
         selectedCharacterType = (CharacterType)snappedIndex;
-        SetCharacterTextUI();
     }
 
     public void OnClickConfirmButton()
