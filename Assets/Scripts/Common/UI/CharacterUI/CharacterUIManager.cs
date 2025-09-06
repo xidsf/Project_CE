@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class UIPlayerManager : Singleton<UIPlayerManager>
+public class CharacterUIManager : Singleton<CharacterUIManager>
 {
     [SerializeField] private GameObject CharacerUITemplate;
     private RenderTexture[] RenderTextures;

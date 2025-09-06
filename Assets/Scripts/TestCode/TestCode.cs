@@ -8,7 +8,7 @@ public class TestCode : MonoBehaviour
     private void Start()
     {
         rawImage = GetComponent<RawImage>();
-        rawImage.texture = UIPlayerManager.Instance.GetUIPlayerRT(0);
+        rawImage.texture = CharacterUIManager.Instance.GetUIPlayerRT(0);
     }
 
 }

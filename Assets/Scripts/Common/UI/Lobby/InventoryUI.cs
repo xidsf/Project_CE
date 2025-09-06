@@ -8,6 +8,7 @@ public class InventoryUI : BaseUI
     [Header("Inventory UI")]
     [SerializeField] InfiniteScroll itemInfiniteScroll;
     [SerializeField] InfiniteScroll statInfiniteScroll;
+    [SerializeField] RawImage PlayerUIRawImage;
 
     [Header("Equipped Item Slots")]
     [SerializeField] EquipmentSlot weaponItemSlot;
@@ -21,9 +22,15 @@ public class InventoryUI : BaseUI
     {
         base.SetInfo(data);
 
+        BindCharacterUI();
         SetInventoryItems();
         SetStatData();
         SetEquipmentData();
+    }
+
+    public void BindCharacterUI()
+    {
+        PlayerUIRawImage.texture = CharacterUIManager.Instance.GetUIPlayerRT(0);
     }
 
     public void SetInventoryItems()

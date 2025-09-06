@@ -20,7 +20,7 @@ public class CharacterSelectUI : BaseUI
         }
 
         characterScroll.Clear();
-        characterScroll.SetPadding(new Vector2(200, 0));
+        characterScroll.SetPadding(new Vector2(300, 0));
         characterScroll.SetSpace(new Vector2(200, 50));
 
         SetCharacterScrollList();

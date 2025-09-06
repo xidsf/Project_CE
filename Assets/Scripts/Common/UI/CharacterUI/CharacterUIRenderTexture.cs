@@ -57,7 +57,8 @@ public class CharacterUIRenderTexture : MonoBehaviour
         if (ResourcesLoader.LoadPlayerPrefab(out obj, type))
         {
             instantiatedCharacter = Instantiate(obj, transform);
-            instantiatedCharacter.transform.localPosition = new Vector3(0, -0.5f, 0);
+            instantiatedCharacter.transform.localPosition = new Vector3(0, -3.5f, 0);
+            instantiatedCharacter.transform.localScale = Vector3.one * 10f;
             SetLayerRecursively(instantiatedCharacter, playerLayer);
         }
         else

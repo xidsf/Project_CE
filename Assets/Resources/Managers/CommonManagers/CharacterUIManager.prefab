@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2698015433166324292}
-  - component: {fileID: 7797815470438125857}
+  - component: {fileID: 4383235394430760231}
   m_Layer: 0
-  m_Name: UIPlayerManager
+  m_Name: CharacterUIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7797815470438125857
+--- !u!114 &4383235394430760231
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7610019815507642845}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afcfc3f8847c912458cddd86fc4ba49d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b281ab08951edc458eb9ded4dfc3ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CharacerUITemplate: {fileID: 86719318178821447, guid: e778c5728278d9f419b86f12765853d4, type: 3}

@@ -36,7 +36,7 @@ public class CharacterSelectUIItem : InfiniteScrollItem
             return;
         }
 
-        CharImage.texture = UIPlayerManager.Instance.GetUIPlayerRT(characterSelectUIItemData.CharacterType);
+        CharImage.texture = CharacterUIManager.Instance.GetUIPlayerRT(characterSelectUIItemData.CharacterType);
 
         var charData = DataTableManager.Instance.GetCharacterData(characterSelectUIItemData.CharacterType);
         if(charData == null)
